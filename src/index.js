@@ -1,0 +1,11 @@
+import React from 'react';
+import { render } from 'react-dom';
+
+import App from './App'
+
+require('Styles/index.scss');
+
+render(
+  <App />,
+  document.getElementById('app')
+);

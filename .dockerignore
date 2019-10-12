@@ -1,0 +1,10 @@
+*Dockerfile*
+*docker-compose*
+.DS_Store
+.git
+.gitignore
+.vscode
+log/**/*
+node_modules
+npm-debug.log
+src

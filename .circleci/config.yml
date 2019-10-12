@@ -1,0 +1,77 @@
+version: 2.1
+orbs:
+  aws-ecr: circleci/aws-ecr@6.0.0
+  aws-ecs: circleci/aws-ecs@0.0.8
+workflows:
+  build-and-deploy:
+    jobs:
+      - aws-ecr/build_and_push_image:
+          account-url: "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com"
+          repo: "${AWS_RESOURCE_NAME_PREFIX}"
+          region: ${AWS_DEFAULT_REGION}
+          tag: "${CIRCLE_SHA1}"
+      - aws-ecs/deploy-service-update:
+          requires:
+            - aws-ecr/build_and_push_image
+          aws-region: ${AWS_DEFAULT_REGION}
+          family: "${AWS_RESOURCE_NAME_PREFIX}-service"
+          cluster-name: "${AWS_RESOURCE_NAME_PREFIX}-cluster"
+          container-image-name-updates: "container=${AWS_RESOURCE_NAME_PREFIX}-service,tag=${CIRCLE_SHA1}"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+jobs:
+  build:
+    docker:
+      - image: circleci/node:10-stretch
+
+    working_directory: ~/koa-react-boilerplate
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+
+      - run:
+          name: Install Dependencies
+          command: npm install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - run:
+          name: Lint
+          command: npm run lint
+
+      - run:
+          name: Run Tests
+          command: npm run test
+
+      - run:
+          name: Build project
+          command: npm run build
+
+      - save_cache:
+          paths:
+            - node_modules
+            - build
+          key: v1-dependencies-{{ .Branch }}
+  deploy

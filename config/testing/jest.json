@@ -1,0 +1,38 @@
+{
+  "bail": true,
+  "collectCoverage": true,
+  "coverageDirectory": "<rootDir>/logs/jest",
+  "coverageReporters": [
+    "html",
+    "json",
+    "lcov",
+    "text"
+  ],
+  "moduleDirectories": [
+    "node_modules",
+    "src"
+  ],
+  "moduleFileExtensions": [
+    "js",
+    "jsx"
+  ],
+  "moduleNameMapper": {
+    "\\.(eot|gif|jpg|otf|png|svg|ttf|webp|woff|woff2)$": "<rootDir>/config/testing/__mocks__/fileMock.js",
+    "^.+\\.(sass|scss)$": "identity-obj-proxy",
+    "(images|Images)$": "<rootDir>/config/testing/__mocks__/fileMock.js",
+    "^(Components|Pages|Widgets)$": "<rootDir>/config/testing/__mocks__/componentMock.js",
+    "^Components/(.*)$": "<rootDir>/src/components/$1",
+    "^Containers(.*)$": "<rootDir>/src/containers$1",
+    "^Pages/(.*)$": "<rootDir>/src/pages/$1",
+    "^Source/(.*)$": "<rootDir>/src/$1"
+  },
+  "modulePathIgnorePatterns": ["public"],
+  "rootDir": "../../",
+  "setupFiles": [
+    "<rootDir>/config/testing/setUp.js"
+  ],
+  "setupFilesAfterEnv": [
+    "<rootDir>/node_modules/react-testing-library/cleanup-after-each"
+  ],
+  "verbose": true
+}
