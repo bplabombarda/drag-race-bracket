@@ -3,27 +3,27 @@ import { arrayOf, bool, func, shape, string } from 'prop-types';
 
 import './FormSelect.scss';
 
-const FormSelect = ({ handleSelectOption, labelText, name, options }) => {
-  const [ selectedValue, setValue ] = useState('')
+function FormSelect ({ selectOption, options, text, ...rest }) {
+  
+  const [ selectedValue, setValue ] = useState('');
 
   const handleChange = (event) => {
-    const selectedOptionName = event.target.value
+    const selectedOptionName = event.target.value;
 
-    setValue(selectedOptionName)
-    handleSelectOption(selectedOptionName)
+    setValue(selectedOptionName);
+    selectOption(selectedOptionName);
   }
 
   return (
-    <label>{ labelText }
+    <label>{ text }
       <select
-        name={ name }
-        onChange={ (event) => handleChange(event) }>
+        onChange={ (event) => handleChange(event) }
+        { ...rest }>
         <option value='' selected disabled>Choose a queen</option>
         {
-          options.map(({ eliminated, name }) => (
+          options.map(({ name }) => (
             <option
-              hidden={ eliminated }
-              key={ name }
+              key={ `option_${ name }` }
               selected={ name === selectedValue }
               value={ name }>
               { name }
@@ -36,15 +36,14 @@ const FormSelect = ({ handleSelectOption, labelText, name, options }) => {
 }
 
 FormSelect.propTypes = {
-  handleSelectOption: func,
-  labelText: string,
-  name: string,
   options: arrayOf(
     shape({
       name: string,
       selected: bool,
     })
   ),
+  selectOption: func,
+  text: string,
 };
 
 export default FormSelect;

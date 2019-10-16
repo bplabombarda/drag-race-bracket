@@ -1,38 +1,41 @@
 import React  from 'react';
-import { arrayOf, bool, func, shape, string } from 'prop-types';
+import { arrayOf, bool, func, shape, string, object } from 'prop-types';
 
 import FormSelect from 'Components/FormSelect';
 import './FormSection.scss';
 
-const FormSection = ({ options, setOptions }) => {
-
-  const handleSelectOption = (selectedOptionName) => {
-
-    const newOptions = options.map(option => {
+function FormSection ({ options, selections, setSelections }) {
+  
+  const selectOption = (selectedOptionName) => {
+    const newSelections = options.map(option => {
       return option.name === selectedOptionName
         ? { ...option,  eliminated: true }
         : option
     });
 
-    setOptions(newOptions);
+
+    setSelections(
+      ...selections,
+      newSelections,
+    );
   }
 
   return (
     <section>
       <FormSelect
-        handleSelectOption={ handleSelectOption }
-        labelText='Choose a winner:'
         options={ options }
+        selectOption={ selectOption }
+        text='Choose a winner:'
         />
       <FormSelect
-        handleSelectOption={ handleSelectOption }
-        labelText='Choose a chantay you stay:'
         options={ options }
+        selectOption={ selectOption }
+        text='Choose a chantay you stay:'
         />
       <FormSelect
-        handleSelectOption={ handleSelectOption }
-        labelText='Choose a sashay away:'
         options={ options }
+        selectOption={ selectOption }
+        text='Choose a sashay away:'
         />
     </section>
   )
@@ -45,7 +48,8 @@ FormSection.propTypes = {
       selected: bool,
     })
   ),
-  setOptions: func,
+  selections: object,
+  setSelections: func,
 };
 
-export default FormSection;
+export default FormSelect;
