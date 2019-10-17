@@ -1,5 +1,5 @@
 import React from 'react';
-import { arrayOf, bool, func, object, shape, string, number } from 'prop-types';
+import { arrayOf, bool, func, object, shape, string } from 'prop-types';
 
 import FormSection from 'Components/FormSection';
 import './Form.scss';
@@ -16,11 +16,12 @@ export function getNumberOfSections (options) {
 export function getSectionOptions (sectionIndex, options, selections) {
   const selectionKeys = Object.keys(selections);
 
-  return selectionKeys
-    ? selectionKeys.reduce((newOptions, key, keyIndex) => {
-        if (keyIndex > sectionIndex) newOptions.push(selections[key]);
-      }, [])
-    : options;
+  // return selectionKeys.length > 0
+  //   ? selectionKeys.reduce((newOptions, key, keyIndex) => {
+  //       if (keyIndex > sectionIndex) newOptions.push(selections[key]);
+  //     }, [])
+  //   : options;
+  return options;
 }
 
 export default function Form ({ options, selections, setSelections }) {
@@ -34,6 +35,7 @@ export default function Form ({ options, selections, setSelections }) {
             key={ `section_${ index }` }
             options={ getSectionOptions(index, options, selections) }
             selections={ selections }
+            sectionIndex={ index }
             setSelections={ setSelections }
             />
         ))
