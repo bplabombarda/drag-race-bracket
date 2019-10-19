@@ -5,7 +5,20 @@ import FormSelect from 'Components/FormSelect';
 import './FormSection.scss';
 
 function FormSection ({ options, selections, sectionIndex, setSelections }) {
-  
+
+  const getInputOptions = (inputName) => {
+    const currentWeek = selections[sectionIndex]  || {};
+    const slots = Object.keys(currentWeek);
+    const selectedThisWeek = slots.reduce((names, slot) => {
+      const queen = currentWeek[slot] && currentWeek[slot].name;
+      if (queen && slot !== inputName) names.push(queen);
+
+      return names;
+    }, []);
+
+    return options.filter(({ name }) => !selectedThisWeek.includes(name));
+  }
+
   const selectOption = (type, selectedOptionName) => {
     const selectedOption = options.find(({ name }) => {
       return name === selectedOptionName;
@@ -26,21 +39,21 @@ function FormSection ({ options, selections, sectionIndex, setSelections }) {
     <section>
       <FormSelect
         labelText='Choose a winner:'
-        options={ options }
+        name='winner'
+        options={ getInputOptions('winner') }
         selectOption={ selectOption }
-        type='winner'
         />
       <FormSelect
         labelText='Choose a chantay you stay:'
-        options={ options }
+        name='bottom'
+        options={ getInputOptions('bottom') }
         selectOption={ selectOption }
-        type='bottom'
         />
       <FormSelect
         labelText='Choose a sashay away:'
-        options={ options }
+        name='eliminated'
+        options={ getInputOptions('eliminated') }
         selectOption={ selectOption }
-        type='eliminated'
         />
     </section>
   )

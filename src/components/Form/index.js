@@ -4,6 +4,26 @@ import { arrayOf, bool, func, object, shape, string } from 'prop-types';
 import FormSection from 'Components/FormSection';
 import './Form.scss';
 
+export function getEliminatedQueens (selections, sectionIndex) {
+    const weeks = Object.keys(selections);
+  
+    if (weeks.length > 0) {
+      return weeks.reduce((acc, week, index) => {
+        const elim = selections[week].eliminated
+          ? selections[week].eliminated.name
+          : null;
+
+        if ((elim) && (index !== sectionIndex)) {
+          acc.push(elim);
+        }
+
+        return acc;
+      }, []);
+    }
+
+    return [];
+}
+
 export function getNumberOfSections (options) {
   // TODO: This should be a column on the `season` table
   const NUMBER_IN_FINAL = 3;
@@ -13,15 +33,10 @@ export function getNumberOfSections (options) {
   return [ ...Array(numOfSections).keys() ];
 }
 
-export function getSectionOptions (sectionIndex, options, selections) {
-  const selectionKeys = Object.keys(selections);
+export function getSectionOptions (options, selections, sectionIndex) {
+  const eliminated = getEliminatedQueens(selections, sectionIndex);
 
-  // return selectionKeys.length > 0
-  //   ? selectionKeys.reduce((newOptions, key, keyIndex) => {
-  //       if (keyIndex > sectionIndex) newOptions.push(selections[key]);
-  //     }, [])
-  //   : options;
-  return options;
+  return options.filter(({ name }) => !eliminated.includes(name));
 }
 
 export default function Form ({ options, selections, setSelections }) {
@@ -32,8 +47,8 @@ export default function Form ({ options, selections, setSelections }) {
       {
         numberOfSections.map((index) => (
           <FormSection
-            key={ `section_${ index }` }
-            options={ getSectionOptions(index, options, selections) }
+            key={ `section_${ index + 1 }` }
+            options={ getSectionOptions(options, selections, index) }
             selections={ selections }
             sectionIndex={ index }
             setSelections={ setSelections }
