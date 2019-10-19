@@ -1,15 +1,15 @@
 import React from 'react';
 import { hot } from 'react-hot-loader/root'
+import { Router } from "@reach/router"
 
+import Edit from 'Pages/Edit';
 import Home from 'Pages/Home';
-import 'Styles/index.scss';
 
-export class App extends React.PureComponent {
-  render () {
-    return (
-      <Home />
-    );
-  }
-}
+const App = () => (
+  <Router>
+    <Home path="/" />
+    <Edit path="edit" />
+  </Router>
+);
 
 export default hot(App);
