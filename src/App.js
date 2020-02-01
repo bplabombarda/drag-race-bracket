@@ -1,15 +1,16 @@
 import React from 'react';
-import { hot } from 'react-hot-loader/root'
-import { Router } from "@reach/router"
+import { Router } from '@reach/router';
 
-import Edit from 'Pages/Edit';
+import Admin from 'Pages/Admin';
+import Submissions from 'Pages/Submissions';
 import Home from 'Pages/Home';
 
 const App = () => (
   <Router>
-    <Home path="/" />
-    <Edit path="edit" />
+    <Home path='/' />
+    <Admin path='/admin/*' />
+    <Submissions path='/submissions/*' />
   </Router>
 );
 
-export default hot(App);
+export default App;
