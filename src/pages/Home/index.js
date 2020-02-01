@@ -1,11 +1,9 @@
-import React from 'react'
-
-import Form from 'Components/Form'
+import React from 'react';
 
 const Home = () => {
   return (
-    <Form />
+    <h1>Frigg off, Barb!</h1>
   )
 }
 
-export default Home
+export default Home;
