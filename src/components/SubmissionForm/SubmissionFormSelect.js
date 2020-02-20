@@ -1,5 +1,5 @@
 import React, { useState }  from 'react';
-import { arrayOf, bool, func, shape, string } from 'prop-types';
+import { arrayOf, func, string } from 'prop-types';
 
 import './SubmissionFormSelect.scss';
 
@@ -26,11 +26,11 @@ const SubmissionFormSelect = ({ labelText, options, selectOption, ...rest }) => 
         { ...rest }>
         <option value=''>Choose a Queen</option>
         {
-          options.map(({ name }) => (
+          options.map(optionName => (
             <option
-              key={ `option_${ name.split(' ').join('_') }` }
-              value={ name }>
-              { name }
+              key={ `option_${ optionName.split(' ').join('_') }` }
+              value={ optionName }>
+              { optionName }
             </option>
           ))
         }
@@ -41,12 +41,7 @@ const SubmissionFormSelect = ({ labelText, options, selectOption, ...rest }) => 
 
 SubmissionFormSelect.propTypes = {
   labelText: string,
-  options: arrayOf(
-    shape({
-      name: string,
-      selected: bool,
-    })
-  ),
+  options: arrayOf(string),
   selectOption: func,
   type:string,
 };

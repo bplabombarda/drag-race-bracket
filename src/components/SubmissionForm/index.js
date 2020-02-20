@@ -1,21 +1,12 @@
 import React, { useState } from 'react';
-import { arrayOf, bool, func, object, shape, string } from 'prop-types';
+import { array, func, object, number } from 'prop-types';
 
+import firebase from 'Utils/firebase';
+import FormInput from 'Components/FormInput';
 import SubmissionFormSection from './SubmissionFormSection';
 import './SubmissionForm.scss';
 
-const options = [
-  { name: 'Baga Chipz' },
-  { name: 'Blu Hydrangea' },
-  { name: 'Cheryl Hole' },
-  { name: 'Crystal' },
-  { name: 'Divina de Campo' },
-  { name: 'Gothy Kendoll' },
-  { name: 'Scaredy Kat' },
-  { name: 'Sum Ting Wong' },
-  { name: 'The Vivienne' },
-  { name: 'Vinegar Strokes' },
-];
+const db = firebase.firestore();
 
 export function getEliminatedQueens (selections, sectionIndex) {
     const weeks = Object.keys(selections);
@@ -37,11 +28,9 @@ export function getEliminatedQueens (selections, sectionIndex) {
     return [];
 }
 
-export function getNumberOfSections (options) {
-  // TODO: This should be a column on the `season` table
-  const NUMBER_IN_FINAL = 3;
-
-  const numOfSections = options.length - NUMBER_IN_FINAL;
+export function getNumberOfSections (numberInFinal, options) {
+  const delta = options.length - numberInFinal;
+  const numOfSections = delta > 0 ? delta : 0;
 
   return [ ...Array(numOfSections).keys() ];
 }
@@ -49,37 +38,90 @@ export function getNumberOfSections (options) {
 export function getSectionOptions (options, selections, sectionIndex) {
   const eliminated = getEliminatedQueens(selections, sectionIndex);
 
-  return options.filter(({ name }) => !eliminated.includes(name));
+  return options.filter(option => !eliminated.includes(option));
 }
 
-export default function SubmissionForm () {
-  const [ selections, setSelections ] = useState({});
-  const numberOfSections = getNumberOfSections(options);
+export function addSubmission (seasonId, submission) {
+  const collection = firebase.firestore().collection('seasons');
+  const document = collection.doc(seasonId);
+  const newSubmissionDocument = document.collection('submissions').doc();
+
+  return firebase.firestore().runTransaction((transaction) => {
+    return transaction.get(document).then(doc => {
+      const data = doc.data();
+
+      const newAverage =
+          (data.numRatings * data.avgRating + rating.rating) /
+          (data.numRatings + 1);
+
+      transaction.update(document, {
+        numRatings: data.numRatings + 1,
+        avgRating: newAverage
+      });
+      return transaction.set(newSubmissionDocument, submission);
+    });
+  });
+}
+
+export default function SubmissionForm ({ numberInFinal, options }) {
+  const [ formState, setFormState ] = useState({ email: '' , selections: {} });
+  const numberOfSections = getNumberOfSections(numberInFinal, options);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    // TODO: Update submissions here.
+  }
+
+  const setEmail = event => {
+    const { value: email } = event.target;
+
+    setFormState({
+      ...formState,
+      email,
+    });
+  }
+
+  const setSelections = selections => {
+    setFormState({
+      ...formState,
+      selections,
+    });
+  }
 
   return (
-    <form>
+    <form onSubmit={ handleSubmit }>
+      <FormInput
+        handleOnChange={ setEmail }
+        labelText='Email: '
+        name='email'
+        type='text'
+        value={ formState.email }
+        />
       {
-        numberOfSections.map((index) => (
+        numberOfSections.map((num) => (
           <SubmissionFormSection
-            key={ `section_${ index + 1 }` }
-            options={ getSectionOptions(options, selections, index) }
-            selections={ selections }
-            sectionIndex={ index }
+            key={ `section_${ num }` }
+            formState={ formState }
+            options={ getSectionOptions(options, formState.selections, num) }
+            sectionIndex={ num }
             setSelections={ setSelections }
             />
         ))
       }
+      <FormInput
+        handleOnChange={ () => null }
+        labelText=''
+        name='submit'
+        type='submit'
+        value='Submit'/>
     </form>
   );
 }
 
 SubmissionForm.propTypes = {
-  options: arrayOf(
-    shape({
-      name: string,
-      eliminated: bool,
-    })
-  ),
+  numberInFinal: number,
+  options: array,
   selections: object,
   setSelections: func,
 };
