@@ -1,13 +1,13 @@
 import React  from 'react';
-import { arrayOf, bool, func, number, object, shape, string } from 'prop-types';
+import { array, func, number, object } from 'prop-types';
 
 import FormSelect from './SubmissionFormSelect';
 import './SubmissionFormSection.scss';
 
-function FormSection ({ options, selections, sectionIndex, setSelections }) {
+function FormSection ({ formState, options, sectionIndex, setSelections }) {
 
-  const getInputOptions = (inputName) => {
-    const currentWeek = selections[sectionIndex]  || {};
+  const getInputOptions = inputName => {
+    const currentWeek = formState[sectionIndex]  || {};
     const slots = Object.keys(currentWeek);
     const selectedThisWeek = slots.reduce((names, slot) => {
       const queen = currentWeek[slot] && currentWeek[slot].name;
@@ -20,19 +20,21 @@ function FormSection ({ options, selections, sectionIndex, setSelections }) {
   }
 
   const selectOption = (type, selectedOptionName) => {
-    const selectedOption = options.find(({ name }) => {
+    const selectedOption = options.find(name => {
       return name === selectedOptionName;
     });
 
-    const newOptions = {
-      ...selections,
-      [sectionIndex]: {
-        ...selections[sectionIndex],
+    const sectionKey = `week${sectionIndex}`;
+
+    const newSelections = {
+      ...formState.selections,
+      [sectionKey]: {
+        ...formState.selections[sectionKey],
         [type]: selectedOption,
       },
-    }
+    };
 
-    setSelections(newOptions);
+    setSelections(newSelections);
   }
 
   return (
@@ -60,14 +62,9 @@ function FormSection ({ options, selections, sectionIndex, setSelections }) {
 }
 
 FormSection.propTypes = {
-  options: arrayOf(
-    shape({
-      name: string,
-      selected: bool,
-    })
-  ),
+  formState: object,
+  options: array,
   sectionIndex: number,
-  selections: object,
   setSelections: func,
 };
 

@@ -1,16 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Router } from '@reach/router';
 
 import Admin from 'Pages/Admin';
-import Submissions from 'Pages/Submissions';
-import Home from 'Pages/Home';
+import Season from 'Pages/Season';
+import SeasonList from 'Pages/SeasonList';
+import firebase from 'Utils/firebase';
 
-const App = () => (
-  <Router>
-    <Home path='/' />
-    <Admin path='/admin/*' />
-    <Submissions path='/submissions/*' />
-  </Router>
-);
+const db = firebase.firestore();
 
-export default App;
+export default function App () {
+  const [ seasons, setSeasons ] = useState({});
+
+  useEffect(() => {
+    const fetchSeasons = async () => {
+      const seasonsRef = await db
+        .collection('seasons')
+        .where('active', '==', true)
+        .get();
+
+      const freshSeasons = seasonsRef.docs.reduce((acc, doc) => {
+        return {
+          ...acc,
+          [doc.id]: doc.data(),
+        };
+      }, {});
+
+      setSeasons(freshSeasons);
+    }
+
+    fetchSeasons(setSeasons);
+  }, []);
+
+  return (
+    <Router>
+      <SeasonList path='/' seasons={ seasons }/>
+      <Season path='/seasons/:seasonId/*' seasons={ seasons } />
+      <Admin path='/admin/*' />
+    </Router>
+  );
+}
