@@ -1,22 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from '@reach/router';
-import { arrayOf, object } from 'prop-types';
+import { object } from 'prop-types';
 
 export default function SeasonList ({ seasons }) {
-  const getSeasonObject = (currentUrl) => {
-    return seasons.find(({ url }) => url === currentUrl);
-  }
-
   return (
     <>
       <h2>Seasons:</h2>
       <ul>
-        { seasons.map(({ name, url }, index) => (
-          <li key={ `season_${ index }` } >
-            <Link
-              state={{ season: getSeasonObject(url) }}
-              to={ `seasons/${ url }` }>
-              { name }
+        { Object.keys(seasons) &&
+          Object.keys(seasons).map(seasonId => (
+          <li key={ `season_${ seasonId }` } >
+            <Link to={ `seasons/${ seasonId }` }>
+              { seasonId }
             </Link>
           </li>
         ))}
@@ -26,5 +21,5 @@ export default function SeasonList ({ seasons }) {
 }
 
 SeasonList.propTypes = {
-  seasons: arrayOf(object),
+  seasons: object,
 };

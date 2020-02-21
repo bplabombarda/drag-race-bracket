@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Router } from '@reach/router';
-import { object } from 'prop-types';
+import { object, string } from 'prop-types';
 
 import firebase from 'Utils/firebase';
 import Submission from 'Pages/Submission';
@@ -8,40 +8,36 @@ import SubmissionList from 'Pages/SubmissionList';
 
 const db = firebase.firestore();
 
-export async function addSubmission (season, { email, weeks }) {
+export async function addSubmission (season, { email, selections }) {
   try {
-    const collection = db.collection('seasons');
-    const document = collection.doc(season);
-    await document.collection('submissions').doc(email).set(weeks);
+  await db
+      .collection('seasons')
+      .doc(season)
+      .collection('submissions')
+      .doc(email)
+      .set(selections);
   } catch (error) {
-    console.error('Could not add submission.');
+    // eslint-disable-next-line no-console
+    console.error(`Could not add submission.: ${error}`);
   }
 }
 
-export async function fetchSubmissions (season) {
-  const seasonsRef = await db.collection('seasons')
-    .where('active', '==', true).get();
-  const document = await seasonsRef.doc(season);
-  const submissions = await document.collection('submissions')
-    .docs.map(doc => {
-      console.log(doc)
-    });
+export async function fetchSubmissions (seasonId) {
+  const submissions = await db
+    .collection('seasons')
+    .doc(seasonId)
+    .collection('submissions')
+    .get();
 
-  return submissions;
+  return await submissions;
 }
 
-export default function Season ({ location }) {
-  const [ season, setSeason ] = useState({ name: '', queens: [] });
-  const [ submissions, setSubmissions ] = useState([]);
+export default function Season ({ seasonId, seasons }) {  
+  const [ season, setSeason ] = useState({ 'name': '' });
+  const [ submissions, setSubmissions ] = useState({});
 
   useEffect(() => {
-    setSeason(location.state.season);
-  }, []);
-
-  useEffect(() => {
-    const freshSubs = fetchSubmissions(season.url);
-    
-    setSubmissions(freshSubs);
+    setSeason(seasons[seasonId] || {});
   }, []);
 
   return (
@@ -51,17 +47,27 @@ export default function Season ({ location }) {
         <Link to='/'>Seasons</Link>{' '}
         <Link to=''>View All</Link>{' '}
         <Link to='submissions/new'>New</Link>{' '}
-        <Link to='submissions/edit'>Edit</Link>
+        {/* <Link to='submissions/edit'>Edit</Link> */}
       </nav>
       <Router>
-        <SubmissionList path='/' submissions={ submissions }/>
-        <Submission path='submissions/edit' seasonObject={ season }/>
-        <Submission path='submissions/new' seasonObject={ season }/>
+        <SubmissionList
+          path='/'
+          setSubmissions={ setSubmissions }
+          submissions={ submissions }/>
+        <Submission
+          path='submissions/edit'
+          addSubmission={ addSubmission }
+          seasonObject={ season }/>
+        <Submission
+          path='submissions/new'
+          addSubmission={ addSubmission }
+          seasonObject={ season }/>
       </Router>
     </>
   );
 }
 
 Season.propTypes = {
-  location: object,
+  seasons: object,
+  seasonId: string,
 };

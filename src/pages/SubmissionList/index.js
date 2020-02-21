@@ -1,7 +1,33 @@
-import React from 'react';
-import { array } from 'prop-types';
+import React, { useEffect } from 'react';
+import { object, string, func } from 'prop-types';
 
-export default function SubmissionList ({ submissions }) {
+import firebase from 'Utils/firebase';
+
+const db = firebase.firestore();
+
+export default function SubmissionList ({ seasonId, setSubmissions, submissions }) {
+
+  useEffect(() => {
+    const fetchSubmissions = async () => {
+      const submissionsRef = await db
+        .collection('seasons')
+        .doc(seasonId)
+        .collection('submissions')
+        .get();
+      
+      const freshSubmissions = submissionsRef.docs.reduce((acc, doc) => {
+        return {
+          ...acc,
+          [doc.id]: doc.data(),
+        };
+      }, {});
+
+      setSubmissions(freshSubmissions);
+    }
+    
+    fetchSubmissions();
+  }, []);
+
   return (
     <ul>
       { Object.keys(submissions) &&
@@ -15,5 +41,7 @@ export default function SubmissionList ({ submissions }) {
 }
 
 SubmissionList.propTypes = {
-  submissions: array,
+  seasonId: string,
+  setSubmissions: func,
+  submissions: object,
 };

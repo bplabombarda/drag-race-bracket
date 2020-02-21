@@ -8,25 +8,33 @@ import firebase from 'Utils/firebase';
 
 const db = firebase.firestore();
 
-export async function fetchSeasons (setSeasons) {
-  const seasonsRef = await db.collection('seasons')
-    .where('active', '==', true).get();
-  const seasonsList = seasonsRef.docs.map(doc => doc.data());
-
-  setSeasons(seasonsList);
-}
-
 export default function App () {
-  const [ seasons, setSeasons ] = useState([]);
+  const [ seasons, setSeasons ] = useState({});
 
   useEffect(() => {
+    const fetchSeasons = async () => {
+      const seasonsRef = await db
+        .collection('seasons')
+        .where('active', '==', true)
+        .get();
+
+      const freshSeasons = seasonsRef.docs.reduce((acc, doc) => {
+        return {
+          ...acc,
+          [doc.id]: doc.data(),
+        };
+      }, {});
+
+      setSeasons(freshSeasons);
+    }
+
     fetchSeasons(setSeasons);
   }, []);
 
   return (
     <Router>
       <SeasonList path='/' seasons={ seasons }/>
-      <Season path='/seasons/:season/*'/>
+      <Season path='/seasons/:seasonId/*' seasons={ seasons } />
       <Admin path='/admin/*' />
     </Router>
   );

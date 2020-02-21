@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { array, func, object, number } from 'prop-types';
+import { array, func, object, number, string } from 'prop-types';
 
 import firebase from 'Utils/firebase';
 import FormInput from 'Components/FormInput';
@@ -41,36 +41,14 @@ export function getSectionOptions (options, selections, sectionIndex) {
   return options.filter(option => !eliminated.includes(option));
 }
 
-export function addSubmission (seasonId, submission) {
-  const collection = firebase.firestore().collection('seasons');
-  const document = collection.doc(seasonId);
-  const newSubmissionDocument = document.collection('submissions').doc();
-
-  return firebase.firestore().runTransaction((transaction) => {
-    return transaction.get(document).then(doc => {
-      const data = doc.data();
-
-      const newAverage =
-          (data.numRatings * data.avgRating + rating.rating) /
-          (data.numRatings + 1);
-
-      transaction.update(document, {
-        numRatings: data.numRatings + 1,
-        avgRating: newAverage
-      });
-      return transaction.set(newSubmissionDocument, submission);
-    });
-  });
-}
-
-export default function SubmissionForm ({ numberInFinal, options }) {
+export default function SubmissionForm ({ addSubmission, numberInFinal, options, seasonId }) {
   const [ formState, setFormState ] = useState({ email: '' , selections: {} });
   const numberOfSections = getNumberOfSections(numberInFinal, options);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    // TODO: Update submissions here.
+    console.log(seasonId, formState)
+    addSubmission(seasonId, formState);
   }
 
   const setEmail = event => {
@@ -120,8 +98,10 @@ export default function SubmissionForm ({ numberInFinal, options }) {
 }
 
 SubmissionForm.propTypes = {
+  addSubmission: func,
   numberInFinal: number,
   options: array,
+  seasonId: string,
   selections: object,
   setSelections: func,
 };

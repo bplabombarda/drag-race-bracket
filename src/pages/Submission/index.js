@@ -1,9 +1,9 @@
 import React from 'react';
 
 import SubmissionForm from 'Components/SubmissionForm';
-import { object, string } from 'prop-types';
+import { object, string, func } from 'prop-types';
 
-export default function Submission ({ path, seasonObject }) {
+export default function Submission ({ addSubmission, path, seasonId, seasonObject }) {
   const { queens, queensInFinale } = seasonObject;
 
   const getTitle = (path) => {
@@ -25,14 +25,18 @@ export default function Submission ({ path, seasonObject }) {
     <>
       <h3>{ getTitle(path) }</h3>
       <SubmissionForm
+        addSubmission={ addSubmission }
         numberInFinal={ queensInFinale }
         options={ queens || [] }
+        seasonId={ seasonId }
       />
     </>
   );
 }
 
 Submission.propTypes = {
+  addSubmission: func,
   path: string,
+  seasonId: string,
   seasonObject: object,
 };
