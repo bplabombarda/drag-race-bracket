@@ -1,20 +1,25 @@
 {
   "name": "koa-react-boilerplate",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Koa & React boilerplate project.",
   "main": "server/index.js",
   "scripts": {
-    "start": "./node_modules/.bin/webpack-dev-server --hot --inline --content-base src/",
-    "clean": "rimraf build",
     "build": "npm run clean && NODE_ENV=production webpack -p",
+    "clean": "rimraf build",
+    "deploy": "npm run clean; npm run build; npm run deploy:firebase;",
+    "deploy:firebase": "firebase deploy",
     "lint": "eslint ./src; stylelint ./src",
+    "start": "./node_modules/.bin/webpack-dev-server --hot --inline --content-base src/",
     "test": "NODE_ENV=development ./node_modules/.bin/jest --config=jest.json"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bplabombarda/farmony.io.git"
   },
-  "author": "Brett LaBombarda",
+  "contributors": [
+    "Brett LaBombarda <bplabombarda@gmail.com>",
+    "Dillon McGuire"
+  ],
   "license": "UNLICENSED",
   "bugs": {
     "url": "https://github.com/bplabombarda/farmony.io/issues"

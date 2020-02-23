@@ -4,8 +4,12 @@ import { array, func, number, object } from 'prop-types';
 import FormSelect from './SubmissionFormSelect';
 import './SubmissionFormSection.scss';
 
-function FormSection ({ formState, options, sectionIndex, setSelections }) {
-
+export default function FormFinalSection ({
+  formState,
+  options,
+  sectionIndex,
+  setSelections
+}) {
   const getInputOptions = inputName => {
     const currentWeek = formState[sectionIndex]  || {};
     const slots = Object.keys(currentWeek);
@@ -40,25 +44,25 @@ function FormSection ({ formState, options, sectionIndex, setSelections }) {
   return (
     <section>
       <FormSelect
-        labelText='Choose the winning queen:'
+        labelText='Choose the first place queen:'
         name='winner'
         options={ getInputOptions('winner') }
         selectOption={ selectOption }
         />
       <FormSelect
-        labelText='Choose the second top queen:'
+        labelText='Choose the second place queen:'
         name='eliminated'
         options={ getInputOptions('eliminated') }
         selectOption={ selectOption }
         />
       <FormSelect
-        labelText='Choose the second bottom queen:'
+        labelText='Choose the third place queen:'
         name='bottom'
         options={ getInputOptions('bottom') }
         selectOption={ selectOption }
         />
       <FormSelect
-        labelText='Choose the eliminated queen :'
+        labelText='Choose the fourth place queen:'
         name='eliminated'
         options={ getInputOptions('eliminated') }
         selectOption={ selectOption }
@@ -67,11 +71,9 @@ function FormSection ({ formState, options, sectionIndex, setSelections }) {
   )
 }
 
-FormSection.propTypes = {
+FormFinalSection.propTypes = {
   formState: object,
   options: array,
   sectionIndex: number,
   setSelections: func,
 };
-
-export default FormSection;

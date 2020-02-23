@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { array, func, object, number, string } from 'prop-types';
 
-import firebase from 'Utils/firebase';
 import FormInput from 'Components/FormInput';
 import SubmissionFormSection from './SubmissionFormSection';
+import SubmissionFormFinalSection from './SubmissionFormFinalSection';
 import './SubmissionForm.scss';
-
-const db = firebase.firestore();
 
 export function getEliminatedQueens (selections, sectionIndex) {
     const weeks = Object.keys(selections);
@@ -77,15 +75,28 @@ export default function SubmissionForm ({ addSubmission, numberInFinal, options,
         value={ formState.email }
         />
       {
-        numberOfSections.map((num) => (
-          <SubmissionFormSection
-            key={ `section_${ num }` }
-            formState={ formState }
-            options={ getSectionOptions(options, formState.selections, num) }
-            sectionIndex={ num }
-            setSelections={ setSelections }
-            />
-        ))
+        numberOfSections.map((num) => {
+          // If it is the last week, render the Final section.
+          return num === Math.max(...numberOfSections)
+            ? (
+              <SubmissionFormFinalSection
+                key={ `section_${ num }` }
+                formState={ formState }
+                options={ getSectionOptions(options, formState.selections, num) }
+                sectionIndex={ num }
+                setSelections={ setSelections }
+                />
+            )
+            : (
+              <SubmissionFormSection
+                key={ `section_${ num }` }
+                formState={ formState }
+                options={ getSectionOptions(options, formState.selections, num) }
+                sectionIndex={ num }
+                setSelections={ setSelections }
+                />
+            );
+        })
       }
       <FormInput
         handleOnChange={ () => null }
