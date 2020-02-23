@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { object, string, func } from 'prop-types';
 
 import firebase from 'Utils/firebase';
+import Submission from 'Pages/Submission';
 
 const db = firebase.firestore();
 
@@ -31,10 +32,12 @@ export default function SubmissionList ({ seasonId, setSubmissions, submissions 
   return (
     <ul>
       { Object.keys(submissions) &&
-        Object.keys(submissions).map((key, index) => (
-        <li key={ `submission_${index}` }>
-          { key } 
-        </li>
+        Object.keys(submissions).map(key => (
+          <Submission
+            key={ `submission_${ key }` }
+            submission={submissions[key]}
+            submittor={ key }
+            />
       ))}
     </ul>
   );
