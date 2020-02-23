@@ -12,7 +12,7 @@ const { resolve }       = require('path');
 const PRODUCTION = process.env.NODE_ENV === 'production';
 const SRC_DIR = `${ __rootdir }/src`;
 
-const commonConfig = {
+const baseConfig = {
   output: {
     path:   `${ __rootdir }/public`,
     pathinfo: !PRODUCTION,
@@ -87,7 +87,7 @@ const commonConfig = {
 if (PRODUCTION) {
   console.info( 'Building for prod...');
 
-  module.exports = merge( commonConfig, {
+  module.exports = merge(baseConfig, {
     mode: 'production',
 
     entry: {
@@ -125,7 +125,7 @@ if (PRODUCTION) {
 } else {
   console.info( 'Serving locally...');
 
-  module.exports = merge( commonConfig, {
+  module.exports = merge(baseConfig, {
     mode: 'development',
 
     devServer: {

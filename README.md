@@ -1,23 +1,45 @@
-# Koa & React Boilerplate Project
+# Fantasy Drag Race
 
-## Running In Development Mode
 
-Install dependencies:
+## Local Development
+
+### Environment Setup
+
+This project uses [dotenv](https://github.com/motdotla/dotenv) to load its configuration into environment variables.
+
+### Install Dependencies
 
     npm install
 
-Download data:
+### Run Webpack Development Server
 
-    npm run download
+This project uses Webpack as its module bundler. To run its development server:
 
-Run development server:
+    npm start
 
-    npm run watch
+### Run Linter
 
-## Testing
+This project uses ESlint as its linter. To run:
 
-    npm run test  // Run tests
+    npm run lint
 
-  OR
+### Run Test Suite (TBD)
 
-    npm run test -- --watch // Run tests in watch mode
+This project uses Jest as its test runner. To run:
+
+    npm test
+
+
+## Deploy
+
+### Build For Production
+
+    npm run build
+
+### Deploy To Firebase
+
+    npm run deploy:firebase    // runs `firebase deploy`
+
+### The Whole Thing
+
+    npm run deploy
