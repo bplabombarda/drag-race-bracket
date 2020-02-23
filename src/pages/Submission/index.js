@@ -1,42 +1,20 @@
 import React from 'react';
+import { object, string } from 'prop-types';
 
-import SubmissionForm from 'Components/SubmissionForm';
-import { object, string, func } from 'prop-types';
+import SubmissionWeeks from 'Components/SubmissionWeeks';
 
-export default function Submission ({ addSubmission, path, seasonId, seasonObject }) {
-  const { queens, queensInFinale } = seasonObject;
-
-  const getTitle = (path) => {
-    const isEdit = path.endsWith('/edit');
-    const isNew = path.endsWith('/new');
-
-    if (isEdit) {
-      return 'Edit Submission';
-    }
-
-    if (isNew) {
-      return 'New Submission';
-    }
-
-    return 'Submission';
-  }
-
+export default function Submission ({ submittor, submission }) {
   return (
     <>
-      <h3>{ getTitle(path) }</h3>
-      <SubmissionForm
-        addSubmission={ addSubmission }
-        numberInFinal={ queensInFinale }
-        options={ queens || [] }
-        seasonId={ seasonId }
-      />
+      <h3>{ submittor }</h3>
+      <SubmissionWeeks
+        submission={ submission }
+        />
     </>
   );
 }
 
 Submission.propTypes = {
-  addSubmission: func,
-  path: string,
-  seasonId: string,
-  seasonObject: object,
+  submission: object,
+  submittor: string,
 };

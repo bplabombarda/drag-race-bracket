@@ -4,6 +4,7 @@ import { object, string } from 'prop-types';
 
 import firebase from 'Utils/firebase';
 import Submission from 'Pages/Submission';
+import SubmissionNew from 'Pages/SubmissionNew';
 import SubmissionList from 'Pages/SubmissionList';
 
 const db = firebase.firestore();
@@ -54,11 +55,11 @@ export default function Season ({ seasonId, seasons }) {
           path='/'
           setSubmissions={ setSubmissions }
           submissions={ submissions }/>
-        <Submission
+        {/* <Submission
           path='submissions/edit'
           addSubmission={ addSubmission }
-          seasonObject={ season }/>
-        <Submission
+          seasonObject={ season }/> */}
+        <SubmissionNew
           path='submissions/new'
           addSubmission={ addSubmission }
           seasonObject={ season }/>
