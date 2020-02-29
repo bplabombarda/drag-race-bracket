@@ -9,7 +9,7 @@ This project uses [dotenv](https://github.com/motdotla/dotenv) to load its confi
 
 #### Update `.env` File
 
-Obtain the corresponding values in Firebase for the existing environment variables and update the `.env` file with those values.
+Obtain the corresponding values in [Firebase](https://console.firebase.google.com/project/fantasy-drag-race/settings/general/web:NGYxY2ZlNGQtZmMwMy00Nzg0LThlZjYtMjE0Zjc2YTk4MTE0) for the existing environment variables and update the `.env` file with those values.
 
 ### Install Dependencies
 
