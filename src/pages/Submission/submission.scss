@@ -1,0 +1,14 @@
+.submission {
+  width: 85%;
+  margin: 0 auto;
+  text-align: center;
+  border: 2px solid $popofcolor;
+  padding: 20px;
+  margin-bottom: 10px;
+  .submitter-name {
+    font-weight: bold;
+  }
+  .inactive {
+    display: none;
+  }
+}

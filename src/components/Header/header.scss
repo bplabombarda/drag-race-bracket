@@ -1,5 +1,19 @@
 header {
+  // box-shadow: -2px 2px 13px -7px;
   border-bottom: 1px solid $popofcolor;
   margin-bottom: 30px;
   padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  nav {
+    display: flex;
+    justify-content: center;
+    a {
+      margin: 0 10px;
+      color: $popofcolor;
+      text-decoration: underline;
+      font-size: 12px;
+    }
+  }
 }
