@@ -7,6 +7,10 @@
 
 This project uses [dotenv](https://github.com/motdotla/dotenv) to load its configuration into environment variables.
 
+#### Update `.env` File
+
+Obtain the corresponding values in Firebase for the existing environment variables and update the `.env` file with those values.
+
 ### Install Dependencies
 
     npm install
