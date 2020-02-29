@@ -7,8 +7,8 @@ export default function Header() {
     <header>
       <h3>dillcap</h3>
       <nav>
-        <Link to="/">Seasons</Link> <Link to="">View All</Link>{" "}
-        <Link to="submissions/new">New</Link>{" "}
+        <Link to="/">Seasons</Link>
+        <Link to="">View All</Link> <Link to="submissions/new">New</Link>
         {/* <Link to='submissions/edit'>Edit</Link> */}
       </nav>
     </header>
