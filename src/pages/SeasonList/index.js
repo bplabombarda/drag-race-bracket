@@ -8,7 +8,7 @@ export default function SeasonList({ seasons }) {
   console.log("seasons", seasons);
   return (
     <>
-      <h2>Seasons:</h2>
+      {/*<h2>Seasons:</h2>*/}
       <ul className="seasons-list">
         {Object.keys(seasons) &&
           Object.keys(seasons).map(seasonId => (
