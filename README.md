@@ -20,6 +20,8 @@ Obtain the corresponding values in Firebase for the existing environment variabl
 This project uses Webpack as its module bundler. To run its development server:
 
     npm start
+    
+## Linting & Testing
 
 ### Run Linter
 
