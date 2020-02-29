@@ -1,8 +1,27 @@
+@import "normalize-scss";
+
 body {
-  color: darkorchid;
-  font-family: 'Anonymous Pro', monospace;
+  font-family: "Chivo", monospace;
+  color: $popofcolor;
+  margin: 0;
+  padding: 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Pacifico', cursive;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Pacifico", cursive;
+  color: $popofcolor;
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+a {
+  text-decoration: none;
 }
