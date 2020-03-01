@@ -116,7 +116,17 @@ if (PRODUCTION) {
       rules: [
         {
           test: /\.(css|scss)$/,
-          use: ["style-loader", "css-loader", "sass-loader"]
+          use: [
+            "style-loader",
+            "css-loader",
+            "sass-loader",
+            {
+              loader: "sass-resources-loader",
+              options: {
+                resources: [resolve(__dirname, "./src/styles/globals.scss")]
+              }
+            }
+          ]
         }
       ]
     }
