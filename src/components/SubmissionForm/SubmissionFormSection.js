@@ -39,8 +39,13 @@ function FormSection({ formState, options, sectionIndex, setSelections }) {
   const toggleTrueFalse = () => setToggled(!isToggled);
 
   return (
-    <section className={`week top-${sectionIndex} `} onClick={toggleTrueFalse}>
-      <h1 className={`title`}>Top {sectionIndex}</h1>
+    <section className={`week top-${sectionIndex} `}>
+      <h1
+        className={`title ${isToggled ? "arrow" : ""}`}
+        onClick={toggleTrueFalse}
+      >
+        Top {sectionIndex}
+      </h1>
       <div className={`form-container ${isToggled ? "active" : "inactive"}`}>
         <FormSelect
           labelText="Winner"

@@ -45,8 +45,8 @@ export default function FormFinalSection({
   const toggleTrueFalse = () => setToggled(!isToggled);
 
   return (
-    <section className="week finale" onClick={toggleTrueFalse}>
-      <h1>Finale</h1>
+    <section className="week finale">
+      <h1 onClick={toggleTrueFalse}>Finale</h1>
       <div className={`form-container ${isToggled ? "active" : "inactive"}`}>
         <FormSelect
           labelText="Winner"

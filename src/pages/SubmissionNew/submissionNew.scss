@@ -1,9 +1,9 @@
 .new-form form {
   .text {
     input {
-      width: 80%;
-      border: 1px solid $popofcolor;
-      padding: 7px;
+      width: 78%;
+      border: 2px solid $popofcolor;
+      padding: 12px;
       margin: 0 auto;
       display: block;
     }
@@ -31,7 +31,14 @@
     .inactive {
       display: none;
     }
-
+    .arrow {
+      &::after {
+        content: "⌄";
+        position: relative;
+        top: -5px;
+        left: 110px;
+      }
+    }
     .title {
       font-family: "Chivo";
       font-size: 22px;
@@ -42,17 +49,20 @@
     label {
       color: $popofcolor;
       text-align: right;
-      margin-bottom: 10px;
+      margin-bottom: 2px;
       padding: 10px;
-
+      display: flex;
+      align-items: center;
       select {
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
         border: 1px solid $popofcolor;
-        padding: 5px;
+        padding: 8px;
         background-color: white;
         width: 50%;
+        color: $popofcolor;
+        font-weight: bold;
         option {
           color: $popofcolor;
         }
