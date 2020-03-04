@@ -9,6 +9,10 @@ jobs:
     steps:
       - checkout
 
+      - run:
+          name: Install Firebase CLI
+          command: curl -sL https://firebase.tools | bash
+
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
@@ -38,7 +42,7 @@ jobs:
 
       - run:
           name: Deploy to Firebase
-          command: ./node_modules/.bin/firebase deploy --token "${FIREBASE_TOKEN}"
+          command: firebase deploy --token "${FIREBASE_TOKEN}"
 
 workflows:
   main:
