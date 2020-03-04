@@ -40,10 +40,10 @@ jobs:
           name: Build project
           command: npm run build
           environment:
-            FIREBASE_API_KEY: ${FIREBASE_API_KEY}
-            FIREBASE_APP_ID: ${FIREBASE_PROJECT_ID}
-            FIERBASE_DATABASE_URL: ${FIREBASE_DATABASE}
-            FIREBASE_PROJECT_ID: ${FIREBASE_PROJECT_ID}
+            FIREBASE_API_KEY: "${FIREBASE_API_KEY}"
+            FIREBASE_APP_ID: "${FIREBASE_PROJECT_ID}"
+            FIERBASE_DATABASE_URL: "${FIREBASE_DATABASE}"
+            FIREBASE_PROJECT_ID: "${FIREBASE_PROJECT_ID}"
 
       - run:
           name: Deploy to Firebase
