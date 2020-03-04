@@ -1,25 +1,24 @@
-import React from 'react';
-import { Link } from '@reach/router';
-import { object } from 'prop-types';
+import React from "react";
+import { Link } from "@reach/router";
+import { object } from "prop-types";
 
-export default function SeasonList ({ seasons }) {
+import "./seasonsList.scss";
+
+export default function SeasonList({ seasons }) {
   return (
     <>
-      <h2>Seasons:</h2>
-      <ul>
-        { Object.keys(seasons) &&
+      <ul className="seasons-list">
+        {Object.keys(seasons) &&
           Object.keys(seasons).map(seasonId => (
-          <li key={ `season_${ seasonId }` } >
-            <Link to={ `seasons/${ seasonId }` }>
-              { seasonId }
-            </Link>
-          </li>
-        ))}
+            <li key={`season_${seasonId}`}>
+              <Link to={`seasons/${seasonId}`}>{seasons[seasonId].name}</Link>
+            </li>
+          ))}
       </ul>
     </>
-  )
+  );
 }
 
 SeasonList.propTypes = {
-  seasons: object,
+  seasons: object
 };

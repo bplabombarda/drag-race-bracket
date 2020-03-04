@@ -1,0 +1,15 @@
+.seasons-list {
+  width: 85%;
+  margin: 0 auto;
+  li {
+    border: 2px solid $popofcolor;
+    padding: 20px;
+    margin-bottom: 10px;
+    a {
+      display: block;
+      text-align: center;
+      font-weight: bold;
+      color: $popofcolor;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+header {
+  // box-shadow: -2px 2px 13px -7px;
+  border-bottom: 1px solid $popofcolor;
+  margin-bottom: 30px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  .dillcap {
+    font-family: "Pacifico";
+    color: $popofcolor;
+    font-size: 22px;
+  }
+}

@@ -1,17 +1,15 @@
-import React from 'react';
-import { number, object } from 'prop-types';
+import React from "react";
+import { number, object } from "prop-types";
 
-export default function SubmissionWeekPositions ({ week, weekIndex }) {
+export default function SubmissionWeekPositions({ week, weekIndex }) {
   const positionKeys = Object.keys(week);
-  
+
   return (
     <>
-      <h3>{ `Week ${ weekIndex + 1 }` }</h3>
+      <h3>{`Top ${weekIndex + 1}`}</h3>
       <ul>
-        { positionKeys.map(position => (
-          <li key={ position }>
-          { `${ position }: ${ week[position] }` }
-          </li>
+        {positionKeys.map(position => (
+          <li key={position}>{`${position}: ${week[position]}`}</li>
         ))}
       </ul>
     </>
@@ -20,5 +18,5 @@ export default function SubmissionWeekPositions ({ week, weekIndex }) {
 
 SubmissionWeekPositions.propTypes = {
   week: object,
-  weekIndex: number,
+  weekIndex: number
 };

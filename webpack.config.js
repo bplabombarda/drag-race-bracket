@@ -1,29 +1,29 @@
 /* eslint-disable */
-global.__rootdir = require('path').resolve(__dirname);
+global.__rootdir = require("path").resolve(__dirname);
 
-require('dotenv').config();
+require("dotenv").config();
 
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const autoprefixer      = require('autoprefixer');
-const merge             = require('webpack-merge');
-const webpack           = require('webpack');
-const { resolve }       = require('path');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const autoprefixer = require("autoprefixer");
+const merge = require("webpack-merge");
+const webpack = require("webpack");
+const { resolve } = require("path");
 
-const PRODUCTION = process.env.NODE_ENV === 'production';
-const SRC_DIR = `${ __rootdir }/src`;
+const PRODUCTION = process.env.NODE_ENV === "production";
+const SRC_DIR = `${__rootdir}/src`;
 
 const baseConfig = {
   output: {
-    path:   `${ __rootdir }/public`,
-    pathinfo: !PRODUCTION,
+    path: `${__rootdir}/public`,
+    pathinfo: !PRODUCTION
   },
 
   context: resolve(__dirname),
 
-  devtool: PRODUCTION ? 'source-map' : 'cheap-module-eval-source-map',
+  devtool: PRODUCTION ? "source-map" : "cheap-module-eval-source-map",
 
   devServer: {
-    stats: 'minimal',
+    stats: "minimal"
   },
 
   bail: PRODUCTION,
@@ -35,78 +35,81 @@ const baseConfig = {
         exclude: /node_modules/,
         use: [
           {
-            loader: 'babel-loader',
-          },
-        ],
+            loader: "babel-loader"
+          }
+        ]
       },
       {
         test: /\.(eot|ttf|woff|woff2|svg|jpg|png)$/,
-        use: 'file-loader',
-      },
-    ],
+        use: "file-loader"
+      }
+    ]
   },
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'src/index.html',
-      inject:   'body',
-      filename: 'index.html',
+      template: "src/index.html",
+      inject: "body",
+      filename: "index.html"
     }),
     new webpack.LoaderOptionsPlugin({
       test: /\.css|scss/,
       options: {
-        postcss: [
-          autoprefixer(),
-        ],
-      },
+        postcss: [autoprefixer()]
+      }
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
-      'process.env.FIREBASE_API_KEY': JSON.stringify(process.env.FIREBASE_API_KEY),
-      'process.env.FIREBASE_APP_ID': JSON.stringify(process.env.FIREBASE_APP_ID),
-      'process.env.FIERBASE_DATABASE_URL': JSON.stringify(process.env.FIERBASE_DATABASE_URL),
-      'process.env.FIREBASE_PROJECT_ID': JSON.stringify(process.env.FIREBASE_PROJECT_ID),
-    }),
+      "process.env.FIREBASE_API_KEY": JSON.stringify(
+        process.env.FIREBASE_API_KEY
+      ),
+      "process.env.FIREBASE_APP_ID": JSON.stringify(
+        process.env.FIREBASE_APP_ID
+      ),
+      "process.env.FIERBASE_DATABASE_URL": JSON.stringify(
+        process.env.FIERBASE_DATABASE_URL
+      ),
+      "process.env.FIREBASE_PROJECT_ID": JSON.stringify(
+        process.env.FIREBASE_PROJECT_ID
+      )
+    })
   ],
 
   resolve: {
     alias: {
-      Source:     SRC_DIR,
-      Components: `${ SRC_DIR }/components`,
-      Config:     `${ __rootdir }/config`,
-      Images:     `${ SRC_DIR }/assets/images`,
-      Pages:      `${ SRC_DIR }/pages`,
-      Styles:     `${ SRC_DIR }/styles`,
-      Utils:      `${ SRC_DIR }/utils`,
+      Source: SRC_DIR,
+      Components: `${SRC_DIR}/components`,
+      Config: `${__rootdir}/config`,
+      Images: `${SRC_DIR}/assets/images`,
+      Pages: `${SRC_DIR}/pages`,
+      Styles: `${SRC_DIR}/styles`,
+      Utils: `${SRC_DIR}/utils`
     },
-    extensions: [".js", ".json", ".css", ".scss"],
+    extensions: [".js", ".json", ".css", ".scss"]
   }
-}
+};
 
 if (PRODUCTION) {
-  console.info( 'Building for prod...');
+  console.info("Building for prod...");
 
   module.exports = merge(baseConfig, {
-    mode: 'production',
+    mode: "production",
 
     entry: {
-      main: `${ __rootdir }/src/index.js`,
-      vendor: [
-        'react',
-        'react-dom',
-      ],
+      main: `${__rootdir}/src/index.js`,
+      vendor: ["react", "react-dom"]
     },
 
     output: {
-      filename: 'js/[hash].js',
-      publicPath: '/',
+      filename: "js/[hash].js",
+      publicPath: "/"
     },
 
     optimization: {
       splitChunks: {
-        chunks: 'all',
-      },
+        chunks: "all"
+      }
     },
 
     module: {
@@ -114,32 +117,38 @@ if (PRODUCTION) {
         {
           test: /\.(css|scss)$/,
           use: [
-            'style-loader',
-            'css-loader',
-            'sass-loader',
-          ],
-        },
-      ],
-    },
+            "style-loader",
+            "css-loader",
+            "sass-loader",
+            {
+              loader: "sass-resources-loader",
+              options: {
+                resources: [resolve(__dirname, "./src/styles/globals.scss")]
+              }
+            }
+          ]
+        }
+      ]
+    }
   });
 } else {
-  console.info( 'Serving locally...');
+  console.info("Serving locally...");
 
   module.exports = merge(baseConfig, {
-    mode: 'development',
+    mode: "development",
 
     devServer: {
-      historyApiFallback: true,
+      historyApiFallback: true
     },
 
     entry: [
-      'webpack-dev-server/client?http://localhost:8080',
-      `${ __rootdir }/src/index.js`,
+      "webpack-dev-server/client?http://localhost:8080",
+      `${__rootdir}/src/index.js`
     ],
 
     output: {
-      filename: 'js/bundle.js',
-      publicPath: '/',
+      filename: "js/bundle.js",
+      publicPath: "/"
     },
 
     module: {
@@ -147,12 +156,18 @@ if (PRODUCTION) {
         {
           test: /\.(css|scss)$/,
           use: [
-            'style-loader',
-            'css-loader',
-            'sass-loader',
-          ],
-        },
-      ],
-    },
+            "style-loader",
+            "css-loader",
+            "sass-loader",
+            {
+              loader: "sass-resources-loader",
+              options: {
+                resources: [resolve(__dirname, "./src/styles/globals.scss")]
+              }
+            }
+          ]
+        }
+      ]
+    }
   });
 }
