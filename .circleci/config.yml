@@ -41,7 +41,7 @@ jobs:
           command: npm run build
           environment:
             FIREBASE_API_KEY: "${FIREBASE_API_KEY}"
-            FIREBASE_APP_ID: "${FIREBASE_PROJECT_ID}"
+            FIREBASE_APP_ID: "${FIREBASE_APP_ID}"
             FIERBASE_DATABASE_URL: "${FIREBASE_DATABASE}"
             FIREBASE_PROJECT_ID: "${FIREBASE_PROJECT_ID}"
 
