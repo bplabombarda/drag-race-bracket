@@ -12,3 +12,19 @@
     display: none;
   }
 }
+
+.seasons-header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  .season-name {
+    margin-right: 20px;
+  }
+  .new-submission-button {
+    background-color: $popofcolor;
+    color: white;
+    padding: 10px 30px;
+    box-sizing: border-box;
+    font-size: 20px;
+  }
+}

@@ -1,109 +1,110 @@
-import React, { useState } from 'react';
-import { array, func, object, number, string } from 'prop-types';
+import React, { useState } from "react";
+import { array, func, object, number, string } from "prop-types";
 
-import FormInput from 'Components/FormInput';
-import SubmissionFormSection from './SubmissionFormSection';
-import SubmissionFormFinalSection from './SubmissionFormFinalSection';
-import './SubmissionForm.scss';
+import FormInput from "Components/FormInput";
+import SubmissionFormSection from "./SubmissionFormSection";
+import SubmissionFormFinalSection from "./SubmissionFormFinalSection";
+import "./SubmissionForm.scss";
 
-export function getEliminatedQueens (selections, sectionIndex) {
-    const weeks = Object.keys(selections);
-  
-    if (weeks.length > 0) {
-      return weeks.reduce((acc, week, index) => {
-        const elim = selections[week].eliminated
-          ? selections[week].eliminated.name
-          : null;
+export function getEliminatedQueens(selections, sectionIndex) {
+  const weeks = Object.keys(selections);
 
-        if ((elim) && (index !== sectionIndex)) {
-          acc.push(elim);
-        }
+  if (weeks.length > 0) {
+    return weeks.reduce((acc, week, index) => {
+      const elim = selections[week].eliminated
+        ? selections[week].eliminated.name
+        : null;
 
-        return acc;
-      }, []);
-    }
+      if (elim && index !== sectionIndex) {
+        acc.push(elim);
+      }
 
-    return [];
+      return acc;
+    }, []);
+  }
+
+  return [];
 }
 
-export function getNumberOfSections (numberInFinal, options) {
+export function getNumberOfSections(numberInFinal, options) {
+  console.log("options", options.length);
   const delta = options.length - numberInFinal;
   const numOfSections = delta > 0 ? delta : 0;
 
-  return [ ...Array(numOfSections).keys() ];
+  return [...Array(numOfSections).keys()];
 }
 
-export function getSectionOptions (options, selections, sectionIndex) {
+export function getSectionOptions(options, selections, sectionIndex) {
   const eliminated = getEliminatedQueens(selections, sectionIndex);
 
   return options.filter(option => !eliminated.includes(option));
 }
 
-export default function SubmissionForm ({ addSubmission, numberInFinal, options, seasonId }) {
-  const [ formState, setFormState ] = useState({ email: '' , selections: {} });
+export default function SubmissionForm({
+  addSubmission,
+  numberInFinal,
+  options,
+  seasonId
+}) {
+  const [formState, setFormState] = useState({ email: "", selections: {} });
   const numberOfSections = getNumberOfSections(numberInFinal, options);
-
-  const handleSubmit = async (event) => {
+  const handleSubmit = async event => {
     event.preventDefault();
-    console.log(seasonId, formState)
     addSubmission(seasonId, formState);
-  }
+  };
 
   const setEmail = event => {
     const { value: email } = event.target;
 
     setFormState({
       ...formState,
-      email,
+      email
     });
-  }
+  };
 
   const setSelections = selections => {
     setFormState({
       ...formState,
-      selections,
+      selections
     });
-  }
+  };
 
   return (
-    <form onSubmit={ handleSubmit }>
+    <form onSubmit={handleSubmit}>
       <FormInput
-        handleOnChange={ setEmail }
-        labelText='Email: '
-        name='email'
-        type='text'
-        value={ formState.email }
-        />
-      {
-        numberOfSections.map((num) => {
-          // If it is the last week, render the Final section.
-          return num === Math.max(...numberOfSections)
-            ? (
-              <SubmissionFormFinalSection
-                key={ `section_${ num }` }
-                formState={ formState }
-                options={ getSectionOptions(options, formState.selections, num) }
-                sectionIndex={ num }
-                setSelections={ setSelections }
-                />
-            )
-            : (
-              <SubmissionFormSection
-                key={ `section_${ num }` }
-                formState={ formState }
-                options={ getSectionOptions(options, formState.selections, num) }
-                sectionIndex={ num }
-                setSelections={ setSelections }
-                />
-            );
-        })
-      }
+        handleOnChange={setEmail}
+        labelText="Email: "
+        name="email"
+        type="text"
+        value={formState.email}
+      />
+      {numberOfSections.reverse().map(num => {
+        // If it is the last week, render the Final section.
+        return num === 0 ? (
+          <SubmissionFormFinalSection
+            key={`section_${num}`}
+            formState={formState}
+            options={getSectionOptions(options, formState.selections, num)}
+            sectionIndex={num}
+            setSelections={setSelections}
+          />
+        ) : (
+          <SubmissionFormSection
+            key={`section_${num}`}
+            formState={formState}
+            options={getSectionOptions(options, formState.selections, num)}
+            sectionIndex={num + 1 + numberInFinal}
+            setSelections={setSelections}
+          />
+        );
+      })}
       <FormInput
-        handleOnChange={ () => null }
-        labelText=''
-        name='submit'
-        type='submit'
-        value='Submit'/>
+        handleOnChange={() => null}
+        labelText=""
+        name="submit"
+        type="submit"
+        value="Submit"
+      />
     </form>
   );
 }
@@ -114,5 +115,5 @@ SubmissionForm.propTypes = {
   options: array,
   seasonId: string,
   selections: object,
-  setSelections: func,
+  setSelections: func
 };

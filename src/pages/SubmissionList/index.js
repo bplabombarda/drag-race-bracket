@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { object, string, func } from "prop-types";
+import { Link } from "@reach/router";
 
 import firebase from "Utils/firebase";
 import Submission from "Pages/Submission";
@@ -9,7 +10,8 @@ const db = firebase.firestore();
 export default function SubmissionList({
   seasonId,
   setSubmissions,
-  submissions
+  submissions,
+  seasonName
 }) {
   useEffect(() => {
     const fetchSubmissions = async () => {
@@ -34,6 +36,13 @@ export default function SubmissionList({
 
   return (
     <>
+      <div className="seasons-header">
+        <h2 className="season-name">{seasonName}</h2>
+        <Link className="new-submission-button" to="./submissions/new">
+          New
+        </Link>
+      </div>
+
       {Object.keys(submissions) &&
         Object.keys(submissions).map(key => (
           <Submission

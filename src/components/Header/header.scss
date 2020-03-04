@@ -6,14 +6,9 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  nav {
-    display: flex;
-    justify-content: center;
-    a {
-      margin: 0 10px;
-      color: $popofcolor;
-      text-decoration: underline;
-      font-size: 12px;
-    }
+  .dillcap {
+    font-family: "Pacifico";
+    color: $popofcolor;
+    font-size: 22px;
   }
 }

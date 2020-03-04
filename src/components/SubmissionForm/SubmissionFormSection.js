@@ -1,13 +1,12 @@
-import React  from 'react';
-import { array, func, number, object } from 'prop-types';
+import React, { useState } from "react";
+import { array, func, number, object } from "prop-types";
 
-import FormSelect from './SubmissionFormSelect';
-import './SubmissionFormSection.scss';
+import FormSelect from "./SubmissionFormSelect";
+import "./SubmissionFormSection.scss";
 
-function FormSection ({ formState, options, sectionIndex, setSelections }) {
-
+function FormSection({ formState, options, sectionIndex, setSelections }) {
   const getInputOptions = inputName => {
-    const currentWeek = formState[sectionIndex]  || {};
+    const currentWeek = formState[sectionIndex] || {};
     const slots = Object.keys(currentWeek);
     const selectedThisWeek = slots.reduce((names, slot) => {
       const queen = currentWeek[slot] && currentWeek[slot].name;
@@ -17,7 +16,7 @@ function FormSection ({ formState, options, sectionIndex, setSelections }) {
     }, []);
 
     return options.filter(({ name }) => !selectedThisWeek.includes(name));
-  }
+  };
 
   const selectOption = (type, selectedOptionName) => {
     const selectedOption = options.find(name => {
@@ -30,48 +29,53 @@ function FormSection ({ formState, options, sectionIndex, setSelections }) {
       ...formState.selections,
       [sectionKey]: {
         ...formState.selections[sectionKey],
-        [type]: selectedOption,
-      },
+        [type]: selectedOption
+      }
     };
 
     setSelections(newSelections);
-  }
+  };
+  const [isToggled, setToggled] = useState(false);
+  const toggleTrueFalse = () => setToggled(!isToggled);
 
   return (
-    <section>
-      <FormSelect
-        labelText='Choose the winning queen:'
-        name='winner'
-        options={ getInputOptions('winner') }
-        selectOption={ selectOption }
+    <section className={`week top-${sectionIndex} `} onClick={toggleTrueFalse}>
+      <h1 className={`title`}>Top {sectionIndex}</h1>
+      <div className={`form-container ${isToggled ? "active" : "inactive"}`}>
+        <FormSelect
+          labelText="Winner"
+          name="winner"
+          options={getInputOptions("winner")}
+          selectOption={selectOption}
         />
-      <FormSelect
-        labelText='Choose the second top queen:'
-        name='eliminated'
-        options={ getInputOptions('eliminated') }
-        selectOption={ selectOption }
+        <FormSelect
+          labelText="Top"
+          name="eliminated"
+          options={getInputOptions("top")}
+          selectOption={selectOption}
         />
-      <FormSelect
-        labelText='Choose the second bottom queen:'
-        name='bottom'
-        options={ getInputOptions('bottom') }
-        selectOption={ selectOption }
+        <FormSelect
+          labelText="Bottom"
+          name="bottom"
+          options={getInputOptions("bottom")}
+          selectOption={selectOption}
         />
-      <FormSelect
-        labelText='Choose the eliminated queen :'
-        name='eliminated'
-        options={ getInputOptions('eliminated') }
-        selectOption={ selectOption }
+        <FormSelect
+          labelText="Eliminated"
+          name="eliminated"
+          options={getInputOptions("eliminated")}
+          selectOption={selectOption}
         />
+      </div>
     </section>
-  )
+  );
 }
 
 FormSection.propTypes = {
   formState: object,
   options: array,
   sectionIndex: number,
-  setSelections: func,
+  setSelections: func
 };
 
 export default FormSection;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, Router } from "@reach/router";
+import { Router } from "@reach/router";
 import { object, string } from "prop-types";
 
 import firebase from "Utils/firebase";
@@ -43,13 +43,12 @@ export default function Season({ seasonId, seasons }) {
 
   return (
     <>
-      <h2>{season.name}</h2>
-
       <Router>
         <SubmissionList
           path="/"
           setSubmissions={setSubmissions}
           submissions={submissions}
+          seasonName={season.name}
         />
         {/* <Submission
           path='submissions/edit'
