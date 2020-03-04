@@ -9,9 +9,9 @@ jobs:
     steps:
       - checkout
 
-      - run:
-          name: Install Firebase CLI
-          command: curl -sL https://firebase.tools | bash
+      # - run:
+      #     name: Install Firebase CLI
+      #     command: curl -sL https://firebase.tools | bash
 
       - restore_cache:
           keys:
@@ -42,7 +42,7 @@ jobs:
 
       - run:
           name: Deploy to Firebase
-          command: firebase deploy --token "${FIREBASE_TOKEN}"
+          command: ~/fantasy-drag-race/node_modules/.bin/firebase deploy --token "${FIREBASE_TOKEN}"
 
 workflows:
   main:
