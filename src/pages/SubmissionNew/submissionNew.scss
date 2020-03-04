@@ -19,6 +19,8 @@
       font-size: 23px;
       margin-top: 20px;
       border: none;
+      border-radius: 0;
+      -webkit-appearance: none;
     }
   }
 
@@ -28,7 +30,9 @@
     border: 2px solid $popofcolor;
     margin-bottom: 20px;
     box-sizing: border-box;
-
+    .form-container {
+      padding: 10px;
+    }
     .inactive {
       display: none;
     }
@@ -37,7 +41,7 @@
         content: "⌄";
         position: relative;
         top: -5px;
-        left: 110px;
+        left: 100px;
       }
     }
     .title {
@@ -50,25 +54,24 @@
     label {
       color: $popofcolor;
       text-align: right;
-      margin-bottom: 2px;
-      padding: 10px;
       display: flex;
+      flex-direction: column;
+      font-weight: bold;
       align-items: center;
-      font-size: 16px;
+      font-size: 20px;
+      margin-bottom: 10px;
       select {
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
         border: 1px solid $popofcolor;
-        padding: 8px;
+        padding: 8px 70px;
         background-color: white;
-        width: 50%;
+        width: 90%;
         color: $popofcolor;
         font-weight: bold;
         font-size: 16px;
-        option {
-          color: $popofcolor;
-        }
+        margin-top: 3px;
       }
     }
   }

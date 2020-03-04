@@ -34,13 +34,21 @@ export default function SubmissionList({
     fetchSubmissions();
   }, []);
 
+  const q = new Date();
+  const m = q.getMonth();
+  const d = q.getDay();
+  const y = q.getFullYear();
+  const date = new Date(y, m, d);
+
   return (
     <>
       <div className="seasons-header">
         <h2 className="season-name">{seasonName}</h2>
-        <Link className="new-submission-button" to="./submissions/new">
-          New
-        </Link>
+        {date < new Date("2020-03-13") && (
+          <Link className="new-submission-button" to="./submissions/new">
+            New
+          </Link>
+        )}
       </div>
 
       {Object.keys(submissions) &&

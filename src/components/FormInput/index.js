@@ -11,7 +11,7 @@ export default function FormInput(props) {
     value,
     ...rest
   } = props;
-  console.log("labelText", labelText);
+
   return (
     <div className={type.toLowerCase()}>
       <input

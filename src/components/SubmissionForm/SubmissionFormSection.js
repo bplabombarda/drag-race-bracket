@@ -23,7 +23,7 @@ function FormSection({ formState, options, sectionIndex, setSelections }) {
       return name === selectedOptionName;
     });
 
-    const sectionKey = `week${sectionIndex}`;
+    const sectionKey = `top${sectionIndex}`;
 
     const newSelections = {
       ...formState.selections,
@@ -55,7 +55,7 @@ function FormSection({ formState, options, sectionIndex, setSelections }) {
         />
         <FormSelect
           labelText="Top"
-          name="eliminated"
+          name="top"
           options={getInputOptions("top")}
           selectOption={selectOption}
         />

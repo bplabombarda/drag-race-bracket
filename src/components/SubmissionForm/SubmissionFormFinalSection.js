@@ -28,7 +28,7 @@ export default function FormFinalSection({
       return name === selectedOptionName;
     });
 
-    const sectionKey = `week${sectionIndex}`;
+    const sectionKey = `finale`;
 
     const newSelections = {
       ...formState.selections,

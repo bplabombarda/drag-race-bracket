@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { array, func, object, number, string } from "prop-types";
 
 import FormInput from "Components/FormInput";
@@ -27,10 +27,8 @@ export function getEliminatedQueens(selections, sectionIndex) {
 }
 
 export function getNumberOfSections(numberInFinal, options) {
-  console.log("options", options.length);
   const delta = options.length - numberInFinal;
   const numOfSections = delta > 0 ? delta : 0;
-
   return [...Array(numOfSections).keys()];
 }
 
@@ -80,22 +78,25 @@ export default function SubmissionForm({
       />
       {numberOfSections.reverse().map(num => {
         // If it is the last week, render the Final section.
-        return num === 0 ? (
-          <SubmissionFormFinalSection
-            key={`section_${num}`}
-            formState={formState}
-            options={getSectionOptions(options, formState.selections, num)}
-            sectionIndex={num}
-            setSelections={setSelections}
-          />
-        ) : (
-          <SubmissionFormSection
-            key={`section_${num}`}
-            formState={formState}
-            options={getSectionOptions(options, formState.selections, num)}
-            sectionIndex={num + 1 + numberInFinal}
-            setSelections={setSelections}
-          />
+        return (
+          <Fragment key={`section_${num}`}>
+            <SubmissionFormSection
+              formState={formState}
+              options={getSectionOptions(options, formState.selections, num)}
+              sectionIndex={num + 1 + numberInFinal}
+              setSelections={setSelections}
+            />
+
+            {num === 0 && (
+              <SubmissionFormFinalSection
+                key={`section_${num}_finale`}
+                formState={formState}
+                options={getSectionOptions(options, formState.selections, num)}
+                sectionIndex={num}
+                setSelections={setSelections}
+              />
+            )}
+          </Fragment>
         );
       })}
       <FormInput
