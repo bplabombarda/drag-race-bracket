@@ -50,7 +50,8 @@ const baseConfig = {
     new HtmlWebpackPlugin({
       template: "src/index.html",
       inject: "body",
-      filename: "index.html"
+      filename: "index.html",
+      title: "Dillcap"
     }),
     new webpack.LoaderOptionsPlugin({
       test: /\.css|scss/,

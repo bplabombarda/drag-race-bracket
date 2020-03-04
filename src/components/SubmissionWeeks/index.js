@@ -5,6 +5,7 @@ import SubmissionWeekPositions from "Components/SubmissionWeekPositions";
 
 export default function SubmissionWeeks({ submission, isShown }) {
   const weekKeys = Object.keys(submission);
+
   return (
     <ul className={`submission-weeks ${isShown ? "active" : "inactive"}`}>
       {weekKeys.reverse().map((week, index) => (

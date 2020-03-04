@@ -56,13 +56,13 @@ export default function FormFinalSection({
         />
         <FormSelect
           labelText="Runner Up"
-          name="runnerUp"
+          name="runnerUp1"
           options={getInputOptions("runnerUp")}
           selectOption={selectOption}
         />
         <FormSelect
           labelText="Runner up"
-          name="runnerUp"
+          name="runnerUp2"
           options={getInputOptions("runnerUp")}
           selectOption={selectOption}
         />

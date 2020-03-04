@@ -11,6 +11,18 @@
   .inactive {
     display: none;
   }
+  .submissionWeek {
+    margin-bottom: 20px;
+  }
+  .position {
+    span:first-child {
+      font-weight: bold;
+      text-transform: capitalize;
+      text-decoration: underline;
+      margin-right: 5px;
+    }
+    margin-bottom: 3px;
+  }
 }
 
 .seasons-header {

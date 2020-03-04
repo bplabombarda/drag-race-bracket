@@ -6,10 +6,17 @@ export default function SubmissionWeekPositions({ week, weekIndex }) {
 
   return (
     <>
-      <h3>{`Top ${weekIndex + 1}`}</h3>
+      <h2>{` ${
+        positionKeys.includes("congeniality")
+          ? "Finale"
+          : "Top " + (weekIndex + 4) // plus 1 for index and the hardcoded 3 for the top 3
+      }`}</h2>
       <ul>
-        {positionKeys.map(position => (
-          <li key={position}>{`${position}: ${week[position]}`}</li>
+        {positionKeys.reverse().map(position => (
+          <li key={position} className="position">
+            <span>{`${position}:`}</span>
+            <span> {`${week[position]}`}</span>
+          </li>
         ))}
       </ul>
     </>
