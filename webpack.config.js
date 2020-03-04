@@ -67,8 +67,8 @@ const baseConfig = {
       "process.env.FIREBASE_APP_ID": JSON.stringify(
         process.env.FIREBASE_APP_ID
       ),
-      "process.env.FIERBASE_DATABASE_URL": JSON.stringify(
-        process.env.FIERBASE_DATABASE_URL
+      "process.env.FIREBASE_DATABASE_URL": JSON.stringify(
+        process.env.FIREBASE_DATABASE_URL
       ),
       "process.env.FIREBASE_PROJECT_ID": JSON.stringify(
         process.env.FIREBASE_PROJECT_ID
