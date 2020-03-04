@@ -1,10 +1,10 @@
-version: 2.1
+version: 2
 jobs:
   build-and-deploy:
     docker:
       - image: circleci/node:10-buster
 
-    working_directory: ~/friggoffipsum
+    working_directory: ~/fantasy-drag-race
 
     steps:
       - checkout
