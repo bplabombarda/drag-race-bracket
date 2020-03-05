@@ -27,3 +27,12 @@ ul {
 a {
   text-decoration: none;
 }
+
+@media only screen and (min-width: 600px) {
+  .new-form form section.week,
+  .new-form form .text input,
+  .seasons-list,
+  .submission {
+    width: 50%;
+  }
+}

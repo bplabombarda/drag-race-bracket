@@ -3,13 +3,12 @@ import { number, object } from "prop-types";
 
 export default function SubmissionWeekPositions({ week, weekIndex }) {
   const positionKeys = Object.keys(week);
-
   return (
     <>
       <h2>{` ${
         positionKeys.includes("congeniality")
           ? "Finale"
-          : "Top " + (weekIndex + 4) // plus 1 for index and the hardcoded 3 for the top 3
+          : `${weekIndex.replace("top", "Top ")}` // plus 1 for index and the hardcoded 3 for the top 3
       }`}</h2>
       <ul>
         {positionKeys.reverse().map(position => (

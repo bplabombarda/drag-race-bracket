@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from "react";
 import { array, func, object, number, string } from "prop-types";
-
+import { navigate } from "@reach/router";
 import FormInput from "Components/FormInput";
 import SubmissionFormSection from "./SubmissionFormSection";
 import SubmissionFormFinalSection from "./SubmissionFormFinalSection";
@@ -49,6 +49,7 @@ export default function SubmissionForm({
   const handleSubmit = async event => {
     event.preventDefault();
     addSubmission(seasonId, formState);
+    navigate(`/seasons/${seasonId}`);
   };
 
   const setEmail = event => {
