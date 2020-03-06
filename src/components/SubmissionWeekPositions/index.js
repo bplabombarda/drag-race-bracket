@@ -1,5 +1,5 @@
 import React from "react";
-import { number, object } from "prop-types";
+import { string, object } from "prop-types";
 
 export default function SubmissionWeekPositions({ week, weekIndex }) {
   const positionKeys = Object.keys(week);
@@ -24,5 +24,5 @@ export default function SubmissionWeekPositions({ week, weekIndex }) {
 
 SubmissionWeekPositions.propTypes = {
   week: object,
-  weekIndex: number
+  weekIndex: string
 };
