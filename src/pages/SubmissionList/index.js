@@ -60,11 +60,6 @@ export default function SubmissionList({
             submittor={key}
           />
         ))}
-      <div className="dill-message">
-        Hey Dolls, Once you submit you should see your email appear in this
-        list! After all submissions are in on 3/13 you will be able to click on
-        your email to see your bracket. <div>XOXO - Dill</div>
-      </div>
     </>
   );
 }
