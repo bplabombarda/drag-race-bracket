@@ -8,10 +8,9 @@ import "./submission.scss";
 export default function Submission({ submittor, submission }) {
   const [isToggled, setToggled] = useState(false);
   const toggleTrueFalse = () => setToggled(!isToggled);
-  // <div className="submission" onClick={toggleTrueFalse}>
 
   return (
-    <div className="submission">
+    <div className="submission" onClick={toggleTrueFalse}>
       <div className="submitter-name">{submittor}</div>
       <SubmissionWeeks submission={submission} isShown={isToggled} />
     </div>
