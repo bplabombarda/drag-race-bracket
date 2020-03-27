@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { object, string, func } from "prop-types";
 import { Link } from "@reach/router";
+import getScore from "Utils/getScore";
 
 import firebase from "Utils/firebase";
 import Submission from "Pages/Submission";
@@ -11,7 +12,8 @@ export default function SubmissionList({
   seasonId,
   setSubmissions,
   submissions,
-  seasonName
+  seasonName,
+  results
 }) {
   useEffect(() => {
     const fetchSubmissions = async () => {
@@ -34,30 +36,27 @@ export default function SubmissionList({
     fetchSubmissions();
   }, []);
 
-  const q = new Date();
-  const m = q.getMonth();
-  const d = q.getDay();
-  const y = q.getFullYear();
-  const date = new Date(y, m, d);
+  const emails = Object.keys(submissions)
+    .map(email => {
+      return getScore(email, submissions, results);
+    })
+    .sort(function(a, b) {
+      return b.score - a.score;
+    });
 
   return (
     <>
       <div className="seasons-header">
         <h2 className="season-name">{seasonName}</h2>
-
-        {date < new Date("2020-03-13") && (
-          <Link className="new-submission-button" to="./submissions/new">
-            New
-          </Link>
-        )}
       </div>
 
       {Object.keys(submissions) &&
-        Object.keys(submissions).map(key => (
+        emails.map(obj => (
           <Submission
-            key={`submission_${key}`}
-            submission={submissions[key]}
-            submittor={key}
+            key={`submission_${obj.email}`}
+            submission={submissions[obj.email]}
+            submittor={obj.email}
+            score={obj.score}
           />
         ))}
     </>

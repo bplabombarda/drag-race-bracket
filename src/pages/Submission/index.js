@@ -5,13 +5,14 @@ import SubmissionWeeks from "Components/SubmissionWeeks";
 
 import "./submission.scss";
 
-export default function Submission({ submittor, submission }) {
+export default function Submission({ submittor, submission, score }) {
   const [isToggled, setToggled] = useState(false);
   const toggleTrueFalse = () => setToggled(!isToggled);
 
   return (
     <div className="submission" onClick={toggleTrueFalse}>
-      <div className="submitter-name">{submittor}</div>
+      <span className="submitter-name">{submittor}</span>
+      <span className="score">{score}</span>
       <SubmissionWeeks submission={submission} isShown={isToggled} />
     </div>
   );
