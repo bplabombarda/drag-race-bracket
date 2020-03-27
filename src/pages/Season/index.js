@@ -36,7 +36,6 @@ export async function fetchSubmissions(seasonId) {
 export default function Season({ seasonId, seasons }) {
   const [season, setSeason] = useState({ name: "" });
   const [submissions, setSubmissions] = useState({});
-
   useEffect(() => {
     setSeason(seasons[seasonId] || {});
   }, []);
@@ -49,6 +48,7 @@ export default function Season({ seasonId, seasons }) {
           setSubmissions={setSubmissions}
           submissions={submissions}
           seasonName={season.name}
+          results={season.results}
         />
         {/* <Submission
           path='submissions/edit'

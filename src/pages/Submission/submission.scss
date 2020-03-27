@@ -8,6 +8,14 @@
   .submitter-name {
     font-weight: bold;
   }
+  .score {
+    background-color: $popofcolor;
+    color: white;
+    padding: 5px;
+    float: right;
+    margin-top: -10px;
+    font-size: 22px;
+  }
   .inactive {
     display: none;
   }
@@ -38,21 +46,5 @@
     padding: 10px 30px;
     box-sizing: border-box;
     font-size: 20px;
-  }
-}
-
-.dill-message {
-  background-color: deeppink;
-  padding: 10px;
-  width: 90%;
-  text-align: center;
-  font-size: 16px;
-  margin: 0 auto;
-  color: white;
-  font-weight: bold;
-  margin-top: 30px;
-  div {
-    font-family: "Pacifico";
-    margin-top: 20px;
   }
 }

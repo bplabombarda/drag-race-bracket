@@ -12,23 +12,23 @@ const db = firebase.firestore();
 export default function App() {
   const [seasons, setSeasons] = useState({});
 
+  async function fetchSeasons() {
+    const seasonsRef = await db
+      .collection("seasons")
+      .where("active", "==", true)
+      .get();
+
+    const freshSeasons = seasonsRef.docs.reduce((acc, doc) => {
+      return {
+        ...acc,
+        [doc.id]: doc.data()
+      };
+    }, {});
+
+    setSeasons(freshSeasons);
+  }
+
   useEffect(() => {
-    const fetchSeasons = async () => {
-      const seasonsRef = await db
-        .collection("seasons")
-        .where("active", "==", true)
-        .get();
-
-      const freshSeasons = seasonsRef.docs.reduce((acc, doc) => {
-        return {
-          ...acc,
-          [doc.id]: doc.data()
-        };
-      }, {});
-
-      setSeasons(freshSeasons);
-    };
-
     fetchSeasons(setSeasons);
   }, []);
 
