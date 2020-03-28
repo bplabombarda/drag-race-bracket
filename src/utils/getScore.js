@@ -1,13 +1,12 @@
 export default function getScore(email, submissions, results) {
   let score = 0;
   const weeks = Object.keys(submissions[email]);
+
   weeks.forEach(week => {
     if (results[week]) {
       score += addScore(submissions[email][week], results[week]);
     }
   });
-
-  console.log("email, score", email, score);
 
   return { email, score };
 }
@@ -19,6 +18,11 @@ function addScore(week, result) {
 
     Object.keys(week).forEach(position => {
       // correct winner or eliminated
+      week.winner = week.winner || "none";
+      week.top = week.top || "none";
+      week.bottom = week.bottom || "none";
+      week.eliminated = week.eliminated || "none";
+
       if (position === "winner" || position === "eliminated") {
         matches = result[position].filter(pos => {
           return week[position].toLowerCase().includes(pos.toLowerCase());
@@ -48,6 +52,7 @@ function addScore(week, result) {
       //  winner  is in the top section
       if (position === "top") {
         matches = result[position].filter(pos => {
+          console.log("week", week);
           return (
             week[position].toLowerCase().includes(pos.toLowerCase()) ||
             week.winner.toLowerCase().includes(pos.toLowerCase())
