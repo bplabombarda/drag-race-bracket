@@ -21,7 +21,7 @@ export default function App() {
     const freshSeasons = seasonsRef.docs.reduce((acc, doc) => {
       return {
         ...acc,
-        [doc.id]: doc.data()
+        [doc.id]: doc.data(),
       };
     }, {});
 

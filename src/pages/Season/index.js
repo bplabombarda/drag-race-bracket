@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Router } from "@reach/router";
+import { Router, navigate } from "@reach/router";
 import { object, string } from "prop-types";
 
 import firebase from "Utils/firebase";
@@ -36,9 +36,14 @@ export async function fetchSubmissions(seasonId) {
 export default function Season({ seasonId, seasons }) {
   const [season, setSeason] = useState({ name: "" });
   const [submissions, setSubmissions] = useState({});
+
   useEffect(() => {
     setSeason(seasons[seasonId] || {});
   }, []);
+
+  if (Object.keys(season).length <= 0) {
+    navigate(`/`);
+  }
 
   return (
     <>
@@ -49,6 +54,7 @@ export default function Season({ seasonId, seasons }) {
           submissions={submissions}
           seasonName={season.name}
           results={season.results}
+          finished={season.finished}
         />
         {/* <Submission
           path='submissions/edit'
@@ -66,5 +72,5 @@ export default function Season({ seasonId, seasons }) {
 
 Season.propTypes = {
   seasons: object,
-  seasonId: string
+  seasonId: string,
 };
