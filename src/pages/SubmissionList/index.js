@@ -13,7 +13,8 @@ export default function SubmissionList({
   setSubmissions,
   submissions,
   seasonName,
-  results
+  results,
+  finished,
 }) {
   useEffect(() => {
     const fetchSubmissions = async () => {
@@ -26,7 +27,7 @@ export default function SubmissionList({
       const freshSubmissions = submissionsRef.docs.reduce((acc, doc) => {
         return {
           ...acc,
-          [doc.id]: doc.data()
+          [doc.id]: doc.data(),
         };
       }, {});
 
@@ -37,10 +38,10 @@ export default function SubmissionList({
   }, []);
 
   const emails = Object.keys(submissions)
-    .map(email => {
+    .map((email) => {
       return getScore(email, submissions, results);
     })
-    .sort(function(a, b) {
+    .sort(function (a, b) {
       return b.score - a.score;
     });
 
@@ -51,12 +52,13 @@ export default function SubmissionList({
       </div>
 
       {Object.keys(submissions) &&
-        emails.map(obj => (
+        emails.map((obj, i) => (
           <Submission
             key={`submission_${obj.email}`}
             submission={submissions[obj.email]}
             submittor={obj.email}
             score={obj.score}
+            winner={i === 0 && finished}
           />
         ))}
     </>
@@ -66,5 +68,5 @@ export default function SubmissionList({
 SubmissionList.propTypes = {
   seasonId: string,
   setSubmissions: func,
-  submissions: object
+  submissions: object,
 };

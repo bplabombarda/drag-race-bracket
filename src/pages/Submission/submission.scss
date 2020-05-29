@@ -31,6 +31,18 @@
     }
     margin-bottom: 3px;
   }
+  &.winner {
+    background-color: $popofcolor;
+    color: white;
+    margin-bottom: 35px;
+    font-size: 21px;
+    &::before {
+      content: "WINNER  ";
+      line-height: 1.5;
+      margin-right: 18px;
+      text-decoration: underline;
+    }
+  }
 }
 
 .seasons-header {
