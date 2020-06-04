@@ -54,6 +54,7 @@ export default function Season({ seasonId, seasons }) {
           seasonName={season.name}
           results={season.results}
           finished={season.finished}
+          submissionsOpen={season.submissionsOpen}
         />
         {/* {season.submissionsOpen && (
           <Submission
