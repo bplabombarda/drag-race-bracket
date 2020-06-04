@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { array, func, number, object } from "prop-types";
+import { array, func, number, object, string } from "prop-types";
 
 import FormSelect from "./SubmissionFormSelect";
 import "./SubmissionFormSection.scss";
@@ -8,9 +8,11 @@ export default function FormFinalSection({
   formState,
   options,
   sectionIndex,
-  setSelections
+  setSelections,
+  name,
+  eliminated,
 }) {
-  const getInputOptions = inputName => {
+  const getInputOptions = (inputName) => {
     const currentWeek = formState[sectionIndex] || {};
     const slots = Object.keys(currentWeek);
     const selectedThisWeek = slots.reduce((names, slot) => {
@@ -24,7 +26,7 @@ export default function FormFinalSection({
   };
 
   const selectOption = (type, selectedOptionName) => {
-    const selectedOption = options.find(name => {
+    const selectedOption = options.find((name) => {
       return name === selectedOptionName;
     });
 
@@ -34,8 +36,8 @@ export default function FormFinalSection({
       ...formState.selections,
       [sectionKey]: {
         ...formState.selections[sectionKey],
-        [type]: selectedOption
-      }
+        [type]: selectedOption,
+      },
     };
 
     setSelections(newSelections);
@@ -43,6 +45,10 @@ export default function FormFinalSection({
 
   const [isToggled, setToggled] = useState(false);
   const toggleTrueFalse = () => setToggled(!isToggled);
+  const finaleExtra =
+    name && name.includes("stars")
+      ? "Who will return this season"
+      : "Miss Congeniality";
 
   return (
     <section className="week finale">
@@ -53,24 +59,28 @@ export default function FormFinalSection({
           name="winner"
           options={getInputOptions("winner")}
           selectOption={selectOption}
+          eliminated={eliminated}
         />
         <FormSelect
           labelText="Runner Up"
           name="runnerUp1"
           options={getInputOptions("runnerUp")}
           selectOption={selectOption}
+          eliminated={eliminated}
         />
         <FormSelect
           labelText="Runner up"
           name="runnerUp2"
           options={getInputOptions("runnerUp")}
           selectOption={selectOption}
+          eliminated={eliminated}
         />
         <FormSelect
-          labelText="Miss Congeniality"
+          labelText={`${finaleExtra}`}
           name="congeniality"
           options={getInputOptions("eliminated")}
           selectOption={selectOption}
+          eliminated={eliminated}
         />
       </div>
     </section>
@@ -81,5 +91,6 @@ FormFinalSection.propTypes = {
   formState: object,
   options: array,
   sectionIndex: number,
-  setSelections: func
+  setSelections: func,
+  name: string,
 };

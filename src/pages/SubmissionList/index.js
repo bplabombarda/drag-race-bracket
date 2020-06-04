@@ -49,6 +49,9 @@ export default function SubmissionList({
     <>
       <div className="seasons-header">
         <h2 className="season-name">{seasonName}</h2>
+        <Link className="new-submission-button" to="submissions/new">
+          New
+        </Link>
       </div>
 
       {Object.keys(submissions) &&

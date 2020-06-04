@@ -11,7 +11,6 @@ export default function FormInput(props) {
     value,
     ...rest
   } = props;
-
   return (
     <div className={type.toLowerCase()}>
       <input
@@ -32,5 +31,5 @@ FormInput.propTypes = {
   labelText: string,
   name: string,
   type: string,
-  value: oneOfType([number, string])
+  value: oneOfType([number, string]),
 };

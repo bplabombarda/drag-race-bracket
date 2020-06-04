@@ -10,16 +10,9 @@ export function getEliminatedQueens(selections, sectionIndex) {
   const weeks = Object.keys(selections);
 
   if (weeks.length > 0) {
-    return weeks.reduce((acc, week, index) => {
-      const elim = selections[week].eliminated
-        ? selections[week].eliminated.name
-        : null;
-
-      if (elim && index !== sectionIndex) {
-        acc.push(elim);
-      }
-
-      return acc;
+    return weeks.map((week, index) => {
+      // console.log(" selections[week]", selections[week]);
+      return selections[week].eliminated;
     }, []);
   }
 
@@ -33,38 +26,39 @@ export function getNumberOfSections(numberInFinal, options) {
 }
 
 export function getSectionOptions(options, selections, sectionIndex) {
-  const eliminated = getEliminatedQueens(selections, sectionIndex);
-
-  return options.filter(option => !eliminated.includes(option));
+  return options.map((option) => {
+    return option;
+  });
 }
 
 export default function SubmissionForm({
   addSubmission,
   numberInFinal,
   options,
-  seasonId
+  seasonId,
+  name,
 }) {
   const [formState, setFormState] = useState({ email: "", selections: {} });
   const numberOfSections = getNumberOfSections(numberInFinal, options);
-  const handleSubmit = async event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     addSubmission(seasonId, formState);
     navigate(`/seasons/${seasonId}`);
   };
 
-  const setEmail = event => {
+  const setEmail = (event) => {
     const { value: email } = event.target;
 
     setFormState({
       ...formState,
-      email
+      email,
     });
   };
 
-  const setSelections = selections => {
+  const setSelections = (selections) => {
     setFormState({
       ...formState,
-      selections
+      selections,
     });
   };
 
@@ -77,7 +71,7 @@ export default function SubmissionForm({
         type="text"
         value={formState.email}
       />
-      {numberOfSections.reverse().map(num => {
+      {numberOfSections.reverse().map((num) => {
         // If it is the last week, render the Final section.
         return (
           <Fragment key={`section_${num}`}>
@@ -86,6 +80,8 @@ export default function SubmissionForm({
               options={getSectionOptions(options, formState.selections, num)}
               sectionIndex={num + 1 + numberInFinal}
               setSelections={setSelections}
+              name={name}
+              eliminated={getEliminatedQueens(formState.selections, num)}
             />
 
             {num === 0 && (
@@ -95,6 +91,8 @@ export default function SubmissionForm({
                 options={getSectionOptions(options, formState.selections, num)}
                 sectionIndex={num}
                 setSelections={setSelections}
+                name={name}
+                eliminated={getEliminatedQueens(formState.selections, num)}
               />
             )}
           </Fragment>
@@ -117,5 +115,5 @@ SubmissionForm.propTypes = {
   options: array,
   seasonId: string,
   selections: object,
-  setSelections: func
+  setSelections: func,
 };
