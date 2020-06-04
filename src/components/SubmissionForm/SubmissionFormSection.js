@@ -4,22 +4,30 @@ import { array, func, number, object } from "prop-types";
 import FormSelect from "./SubmissionFormSelect";
 import "./SubmissionFormSection.scss";
 
-function FormSection({ formState, options, sectionIndex, setSelections }) {
-  const getInputOptions = inputName => {
+function FormSection({
+  formState,
+  options,
+  sectionIndex,
+  setSelections,
+  eliminated,
+}) {
+  const getInputOptions = (inputName) => {
     const currentWeek = formState[sectionIndex] || {};
     const slots = Object.keys(currentWeek);
+
     const selectedThisWeek = slots.reduce((names, slot) => {
       const queen = currentWeek[slot] && currentWeek[slot].name;
       if (queen && slot !== inputName) names.push(queen);
-
       return names;
     }, []);
 
-    return options.filter(({ name }) => !selectedThisWeek.includes(name));
+    return options.filter(({ name }) => {
+      return !selectedThisWeek.includes(name);
+    });
   };
 
   const selectOption = (type, selectedOptionName) => {
-    const selectedOption = options.find(name => {
+    const selectedOption = options.find((name) => {
       return name === selectedOptionName;
     });
 
@@ -29,8 +37,8 @@ function FormSection({ formState, options, sectionIndex, setSelections }) {
       ...formState.selections,
       [sectionKey]: {
         ...formState.selections[sectionKey],
-        [type]: selectedOption
-      }
+        [type]: selectedOption,
+      },
     };
 
     setSelections(newSelections);
@@ -52,24 +60,28 @@ function FormSection({ formState, options, sectionIndex, setSelections }) {
           name="winner"
           options={getInputOptions("winner")}
           selectOption={selectOption}
+          eliminated={eliminated}
         />
         <FormSelect
           labelText="Top"
           name="top"
           options={getInputOptions("top")}
           selectOption={selectOption}
+          eliminated={eliminated}
         />
         <FormSelect
           labelText="Bottom"
           name="bottom"
           options={getInputOptions("bottom")}
           selectOption={selectOption}
+          eliminated={eliminated}
         />
         <FormSelect
           labelText="Eliminated"
           name="eliminated"
           options={getInputOptions("eliminated")}
           selectOption={selectOption}
+          eliminated={eliminated}
         />
       </div>
     </section>
@@ -80,7 +92,8 @@ FormSection.propTypes = {
   formState: object,
   options: array,
   sectionIndex: number,
-  setSelections: func
+  setSelections: func,
+  eliminated: array,
 };
 
 export default FormSection;

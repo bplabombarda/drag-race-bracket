@@ -9,11 +9,12 @@ export default function SubmissionNew({
   addSubmission,
   path,
   seasonId,
-  seasonObject
+  seasonObject,
+  name,
 }) {
   const { queens, queensInFinale } = seasonObject;
 
-  const getTitle = path => {
+  const getTitle = (path) => {
     const isEdit = path.endsWith("/edit");
     const isNew = path.endsWith("/new");
 
@@ -36,6 +37,7 @@ export default function SubmissionNew({
         numberInFinal={queensInFinale}
         options={queens || []}
         seasonId={seasonId}
+        name={name}
       />
     </div>
   );
@@ -45,5 +47,6 @@ SubmissionNew.propTypes = {
   addSubmission: func,
   path: string,
   seasonId: string,
-  seasonObject: object
+  seasonObject: object,
+  name: string,
 };

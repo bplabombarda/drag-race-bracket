@@ -44,7 +44,6 @@ export default function Season({ seasonId, seasons }) {
   if (Object.keys(season).length <= 0) {
     navigate(`/`);
   }
-
   return (
     <>
       <Router>
@@ -55,15 +54,20 @@ export default function Season({ seasonId, seasons }) {
           seasonName={season.name}
           results={season.results}
           finished={season.finished}
+          submissionsOpen={season.submissionsOpen}
         />
-        {/* <Submission
-          path='submissions/edit'
-          addSubmission={ addSubmission }
-          seasonObject={ season }/> */}
+        {/* {season.submissionsOpen && (
+          <Submission
+            path="submissions/edit"
+            addSubmission={addSubmission}
+            seasonObject={season}
+          />
+        )} */}
         <SubmissionNew
           path="submissions/new"
           addSubmission={addSubmission}
           seasonObject={season}
+          name={season.name}
         />
       </Router>
     </>

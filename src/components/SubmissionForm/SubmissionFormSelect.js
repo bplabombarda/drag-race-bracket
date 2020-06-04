@@ -1,49 +1,53 @@
-import React, { useState }  from 'react';
-import { arrayOf, func, string } from 'prop-types';
+import React, { useState } from "react";
+import { arrayOf, func, string, object } from "prop-types";
 
-import './SubmissionFormSelect.scss';
+import "./SubmissionFormSelect.scss";
 
-const SubmissionFormSelect = ({ labelText, options, selectOption, ...rest }) => {
-  
-  const [ selectedValue, setValue ] = useState('');
+const SubmissionFormSelect = ({
+  labelText,
+  options,
+  selectOption,
+  eliminated,
+  ...rest
+}) => {
+  const [selectedValue, setValue] = useState("");
 
   const handleChange = (event) => {
     const selectedOption = event.target.value;
     const selectedOptionType = event.target.name;
 
     setValue(selectedOption);
-    selectOption(
-      selectedOptionType,
-      selectedOption,
-    );
-  }
+    selectOption(selectedOptionType, selectedOption);
+  };
 
   return (
-    <label>{ labelText }
+    <label>
+      {labelText}
       <select
-        onChange={ (event) => handleChange(event) }
-        value={ selectedValue }
-        { ...rest }>
-        <option value=''>Choose a Queen</option>
-        {
-          options.map(optionName => (
-            <option
-              key={ `option_${ optionName.split(' ').join('_') }` }
-              value={ optionName }>
-              { optionName }
-            </option>
-          ))
-        }
+        onChange={(event) => handleChange(event)}
+        value={selectedValue}
+        {...rest}
+      >
+        <option value="">Choose a Queen</option>
+        {options.map((name) => (
+          <option
+            key={`option_${name.split(" ").join("_")}`}
+            disabled={eliminated.includes(name)}
+            value={name}
+          >
+            {name}
+          </option>
+        ))}
       </select>
     </label>
   );
-}
+};
 
 SubmissionFormSelect.propTypes = {
   labelText: string,
-  options: arrayOf(string),
+  options: arrayOf(object),
   selectOption: func,
-  type:string,
+  type: string,
 };
 
 export default SubmissionFormSelect;
