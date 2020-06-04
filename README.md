@@ -7,6 +7,10 @@
 
 This project uses [dotenv](https://github.com/motdotla/dotenv) to load its configuration into environment variables.
 
+#### Update `.env` File
+
+Obtain the corresponding values in [Firebase](https://console.firebase.google.com/project/fantasy-drag-race/settings/general/web:NGYxY2ZlNGQtZmMwMy00Nzg0LThlZjYtMjE0Zjc2YTk4MTE0) for the existing environment variables and update the `.env` file with those values.
+
 ### Install Dependencies
 
     npm install
@@ -16,6 +20,8 @@ This project uses [dotenv](https://github.com/motdotla/dotenv) to load its confi
 This project uses Webpack as its module bundler. To run its development server:
 
     npm start
+    
+## Linting & Testing
 
 ### Run Linter
 
