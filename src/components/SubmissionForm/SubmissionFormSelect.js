@@ -32,10 +32,10 @@ const SubmissionFormSelect = ({
         {options.map((name) => (
           <option
             key={`option_${name.split(" ").join("_")}`}
-            disabled={eliminated.includes(name)}
+            // disabled={eliminated.includes(name)}
             value={name}
           >
-            {name}
+            {`${eliminated.includes(name) ? "[X] " : ""}${name}`}
           </option>
         ))}
       </select>
