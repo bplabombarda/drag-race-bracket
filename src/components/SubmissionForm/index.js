@@ -66,7 +66,7 @@ export default function SubmissionForm({
     <form onSubmit={handleSubmit}>
       <FormInput
         handleOnChange={setEmail}
-        labelText="Name - Charity"
+        labelText="Name - Charity: "
         name="email"
         type="text"
         value={formState.email}
