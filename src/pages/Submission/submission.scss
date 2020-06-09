@@ -6,7 +6,9 @@
   padding: 20px;
   margin-bottom: 10px;
   .submitter-name {
+    display: inline-block;
     font-weight: bold;
+    max-width: 80%;
   }
   .score {
     background-color: $popofcolor;

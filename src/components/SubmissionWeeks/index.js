@@ -1,9 +1,9 @@
 import React from "react";
-import { object } from "prop-types";
+import { object, string, bool } from "prop-types";
 
 import SubmissionWeekPositions from "Components/SubmissionWeekPositions";
 
-export default function SubmissionWeeks({ submission, isShown }) {
+export default function SubmissionWeeks({ seasonName, submission, isShown }) {
   const weekKeys = Object.keys(submission).sort((a, b) => {
     return (
       parseInt(b.replace("top", "").replace("finale", "-100")) -
@@ -12,9 +12,9 @@ export default function SubmissionWeeks({ submission, isShown }) {
   });
   return (
     <ul className={`submission-weeks ${isShown ? "active" : "inactive"}`}>
-      {weekKeys.reverse().map((week, index) => (
+      {weekKeys.reverse().map((week) => (
         <li key={week} className="submissionWeek">
-          <SubmissionWeekPositions week={submission[week]} weekIndex={week} />
+          <SubmissionWeekPositions seasonName={seasonName} week={submission[week]} weekIndex={week} />
         </li>
       ))}
     </ul>
@@ -22,5 +22,7 @@ export default function SubmissionWeeks({ submission, isShown }) {
 }
 
 SubmissionWeeks.propTypes = {
-  submission: object
+  isShown: bool,
+  seasonName: string,
+  submission: object,
 };

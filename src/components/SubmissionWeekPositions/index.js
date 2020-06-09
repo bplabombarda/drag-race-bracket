@@ -1,8 +1,12 @@
 import React from "react";
 import { string, object } from "prop-types";
 
-export default function SubmissionWeekPositions({ week, weekIndex }) {
+export default function SubmissionWeekPositions({ seasonName, week, weekIndex }) {
   const positionKeys = Object.keys(week);
+  const finaleExtra = seasonName && seasonName.includes("stars")
+      ? "Returning"
+      : "Congeniality";
+
   return (
     <>
       <h2>{` ${
@@ -13,7 +17,7 @@ export default function SubmissionWeekPositions({ week, weekIndex }) {
       <ul>
         {positionKeys.reverse().map(position => (
           <li key={position} className="position">
-            <span>{`${position}:`}</span>
+            <span>{`${position === "congeniality" ? finaleExtra : position}:`}</span>
             <span> {`${week[position]}`}</span>
           </li>
         ))}
@@ -23,6 +27,7 @@ export default function SubmissionWeekPositions({ week, weekIndex }) {
 }
 
 SubmissionWeekPositions.propTypes = {
+  seasonName: string,
   week: object,
   weekIndex: string
 };
