@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { array, func, number, object, string } from "prop-types";
+import { array, func, number, object, string, bool } from "prop-types";
 
 import FormSelect from "./SubmissionFormSelect";
 import "./SubmissionFormSection.scss";
@@ -11,6 +11,7 @@ export default function FormFinalSection({
   setSelections,
   name,
   eliminated,
+  extraOptions,
 }) {
   const getInputOptions = (inputName) => {
     const currentWeek = formState[sectionIndex] || {};
@@ -50,6 +51,11 @@ export default function FormFinalSection({
       ? "Who will return this season"
       : "Miss Congeniality";
 
+  const finaleExtraOptions = [
+    ...extraOptions,
+    ...getInputOptions("eliminated"),
+  ];
+
   return (
     <section className="week finale">
       <h1 onClick={toggleTrueFalse}>Finale</h1>
@@ -78,7 +84,7 @@ export default function FormFinalSection({
         <FormSelect
           labelText={`${finaleExtra}`}
           name="congeniality"
-          options={getInputOptions("eliminated")}
+          options={finaleExtraOptions}
           selectOption={selectOption}
           eliminated={eliminated}
         />
@@ -93,4 +99,6 @@ FormFinalSection.propTypes = {
   sectionIndex: number,
   setSelections: func,
   name: string,
+  eliminated: array,
+  extraOptions: array,
 };

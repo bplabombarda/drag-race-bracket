@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { arrayOf, func, string, object } from "prop-types";
+import { array, func, string } from "prop-types";
 
 import "./SubmissionFormSelect.scss";
 
@@ -45,9 +45,10 @@ const SubmissionFormSelect = ({
 
 SubmissionFormSelect.propTypes = {
   labelText: string,
-  options: arrayOf(object),
+  options: array,
   selectOption: func,
   type: string,
+  eliminated: array,
 };
 
 export default SubmissionFormSelect;

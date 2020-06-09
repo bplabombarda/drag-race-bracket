@@ -37,6 +37,7 @@ export default function SubmissionForm({
   options,
   seasonId,
   name,
+  extraOptions
 }) {
   const [formState, setFormState] = useState({ email: "", selections: {} });
   const numberOfSections = getNumberOfSections(numberInFinal, options);
@@ -88,6 +89,7 @@ export default function SubmissionForm({
               <SubmissionFormFinalSection
                 key={`section_${num}_finale`}
                 formState={formState}
+                extraOptions={extraOptions}
                 options={getSectionOptions(options, formState.selections, num)}
                 sectionIndex={num}
                 setSelections={setSelections}
@@ -111,7 +113,9 @@ export default function SubmissionForm({
 
 SubmissionForm.propTypes = {
   addSubmission: func,
+  name: string,
   numberInFinal: number,
+  extraOptions: array,
   options: array,
   seasonId: string,
   selections: object,

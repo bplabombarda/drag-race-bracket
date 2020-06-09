@@ -12,7 +12,7 @@ export default function SubmissionNew({
   seasonObject,
   name,
 }) {
-  const { queens, queensInFinale } = seasonObject;
+  const { extraQueens, queens, queensInFinale } = seasonObject;
 
   const getTitle = (path) => {
     const isEdit = path.endsWith("/edit");
@@ -35,6 +35,7 @@ export default function SubmissionNew({
       <SubmissionForm
         addSubmission={addSubmission}
         numberInFinal={queensInFinale}
+        extraOptions={extraQueens}
         options={queens || []}
         seasonId={seasonId}
         name={name}
