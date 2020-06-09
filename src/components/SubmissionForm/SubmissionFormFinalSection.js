@@ -27,7 +27,10 @@ export default function FormFinalSection({
   };
 
   const selectOption = (type, selectedOptionName) => {
-    const selectedOption = options.find((name) => {
+    const selectedOption = [
+      ...options,
+      ...extraOptions,
+    ].find((name) => {
       return name === selectedOptionName;
     });
 
