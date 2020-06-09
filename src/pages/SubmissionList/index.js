@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { object, string, func } from "prop-types";
+import { object, string, func, bool } from "prop-types";
 import { Link } from "@reach/router";
 import getScore from "Utils/getScore";
 
@@ -61,6 +61,7 @@ export default function SubmissionList({
         emails.map((obj, i) => (
           <Submission
             key={`submission_${obj.email}`}
+            seasonName={seasonName}
             submission={submissions[obj.email]}
             submittor={obj.email}
             score={obj.score}
@@ -75,4 +76,8 @@ SubmissionList.propTypes = {
   seasonId: string,
   setSubmissions: func,
   submissions: object,
+  seasonName: string,
+  results: object,
+  finished: bool,
+  submissionsOpen: bool,
 };
