@@ -8,6 +8,7 @@ const SubmissionFormSelect = ({
   options,
   selectOption,
   eliminated,
+  colors,
   ...rest
 }) => {
   const [selectedValue, setValue] = useState("");
@@ -21,11 +22,12 @@ const SubmissionFormSelect = ({
   };
 
   return (
-    <label>
+    <label style={{ color: colors.primary }}>
       {labelText}
       <select
         onChange={(event) => handleChange(event)}
         value={selectedValue}
+        style={{ border: `1px solid ${colors.primary}`, color: colors.primary }}
         {...rest}
       >
         <option value="">Choose a Queen</option>

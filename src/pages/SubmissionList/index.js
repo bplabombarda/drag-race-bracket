@@ -16,6 +16,7 @@ export default function SubmissionList({
   results,
   finished,
   submissionsOpen,
+  colors,
 }) {
   useEffect(() => {
     const fetchSubmissions = async () => {
@@ -49,9 +50,15 @@ export default function SubmissionList({
   return (
     <>
       <div className="seasons-header">
-        <h2 className="season-name">{seasonName}</h2>
+        <h2 className="season-name" style={{ color: colors.primary }}>
+          {seasonName}
+        </h2>
         {submissionsOpen && (
-          <Link className="new-submission-button" to="submissions/new">
+          <Link
+            className="new-submission-button"
+            to="submissions/new"
+            style={{ backgroundColor: colors.primary }}
+          >
             New
           </Link>
         )}
@@ -66,6 +73,7 @@ export default function SubmissionList({
             submittor={obj.email}
             score={obj.score}
             winner={i === 0 && finished}
+            colors={colors}
           />
         ))}
     </>

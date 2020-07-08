@@ -12,6 +12,7 @@ export default function FormFinalSection({
   name,
   eliminated,
   extraOptions,
+  colors,
 }) {
   const getInputOptions = (inputName) => {
     const currentWeek = formState[sectionIndex] || {};
@@ -27,10 +28,7 @@ export default function FormFinalSection({
   };
 
   const selectOption = (type, selectedOptionName) => {
-    const selectedOption = [
-      ...options,
-      ...extraOptions,
-    ].find((name) => {
+    const selectedOption = [...options, ...extraOptions].find((name) => {
       return name === selectedOptionName;
     });
 
@@ -60,8 +58,16 @@ export default function FormFinalSection({
   ];
 
   return (
-    <section className="week finale">
-      <h1 onClick={toggleTrueFalse}>Finale</h1>
+    <section
+      style={{ border: ` 2px solid ${colors.primary}` }}
+      className="week finale"
+    >
+      <h1
+        style={{ color: colors.primary, border: `2px solid ${colors.primary}` }}
+        onClick={toggleTrueFalse}
+      >
+        Finale
+      </h1>
       <div className={`form-container ${isToggled ? "active" : "inactive"}`}>
         <FormSelect
           labelText="Winner"
@@ -69,6 +75,7 @@ export default function FormFinalSection({
           options={getInputOptions("winner")}
           selectOption={selectOption}
           eliminated={eliminated}
+          colors={colors}
         />
         <FormSelect
           labelText="Runner Up"
@@ -76,6 +83,7 @@ export default function FormFinalSection({
           options={getInputOptions("runnerUp")}
           selectOption={selectOption}
           eliminated={eliminated}
+          colors={colors}
         />
         <FormSelect
           labelText="Runner up"
@@ -83,6 +91,7 @@ export default function FormFinalSection({
           options={getInputOptions("runnerUp")}
           selectOption={selectOption}
           eliminated={eliminated}
+          colors={colors}
         />
         <FormSelect
           labelText={`${finaleExtra}`}
@@ -90,6 +99,7 @@ export default function FormFinalSection({
           options={finaleExtraOptions}
           selectOption={selectOption}
           eliminated={eliminated}
+          colors={colors}
         />
       </div>
     </section>

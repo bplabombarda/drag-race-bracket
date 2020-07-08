@@ -55,6 +55,7 @@ export default function Season({ seasonId, seasons }) {
           results={season.results}
           finished={season.finished}
           submissionsOpen={season.submissionsOpen}
+          colors={{ primary: season.primary, secondary: season.secondary }}
         />
         {/* {season.submissionsOpen && (
           <Submission
@@ -68,6 +69,7 @@ export default function Season({ seasonId, seasons }) {
           addSubmission={addSubmission}
           seasonObject={season}
           name={season.name}
+          colors={{ primary: season.primary, secondary: season.secondary }}
         />
       </Router>
     </>

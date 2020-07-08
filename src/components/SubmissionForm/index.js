@@ -37,7 +37,8 @@ export default function SubmissionForm({
   options,
   seasonId,
   name,
-  extraOptions
+  extraOptions,
+  colors,
 }) {
   const [formState, setFormState] = useState({ email: "", selections: {} });
   const numberOfSections = getNumberOfSections(numberInFinal, options);
@@ -71,6 +72,7 @@ export default function SubmissionForm({
         name="email"
         type="text"
         value={formState.email}
+        colors={colors}
       />
       {numberOfSections.reverse().map((num) => {
         // If it is the last week, render the Final section.
@@ -83,6 +85,7 @@ export default function SubmissionForm({
               setSelections={setSelections}
               name={name}
               eliminated={getEliminatedQueens(formState.selections, num)}
+              colors={colors}
             />
 
             {num === 0 && (
@@ -95,6 +98,7 @@ export default function SubmissionForm({
                 setSelections={setSelections}
                 name={name}
                 eliminated={getEliminatedQueens(formState.selections, num)}
+                colors={colors}
               />
             )}
           </Fragment>
@@ -106,6 +110,7 @@ export default function SubmissionForm({
         name="submit"
         type="submit"
         value="Submit"
+        colors={colors}
       />
     </form>
   );

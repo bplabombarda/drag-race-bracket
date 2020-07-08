@@ -4,14 +4,14 @@ export default function getScore(email, submissions, results) {
 
   weeks.forEach((week) => {
     if (results && results[week]) {
-      score += addScore(submissions[email][week], results[week]);
+      score += addScore(submissions[email][week], results[week], email);
     }
   });
 
   return { email, score };
 }
 
-function addScore(week, result) {
+function addScore(week, result, email) {
   let weekScore = 0;
   if (!result.finale) {
     let matches = [];
