@@ -9,8 +9,10 @@ export default function FormInput(props) {
     name,
     type,
     value,
+    colors,
     ...rest
   } = props;
+  console.log("colors");
   return (
     <div className={type.toLowerCase()}>
       <input
@@ -19,6 +21,12 @@ export default function FormInput(props) {
         type={type}
         value={value}
         placeholder={labelText}
+        style={{
+          border: `2px solid ${colors.primary}`,
+          backgroundColor: `${
+            type.toLowerCase() === "submit" ? colors.primary : ""
+          }`,
+        }}
         {...rest}
       />
     </div>

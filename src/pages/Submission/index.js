@@ -5,7 +5,14 @@ import SubmissionWeeks from "Components/SubmissionWeeks";
 
 import "./submission.scss";
 
-export default function Submission({ seasonName, submittor, submission, score, winner }) {
+export default function Submission({
+  seasonName,
+  submittor,
+  submission,
+  score,
+  winner,
+  colors,
+}) {
   const [isToggled, setToggled] = useState(false);
   const toggleTrueFalse = () => setToggled(!isToggled);
 
@@ -13,10 +20,29 @@ export default function Submission({ seasonName, submittor, submission, score, w
     <div
       className={`submission ${winner ? "winner" : ""}`}
       onClick={toggleTrueFalse}
+      style={{
+        border: `2px solid ${colors.primary}`,
+        backgroundColor: `${winner ? colors.primary : "none"}`,
+      }}
     >
-      <span className="submitter-name">{submittor}</span>
-      <span className="score">{score}</span>
-      <SubmissionWeeks seasonName={seasonName} submission={submission} isShown={isToggled} />
+      <span
+        className="submitter-name"
+        style={{
+          color: colors.primary,
+          color: `${winner ? "white" : colors.primary}`,
+        }}
+      >
+        {submittor}
+      </span>
+      <span className="score" style={{ backgroundColor: colors.secondary }}>
+        {score}
+      </span>
+      <SubmissionWeeks
+        seasonName={seasonName}
+        submission={submission}
+        isShown={isToggled}
+        colors={colors}
+      />
     </div>
   );
 }

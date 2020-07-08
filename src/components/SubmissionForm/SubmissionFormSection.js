@@ -10,6 +10,7 @@ function FormSection({
   sectionIndex,
   setSelections,
   eliminated,
+  colors,
 }) {
   const getInputOptions = (inputName) => {
     const currentWeek = formState[sectionIndex] || {};
@@ -47,10 +48,14 @@ function FormSection({
   const toggleTrueFalse = () => setToggled(!isToggled);
 
   return (
-    <section className={`week top-${sectionIndex} `}>
+    <section
+      className={`week top-${sectionIndex} `}
+      style={{ border: ` 2px solid ${colors.primary}` }}
+    >
       <h1
         className={`title ${isToggled ? "arrow" : ""}`}
         onClick={toggleTrueFalse}
+        style={{ backgroundColor: colors.primary }}
       >
         Top {sectionIndex}
       </h1>
@@ -61,6 +66,7 @@ function FormSection({
           options={getInputOptions("winner")}
           selectOption={selectOption}
           eliminated={eliminated}
+          colors={colors}
         />
         <FormSelect
           labelText="Top"
@@ -68,6 +74,7 @@ function FormSection({
           options={getInputOptions("top")}
           selectOption={selectOption}
           eliminated={eliminated}
+          colors={colors}
         />
         <FormSelect
           labelText="Bottom"
@@ -75,6 +82,7 @@ function FormSection({
           options={getInputOptions("bottom")}
           selectOption={selectOption}
           eliminated={eliminated}
+          colors={colors}
         />
         <FormSelect
           labelText="Eliminated"
@@ -82,6 +90,7 @@ function FormSection({
           options={getInputOptions("eliminated")}
           selectOption={selectOption}
           eliminated={eliminated}
+          colors={colors}
         />
       </div>
     </section>

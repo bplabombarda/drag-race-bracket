@@ -3,7 +3,12 @@ import { object, string, bool } from "prop-types";
 
 import SubmissionWeekPositions from "Components/SubmissionWeekPositions";
 
-export default function SubmissionWeeks({ seasonName, submission, isShown }) {
+export default function SubmissionWeeks({
+  seasonName,
+  submission,
+  isShown,
+  colors,
+}) {
   const weekKeys = Object.keys(submission).sort((a, b) => {
     return (
       parseInt(b.replace("top", "").replace("finale", "-100")) -
@@ -14,7 +19,12 @@ export default function SubmissionWeeks({ seasonName, submission, isShown }) {
     <ul className={`submission-weeks ${isShown ? "active" : "inactive"}`}>
       {weekKeys.reverse().map((week) => (
         <li key={week} className="submissionWeek">
-          <SubmissionWeekPositions seasonName={seasonName} week={submission[week]} weekIndex={week} />
+          <SubmissionWeekPositions
+            seasonName={seasonName}
+            week={submission[week]}
+            weekIndex={week}
+            colors={colors}
+          />
         </li>
       ))}
     </ul>

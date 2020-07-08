@@ -11,6 +11,7 @@ export default function SubmissionNew({
   seasonId,
   seasonObject,
   name,
+  colors,
 }) {
   const { extraQueens, queens, queensInFinale } = seasonObject;
 
@@ -31,7 +32,7 @@ export default function SubmissionNew({
 
   return (
     <div className="new-form">
-      <h3>{getTitle(path)}</h3>
+      <h3 style={{ color: colors.primary }}>{getTitle(path)}</h3>
       <SubmissionForm
         addSubmission={addSubmission}
         numberInFinal={queensInFinale}
@@ -39,6 +40,7 @@ export default function SubmissionNew({
         options={queens || []}
         seasonId={seasonId}
         name={name}
+        colors={colors}
       />
     </div>
   );

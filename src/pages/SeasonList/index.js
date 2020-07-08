@@ -9,9 +9,17 @@ export default function SeasonList({ seasons }) {
     <>
       <ul className="seasons-list">
         {Object.keys(seasons) &&
-          Object.keys(seasons).map(seasonId => (
-            <li key={`season_${seasonId}`}>
-              <Link to={`seasons/${seasonId}`}>{seasons[seasonId].name}</Link>
+          Object.keys(seasons).map((seasonId) => (
+            <li
+              key={`season_${seasonId}`}
+              style={{ border: `2px solid ${seasons[seasonId].primary}` }}
+            >
+              <Link
+                style={{ color: `${seasons[seasonId].primary}` }}
+                to={`seasons/${seasonId}`}
+              >
+                {seasons[seasonId].name}
+              </Link>
             </li>
           ))}
       </ul>
@@ -20,5 +28,5 @@ export default function SeasonList({ seasons }) {
 }
 
 SeasonList.propTypes = {
-  seasons: object
+  seasons: object,
 };
