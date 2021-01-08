@@ -74,6 +74,7 @@ export default function SubmissionList({
             score={obj.score}
             winner={i === 0 && finished}
             colors={colors}
+            submissionsOpen={submissionsOpen}
           />
         ))}
     </>

@@ -12,6 +12,7 @@ export default function Submission({
   score,
   winner,
   colors,
+  submissionsOpen,
 }) {
   const [isToggled, setToggled] = useState(false);
   const toggleTrueFalse = () => setToggled(!isToggled);
@@ -40,7 +41,7 @@ export default function Submission({
       <SubmissionWeeks
         seasonName={seasonName}
         submission={submission}
-        isShown={isToggled}
+        isShown={!submissionsOpen && isToggled}
         colors={colors}
       />
     </div>
