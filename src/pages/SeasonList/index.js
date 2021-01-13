@@ -15,14 +15,16 @@ export default function SeasonList({ seasons }) {
               <li
                 key={`season_${seasonId}`}
                 style={{
-                  border: seasons[seasonId].finished
-                    ? `1px solid ${seasons[seasonId].primary}`
-                    : `4px solid ${seasons[seasonId].primary}`,
+                  border: `4px solid ${seasons[seasonId].primary}`,
                 }}
               >
                 <Link
                   style={{
-                    color: `${seasons[seasonId].primary}`,
+                    color: `${
+                      seasons[seasonId].finished
+                        ? "#AFC4D8"
+                        : seasons[seasonId].primary
+                    }`,
                     fontWeight: seasons[seasonId].finished ? "regular" : "bold",
                   }}
                   to={`seasons/${seasonId}`}
