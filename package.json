@@ -1,5 +1,5 @@
 {
-  "name": "koa-react-boilerplate",
+  "name": "fantasy-drag-race",
   "version": "1.1.0",
   "description": "Koa & React boilerplate project.",
   "main": "server/index.js",
