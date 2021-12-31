@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Router } from "@reach/router";
+import { Router } from "react-router-dom";
 
 import Admin from "Pages/Admin";
 import Header from "./components/Header";
