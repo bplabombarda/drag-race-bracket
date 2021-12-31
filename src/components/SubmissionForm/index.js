@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from "react";
 import { array, func, object, number, string } from "prop-types";
-import { navigate } from "@reach/router";
+import { useNavigate } from "react-router-dom";
 import FormInput from "Components/FormInput";
 import SubmissionFormSection from "./SubmissionFormSection";
 import SubmissionFormFinalSection from "./SubmissionFormFinalSection";
@@ -47,7 +47,8 @@ export default function SubmissionForm({
   extraOptions,
   colors,
 }) {
-  const [formState, setFormState] = useState({ name: "", selections: {} });
+  const [formState, setFormState] = useState({ email: "", selections: {} });
+  const navigate = useNavigate();
   const numberOfSections = getNumberOfSections(numberInFinal, options);
 
   const handleSubmit = async (event) => {

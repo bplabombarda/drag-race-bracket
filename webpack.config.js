@@ -13,21 +13,12 @@ const PRODUCTION = process.env.NODE_ENV === "production";
 const SRC_DIR = `${__rootdir}/src`;
 
 const baseConfig = {
-  output: {
-    path: `${__rootdir}/public`,
-    pathinfo: !PRODUCTION
-  },
-
-  context: resolve(__dirname),
-
-  devtool: PRODUCTION ? "source-map" : "cheap-module-eval-source-map",
-
-  devServer: {
-    stats: "minimal"
-  },
-
   bail: PRODUCTION,
-
+  context: resolve(__dirname),
+  devtool: PRODUCTION ? "source-map" : "cheap-module-eval-source-map",
+  devServer: {
+    stats: "minimal",
+  },
   module: {
     rules: [
       {
@@ -35,29 +26,32 @@ const baseConfig = {
         exclude: /node_modules/,
         use: [
           {
-            loader: "babel-loader"
-          }
-        ]
+            loader: "babel-loader",
+          },
+        ],
       },
       {
         test: /\.(eot|ttf|woff|woff2|svg|jpg|png)$/,
-        use: "file-loader"
-      }
-    ]
+        use: "file-loader",
+      },
+    ],
   },
-
+  output: {
+    path: `${__rootdir}/public`,
+    pathinfo: !PRODUCTION,
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: "src/index.html",
       inject: "body",
       filename: "index.html",
-      title: "Dillcap"
+      title: "Dillcap",
     }),
     new webpack.LoaderOptionsPlugin({
       test: /\.css|scss/,
       options: {
-        postcss: [autoprefixer()]
-      }
+        postcss: [autoprefixer()],
+      },
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
@@ -73,10 +67,9 @@ const baseConfig = {
       ),
       "process.env.FIREBASE_PROJECT_ID": JSON.stringify(
         process.env.FIREBASE_PROJECT_ID
-      )
-    })
+      ),
+    }),
   ],
-
   resolve: {
     alias: {
       Source: SRC_DIR,
@@ -85,34 +78,20 @@ const baseConfig = {
       Images: `${SRC_DIR}/assets/images`,
       Pages: `${SRC_DIR}/pages`,
       Styles: `${SRC_DIR}/styles`,
-      Utils: `${SRC_DIR}/utils`
+      Utils: `${SRC_DIR}/utils`,
     },
-    extensions: [".js", ".json", ".css", ".scss"]
-  }
+    extensions: [".js", ".json", ".css", ".scss"],
+  },
 };
 
 if (PRODUCTION) {
   console.info("Building for prod...");
-
   module.exports = merge(baseConfig, {
     mode: "production",
-
     entry: {
       main: `${__rootdir}/src/index.js`,
-      vendor: ["react", "react-dom"]
+      vendor: ["react", "react-dom"],
     },
-
-    output: {
-      filename: "js/[hash].js",
-      publicPath: "/"
-    },
-
-    optimization: {
-      splitChunks: {
-        chunks: "all"
-      }
-    },
-
     module: {
       rules: [
         {
@@ -124,34 +103,34 @@ if (PRODUCTION) {
             {
               loader: "sass-resources-loader",
               options: {
-                resources: [resolve(__dirname, "./src/styles/globals.scss")]
-              }
-            }
-          ]
-        }
-      ]
-    }
+                resources: [resolve(__dirname, "./src/styles/globals.scss")],
+              },
+            },
+          ],
+        },
+      ],
+    },
+    optimization: {
+      splitChunks: {
+        chunks: "all",
+      },
+    },
+    output: {
+      filename: "js/[hash].js",
+      publicPath: "/",
+    },
   });
 } else {
   console.info("Serving locally...");
-
   module.exports = merge(baseConfig, {
     mode: "development",
-
     devServer: {
-      historyApiFallback: true
+      historyApiFallback: true,
     },
-
     entry: [
       "webpack-dev-server/client?http://localhost:8080",
-      `${__rootdir}/src/index.js`
+      `${__rootdir}/src/index.js`,
     ],
-
-    output: {
-      filename: "js/bundle.js",
-      publicPath: "/"
-    },
-
     module: {
       rules: [
         {
@@ -163,12 +142,16 @@ if (PRODUCTION) {
             {
               loader: "sass-resources-loader",
               options: {
-                resources: [resolve(__dirname, "./src/styles/globals.scss")]
-              }
-            }
-          ]
-        }
-      ]
-    }
+                resources: [resolve(__dirname, "./src/styles/globals.scss")],
+              },
+            },
+          ],
+        },
+      ],
+    },
+    output: {
+      filename: "js/bundle.js",
+      publicPath: "/",
+    },
   });
 }

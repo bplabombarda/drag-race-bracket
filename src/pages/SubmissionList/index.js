@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { object, string, func, bool } from "prop-types";
-import { Link } from "@reach/router";
+import { Link } from "react-router-dom";
 import getScore from "Utils/getScore";
 
 import firebase from "Utils/firebase";

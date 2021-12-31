@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Router, navigate } from "@reach/router";
+import { Router, useNavigate } from "react-router-dom";
 import { object, string } from "prop-types";
 
 import firebase from "Utils/firebase";
@@ -36,6 +36,7 @@ export async function fetchSubmissions(seasonId) {
 export default function Season({ seasonId, seasons }) {
   const [season, setSeason] = useState({ name: "" });
   const [submissions, setSubmissions] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     setSeason(seasons[seasonId] || {});
