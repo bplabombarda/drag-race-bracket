@@ -1,0 +1,83 @@
+@import '../../styles/globals.scss';
+
+.new-form form {
+  .text {
+    input {
+      width: 78%;
+      border: 2px solid $popofcolor;
+      padding: 12px;
+      margin: 0 auto;
+      display: block;
+      font-size: 16px;
+    }
+    margin-bottom: 20px;
+  }
+  .submit {
+    input {
+      width: 100%;
+      background-color: $popofcolor;
+      padding: 20px;
+      color: white;
+      font-size: 23px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 0;
+      -webkit-appearance: none;
+    }
+  }
+
+  section {
+    width: 85%;
+    margin: 0 auto;
+    border: 2px solid $popofcolor;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    .form-container {
+      padding: 10px;
+    }
+    .inactive {
+      display: none;
+    }
+    .arrow {
+      &::after {
+        content: '⌄';
+        position: relative;
+        top: -5px;
+        left: 100px;
+      }
+    }
+    .title {
+      font-family: 'Chivo';
+      font-size: 22px;
+      background-color: $popofcolor;
+      color: white;
+      padding: 7px;
+    }
+    label {
+      color: $popofcolor;
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      font-weight: bold;
+      align-items: center;
+      font-size: 20px;
+      margin-bottom: 10px;
+      select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border: 1px solid $popofcolor;
+        padding: 8px 70px;
+        background-color: white;
+        color: $popofcolor;
+        font-weight: bold;
+        font-size: 16px;
+        margin-top: 3px;
+      }
+    }
+  }
+
+  .finale h1 {
+    border-bottom: 2px solid $popofcolor;
+  }
+}

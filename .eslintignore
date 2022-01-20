@@ -1,3 +1,2 @@
-__mocks__
-*.mock.js
-*.test.js
+dist/
+node_modules/

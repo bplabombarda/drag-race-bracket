@@ -1,13 +1,10 @@
-.DS_Store
-.vscode
-__tests__/coverage
-config/env/*
-logs/**/*
 node_modules
-npm-debug.log*
-public/*
-tmp
+.DS_Store
+dist
+dist-ssr
+*.local
+
 .firebase/
-.env
+.env*
 
 !.keep
