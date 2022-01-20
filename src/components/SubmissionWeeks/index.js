@@ -9,6 +9,7 @@ export default function SubmissionWeeks({
   isShown,
   colors,
 }) {
+  delete submission.email // removes email key from submission obj for easy mapping
   const weekKeys = Object.keys(submission).sort((a, b) => {
     return (
       parseInt(b.replace("top", "").replace("finale", "-100")) -

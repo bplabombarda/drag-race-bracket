@@ -1,6 +1,5 @@
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
-
 // These environment variables are replaced by
 // Webpack's DefinePlugin as time of build.
 const app = firebase.initializeApp({

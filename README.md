@@ -11,6 +11,13 @@ This project uses [dotenv](https://github.com/motdotla/dotenv) to load its confi
 
 Obtain the corresponding values in [Firebase](https://console.firebase.google.com/project/fantasy-drag-race/settings/general/web:NGYxY2ZlNGQtZmMwMy00Nzg0LThlZjYtMjE0Zjc2YTk4MTE0) for the existing environment variables and update the `.env` file with those values.
 
+```
+FIREBASE_API_KEY=[key]
+FIREBASE_APP_ID=[app-id]
+FIERBASE_DATABASE_URL=[url]
+FIREBASE_PROJECT_ID=[proj-id]
+```
+
 ### Install Dependencies
 
     npm install
