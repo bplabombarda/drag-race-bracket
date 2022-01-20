@@ -39,9 +39,9 @@ export default function SubmissionList({
     fetchSubmissions();
   }, []);
 
-  const emails = Object.keys(submissions)
-    .map((email) => {
-      return getScore(email, submissions, results);
+  const names = Object.keys(submissions)
+    .map((name) => {
+      return getScore(name, submissions, results);
     })
     .sort(function (a, b) {
       return b.score - a.score;
@@ -54,23 +54,29 @@ export default function SubmissionList({
           {seasonName}
         </h2>
         {submissionsOpen && (
-          <Link
-            className="new-submission-button"
-            to="submissions/new"
-            style={{ backgroundColor: colors.primary }}
-          >
-            New
-          </Link>
+          <>
+            <Link
+              className="new-submission-button"
+              to="submissions/new"
+              style={{ backgroundColor: colors.primary }}
+            >
+              New
+            </Link>
+          </>
         )}
       </div>
 
+      {submissionsOpen && (
+        <h3 className="info-popup">Don't worry kitty gurl, you can view the submissions once the submitting window is closed</h3>
+      )}
+
       {Object.keys(submissions) &&
-        emails.map((obj, i) => (
+        names.map((obj, i) => (
           <Submission
-            key={`submission_${obj.email}`}
+            key={`submission_${obj.name}`}
             seasonName={seasonName}
-            submission={submissions[obj.email]}
-            submittor={obj.email}
+            submission={submissions[obj.name]}
+            submittor={obj.name}
             score={obj.score}
             winner={i === 0 && finished}
             colors={colors}

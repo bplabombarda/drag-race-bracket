@@ -40,21 +40,28 @@ export default function SubmissionForm({
   extraOptions,
   colors,
 }) {
-  const [formState, setFormState] = useState({ email: "", selections: {} });
+  const [formState, setFormState] = useState({ name: "", selections: {} });
   const numberOfSections = getNumberOfSections(numberInFinal, options);
+  console.log('formState', formState);
   const handleSubmit = async (event) => {
     event.preventDefault();
     addSubmission(seasonId, formState);
     navigate(`/seasons/${seasonId}`);
   };
 
-  const setEmail = (event) => {
-    const { value: email } = event.target;
+  const setName = (event) => {
+    const { value: name } = event.target;
 
     setFormState({
       ...formState,
-      email,
+      name,
     });
+  };
+
+   const setEmail = (event) => {
+    const { value: email } = event.target;
+
+    formState.selections = {...formState.selections, email}
   };
 
   const setSelections = (selections) => {
@@ -67,9 +74,18 @@ export default function SubmissionForm({
   return (
     <form onSubmit={handleSubmit}>
       <FormInput
+        handleOnChange={setName}
+        labelText="Full Name"
+        name="name"
+        type="text"
+        value={formState.name}
+        colors={colors}
+        required
+      />
+      <FormInput
         handleOnChange={setEmail}
-        labelText="Name - Charity: "
-        name="email"
+        labelText="Email"
+        name="name"
         type="text"
         value={formState.email}
         colors={colors}

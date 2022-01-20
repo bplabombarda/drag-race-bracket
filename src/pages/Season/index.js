@@ -9,13 +9,13 @@ import SubmissionList from "Pages/SubmissionList";
 
 const db = firebase.firestore();
 
-export async function addSubmission(season, { email, selections }) {
+export async function addSubmission(season, { name, selections }) {
   try {
     await db
       .collection("seasons")
       .doc(season)
       .collection("submissions")
-      .doc(email)
+      .doc(name)
       .set(selections);
   } catch (error) {
     // eslint-disable-next-line no-console

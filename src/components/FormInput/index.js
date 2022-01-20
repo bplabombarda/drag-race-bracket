@@ -3,16 +3,16 @@ import { func, number, oneOfType, string } from "prop-types";
 
 export default function FormInput(props) {
   const {
-    className,
     handleOnChange,
     labelText,
     name,
     type,
     value,
+    required,
     colors,
     ...rest
   } = props;
-  console.log("colors");
+
   return (
     <div className={type.toLowerCase()}>
       <input
@@ -21,6 +21,7 @@ export default function FormInput(props) {
         type={type}
         value={value}
         placeholder={labelText}
+        required={required}
         style={{
           border: `2px solid ${colors.primary}`,
           backgroundColor: `${
