@@ -7,16 +7,23 @@ import SubmissionFormFinalSection from "./SubmissionFormFinalSection";
 import "./SubmissionForm.scss";
 
 export function getEliminatedQueens(selections, sectionIndex) {
+  createEliminatedDetailsObject(selections, sectionIndex)
   const weeks = Object.keys(selections);
 
   if (weeks.length > 0) {
     return weeks.map((week, index) => {
-      // console.log(" selections[week]", selections[week]);
       return selections[week].eliminated;
     }, []);
   }
 
   return [];
+}
+
+export function createEliminatedDetailsObject(selections){
+  return Object.keys(selections).reduce((obj, key) => {
+    obj[selections[key].eliminated] = parseInt(key.replace('top', ""));
+    return obj;
+  }, {});
 }
 
 export function getNumberOfSections(numberInFinal, options) {
@@ -42,7 +49,7 @@ export default function SubmissionForm({
 }) {
   const [formState, setFormState] = useState({ name: "", selections: {} });
   const numberOfSections = getNumberOfSections(numberInFinal, options);
-  console.log('formState', formState);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     addSubmission(seasonId, formState);
@@ -102,6 +109,7 @@ export default function SubmissionForm({
               name={name}
               eliminated={getEliminatedQueens(formState.selections, num)}
               colors={colors}
+              eliminatedWeeks={createEliminatedDetailsObject(formState.selections)}
             />
 
             {num === 0 && (
@@ -115,6 +123,7 @@ export default function SubmissionForm({
                 name={name}
                 eliminated={getEliminatedQueens(formState.selections, num)}
                 colors={colors}
+                eliminatedWeeks={createEliminatedDetailsObject(formState.selections)}
               />
             )}
           </Fragment>

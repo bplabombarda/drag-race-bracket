@@ -10,6 +10,7 @@ function FormSection({
   sectionIndex,
   setSelections,
   eliminated,
+  eliminatedWeeks,
   colors,
 }) {
   const getInputOptions = (inputName) => {
@@ -66,6 +67,8 @@ function FormSection({
           options={getInputOptions("winner")}
           selectOption={selectOption}
           eliminated={eliminated}
+          eliminatedWeeks={eliminatedWeeks}
+          currentWeek={sectionIndex}
           colors={colors}
         />
         <FormSelect
@@ -74,6 +77,8 @@ function FormSection({
           options={getInputOptions("top")}
           selectOption={selectOption}
           eliminated={eliminated}
+          eliminatedWeeks={eliminatedWeeks}
+          currentWeek={sectionIndex}
           colors={colors}
         />
         <FormSelect
@@ -82,6 +87,8 @@ function FormSection({
           options={getInputOptions("bottom")}
           selectOption={selectOption}
           eliminated={eliminated}
+          eliminatedWeeks={eliminatedWeeks}
+          currentWeek={sectionIndex}
           colors={colors}
         />
         <FormSelect
@@ -90,6 +97,8 @@ function FormSection({
           options={getInputOptions("eliminated")}
           selectOption={selectOption}
           eliminated={eliminated}
+          eliminatedWeeks={eliminatedWeeks}
+          currentWeek={sectionIndex}
           colors={colors}
         />
       </div>

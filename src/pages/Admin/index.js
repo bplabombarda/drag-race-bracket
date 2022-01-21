@@ -1,83 +1,83 @@
 import React, { useEffect, useState } from "react";
 
-import FormInput from "Components/FormInput";
-import FormSelect from "Components/FormSelect";
-import firebase from "Utils/firebase";
+// import FormInput from "Components/FormInput";
+// import FormSelect from "Components/FormSelect";
+// import firebase from "Utils/firebase";
 
-const db = firebase.firestore();
+// const db = firebase.firestore();
 
-const defaultSeason = {
-  name: "",
-  queens: [],
-  queensInFinale: "",
-  type: ""
-};
+// const defaultSeason = {
+//   name: "",
+//   queens: [],
+//   queensInFinale: "",
+//   type: ""
+// };
 
 export default function Admin() {
-  const [season, setSeason] = useState(defaultSeason);
-  const [seasons, setSeasons] = useState([]);
+  // const [season, setSeason] = useState(defaultSeason);
+  // const [seasons, setSeasons] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const snapshot = await db.collection("seasons").get();
-      const seasonsList = snapshot.docs.map(doc => doc.data());
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const snapshot = await db.collection("seasons").get();
+  //     const seasonsList = snapshot.docs.map(doc => doc.data());
 
-      setSeasons(seasonsList);
-    };
-    fetchData();
-  }, []);
+  //     setSeasons(seasonsList);
+  //   };
+  //   fetchData();
+  // }, []);
 
-  const handleMultipleOnChange = event => {
-    event.preventDefault();
-    const { name, value } = event.target;
+  // const handleMultipleOnChange = event => {
+  //   event.preventDefault();
+  //   const { name, value } = event.target;
 
-    const newSeason = {
-      ...season,
-      [name]: [...season[name], value]
-    };
+  //   const newSeason = {
+  //     ...season,
+  //     [name]: [...season[name], value]
+  //   };
 
-    setSeason(newSeason);
-  };
+  //   setSeason(newSeason);
+  // };
 
-  const handleOnChange = event => {
-    event.preventDefault();
-    const { name, value } = event.target;
+  // const handleOnChange = event => {
+  //   event.preventDefault();
+  //   const { name, value } = event.target;
 
-    const newSeason = {
-      ...season,
-      [name]: value
-    };
+  //   const newSeason = {
+  //     ...season,
+  //     [name]: value
+  //   };
 
-    // If the `name` field changes, we want to rebuild the URL.
-    if (name === "name") {
-      newSeason.url = buildUrl(value);
-    }
+  //   // If the `name` field changes, we want to rebuild the URL.
+  //   if (name === "name") {
+  //     newSeason.url = buildUrl(value);
+  //   }
 
-    setSeason(newSeason);
-  };
+  //   setSeason(newSeason);
+  // };
 
-  const handleSubmit = async event => {
-    event.preventDefault();
+  // const handleSubmit = async event => {
+  //   event.preventDefault();
 
-    await db.collection("seasons").add(season);
+  //   await db.collection("seasons").add(season);
 
-    setSeasons([...seasons, season]);
-    setSeason(defaultSeason);
-  };
+  //   setSeasons([...seasons, season]);
+  //   setSeason(defaultSeason);
+  // };
 
-  const buildUrl = name => {
-    // Remove non-alphanumeric or space characters.
-    // Replace spaces with dashes.
-    return name
-      .replace(/[^a-zA-Z 0-9]+/g, "")
-      .replace(/\s+/g, "-")
-      .toLowerCase();
-  };
+  // const buildUrl = name => {
+  //   // Remove non-alphanumeric or space characters.
+  //   // Replace spaces with dashes.
+  //   return name
+  //     .replace(/[^a-zA-Z 0-9]+/g, "")
+  //     .replace(/\s+/g, "-")
+  //     .toLowerCase();
+  // };
 
   return (
     <>
       <h2>Add a New Season:</h2>
-      <form onSubmit={handleSubmit}>
+      {/* <form onSubmit={handleSubmit}>
         <FormInput
           className="formInput"
           handleOnChange={handleOnChange}
@@ -131,7 +131,7 @@ export default function Admin() {
         {seasons.map(({ name }, index) => (
           <li key={index}>{name}</li>
         ))}
-      </ul>
-    </>
+      </ul>*/}
+    </> 
   );
 }

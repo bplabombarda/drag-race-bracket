@@ -11,6 +11,7 @@ export default function FormFinalSection({
   setSelections,
   name,
   eliminated,
+  eliminatedWeeks,
   extraOptions,
   colors,
 }) {
@@ -75,6 +76,8 @@ export default function FormFinalSection({
           options={getInputOptions("winner")}
           selectOption={selectOption}
           eliminated={eliminated}
+           eliminatedWeeks={eliminatedWeeks}
+          currentWeek={0}
           colors={colors}
         />
         <FormSelect
@@ -83,6 +86,8 @@ export default function FormFinalSection({
           options={getInputOptions("runnerUp")}
           selectOption={selectOption}
           eliminated={eliminated}
+           eliminatedWeeks={eliminatedWeeks}
+          currentWeek={0}
           colors={colors}
         />
         <FormSelect
@@ -91,6 +96,8 @@ export default function FormFinalSection({
           options={getInputOptions("runnerUp")}
           selectOption={selectOption}
           eliminated={eliminated}
+           eliminatedWeeks={eliminatedWeeks}
+          currentWeek={0}
           colors={colors}
         />
         <FormSelect
@@ -99,6 +106,8 @@ export default function FormFinalSection({
           options={finaleExtraOptions}
           selectOption={selectOption}
           eliminated={eliminated}
+           eliminatedWeeks={eliminatedWeeks}
+          currentWeek={0}
           colors={colors}
         />
       </div>

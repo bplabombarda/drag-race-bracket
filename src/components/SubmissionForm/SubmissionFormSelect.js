@@ -9,6 +9,8 @@ const SubmissionFormSelect = ({
   selectOption,
   eliminated,
   colors,
+  currentWeek,
+  eliminatedWeeks,
   ...rest
 }) => {
   const [selectedValue, setValue] = useState("");
@@ -20,7 +22,7 @@ const SubmissionFormSelect = ({
     setValue(selectedOption);
     selectOption(selectedOptionType, selectedOption);
   };
-
+  
   return (
     <label style={{ color: colors.primary }}>
       {labelText}
@@ -34,10 +36,9 @@ const SubmissionFormSelect = ({
         {options.map((name) => (
           <option
             key={`option_${name.split(" ").join("_")}`}
-            // disabled={eliminated.includes(name)}
             value={name}
           >
-            {`${eliminated.includes(name) ? "[X] " : ""}${name}`}
+            {`${(eliminated.includes(name) && eliminatedWeeks[name] >= currentWeek) ? "[X] " : ""}${name}`}
           </option>
         ))}
       </select>
