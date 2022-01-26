@@ -1,10 +1,8 @@
 import React from "react";
 import { Link } from "@reach/router";
-import { object } from "prop-types";
+import "./styles/index.scss";
 
-import "./seasonsList.scss";
-
-export default function SeasonList({ seasons }) {
+export default function HomePage({ seasons }) {
   return (
     <>
       <ul className="seasons-list">
@@ -37,7 +35,3 @@ export default function SeasonList({ seasons }) {
     </>
   );
 }
-
-SeasonList.propTypes = {
-  seasons: object,
-};

@@ -1,7 +1,7 @@
 import React from "react";
 import { object, string, bool } from "prop-types";
 
-import SubmissionWeekPositions from "Components/SubmissionWeekPositions";
+import SubmissionWeekPositions from "./SubmissionWeeksPositions.js";
 
 export default function SubmissionWeeks({
   seasonName,

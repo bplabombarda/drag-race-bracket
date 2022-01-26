@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Router, navigate } from "@reach/router";
 import { object, string } from "prop-types";
-
 import firebase from "Utils/firebase";
-import Submission from "Pages/Submission";
 import SubmissionNew from "Pages/SubmissionNew";
-import SubmissionList from "Pages/SubmissionList";
+import SubmissionList from "./components/SubmissionList.js";
+import "./styles/index.scss";
 
 const db = firebase.firestore();
 
@@ -57,13 +56,7 @@ export default function Season({ seasonId, seasons }) {
           submissionsOpen={season.submissionsOpen}
           colors={{ primary: season.primary, secondary: season.secondary }}
         />
-        {/* {season.submissionsOpen && (
-          <Submission
-            path="submissions/edit"
-            addSubmission={addSubmission}
-            seasonObject={season}
-          />
-        )} */}
+  
         <SubmissionNew
           path="submissions/new"
           addSubmission={addSubmission}

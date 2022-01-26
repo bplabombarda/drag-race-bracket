@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { array, func, number, object, string, bool } from "prop-types";
 
-import FormSelect from "./SubmissionFormSelect";
-import "./SubmissionFormSection.scss";
+import FormSelect from "./SubmissionFormSelect.js";
 
 export default function FormFinalSection({
   formState,

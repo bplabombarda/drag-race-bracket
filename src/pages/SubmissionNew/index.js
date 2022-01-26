@@ -1,9 +1,7 @@
 import React from "react";
-
-import SubmissionForm from "Components/SubmissionForm";
+import SubmissionForm from "./components/SubmissionForm.js";
 import { object, string, func } from "prop-types";
-
-import "./submissionNew";
+import "./styles/index.scss";
 
 export default function SubmissionNew({
   addSubmission,

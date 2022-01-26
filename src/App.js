@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Router } from "@reach/router";
-
-import Admin from "Pages/Admin";
-import Header from "./components/Header";
+import { Router, Link } from "@reach/router";
 import Season from "Pages/Season";
-import SeasonList from "Pages/SeasonList";
+import HomePage from "Pages/HomePage";
 import firebase from "Utils/firebase";
 
 const db = firebase.firestore();
@@ -34,11 +31,14 @@ export default function App() {
 
   return (
     <>
-      <Header />
+      <header>
+        <Link className="dillcap" to="/">
+          dillcap
+        </Link>
+      </header>
       <Router>
-        <SeasonList path="/" seasons={seasons} />
+        <HomePage path="/" seasons={seasons} />
         <Season path="/seasons/:seasonId/*" seasons={seasons} />
-        <Admin path="/admin/*" />
       </Router>
     </>
   );
