@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { object, string, number, bool } from "prop-types";
-
-import SubmissionWeeks from "Components/SubmissionWeeks";
-
-import "./submission.scss";
+import SubmissionWeeks from "./SubmissionWeeks.js";
 
 export default function Submission({
   seasonName,

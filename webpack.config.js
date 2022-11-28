@@ -80,9 +80,7 @@ const baseConfig = {
   resolve: {
     alias: {
       Source: SRC_DIR,
-      Components: `${SRC_DIR}/components`,
       Config: `${__rootdir}/config`,
-      Images: `${SRC_DIR}/assets/images`,
       Pages: `${SRC_DIR}/pages`,
       Styles: `${SRC_DIR}/styles`,
       Utils: `${SRC_DIR}/utils`

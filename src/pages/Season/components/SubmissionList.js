@@ -4,7 +4,7 @@ import { Link } from "@reach/router";
 import getScore from "Utils/getScore";
 
 import firebase from "Utils/firebase";
-import Submission from "Pages/Submission";
+import Submission from "./Submission.js";
 
 const db = firebase.firestore();
 

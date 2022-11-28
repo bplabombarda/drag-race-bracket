@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { array, func, string } from "prop-types";
 
-import "./SubmissionFormSelect.scss";
-
 const SubmissionFormSelect = ({
   labelText,
   options,

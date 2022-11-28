@@ -1,10 +1,9 @@
 import React, { useState, Fragment } from "react";
 import { array, func, object, number, string } from "prop-types";
 import { navigate } from "@reach/router";
-import FormInput from "Components/FormInput";
-import SubmissionFormSection from "./SubmissionFormSection";
-import SubmissionFormFinalSection from "./SubmissionFormFinalSection";
-import "./SubmissionForm.scss";
+import FormInput from "./FormInput.js";
+import SubmissionFormSection from "./SubmissionFormSection.js";
+import SubmissionFormFinalSection from "./SubmissionFormFinalSection.js";
 
 export function getEliminatedQueens(selections, sectionIndex) {
   createEliminatedDetailsObject(selections, sectionIndex)
