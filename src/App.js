@@ -3,6 +3,7 @@ import { Router, Link } from "@reach/router";
 import Season from "Pages/Season";
 import HomePage from "Pages/HomePage";
 import firebase from "Utils/firebase";
+import MMWD from './MMWD'
 
 const db = firebase.firestore();
 
@@ -39,7 +40,10 @@ export default function App() {
       <Router>
         <HomePage path="/" seasons={seasons} />
         <Season path="/seasons/:seasonId/*" seasons={seasons} />
+        <MMWD path="/MMwD"></MMWD>
       </Router>
     </>
   );
 }
+
+
