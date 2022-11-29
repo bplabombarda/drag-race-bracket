@@ -1,0 +1,23 @@
+section {
+    background-color: #16161f;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: #aabec1;
+    display: flex;
+    align-content: flex-end;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px
+}
+
+footer {
+    display: none;
+}
+
+body {
+        background-color: #16161f;
+}
