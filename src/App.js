@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Router, Link, Redirect } from "@reach/router";
+import { Router, Link } from "@reach/router";
 import Season from "Pages/Season";
 import HomePage from "Pages/HomePage";
 import firebase from "Utils/firebase";
-import MMWD from './MMWD'
 
 const db = firebase.firestore();
 
@@ -38,10 +37,8 @@ export default function App() {
         </Link>
       </header>
       <Router>
-        <Redirect from="/" to="MMwD"/>
         <HomePage path="/" seasons={seasons} />
         <Season path="/seasons/:seasonId/*" seasons={seasons} />
-        <MMWD path="/MMwD"></MMWD>
       </Router>
     </>
   );
