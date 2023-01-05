@@ -2,7 +2,7 @@
   width: 85%;
   margin: 0 auto;
   text-align: center;
-  border: 2px solid $popofcolor;
+  border: 2px solid lime;
   padding: 20px;
   margin-bottom: 10px;
   .submitter-name {
@@ -11,7 +11,7 @@
     max-width: 80%;
   }
   .score {
-    background-color: $popofcolor;
+    background-color: lime;
     color: white;
     padding: 5px;
     float: right;
@@ -34,7 +34,7 @@
     margin-bottom: 3px;
   }
   &.winner {
-    background-color: $popofcolor;
+    background-color: lime;
     color: white;
     margin-bottom: 35px;
     font-size: 21px;
@@ -55,7 +55,7 @@
     margin-right: 20px;
   }
   .new-submission-button {
-    background-color: $popofcolor;
+    background-color: lime;
     color: white;
     padding: 10px 30px;
     box-sizing: border-box;

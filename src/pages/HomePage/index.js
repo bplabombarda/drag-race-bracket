@@ -2,10 +2,16 @@ import React from "react";
 import { Link } from "@reach/router";
 import "./styles/index.scss";
 
+import Container from "../../components/Container";
+
 export default function HomePage({ seasons }) {
   return (
     <>
       <ul className="seasons-list">
+        <Container collapsible={true} heading="Week 1">
+          Content
+        </Container>
+        <br></br>
         {Object.keys(seasons) &&
           Object.keys(seasons)
             .sort((a, b) => seasons[a].finished - seasons[b].finished)
