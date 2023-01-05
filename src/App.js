@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Router } from "@reach/router";
-import Season from "Pages/Season";
-import HomePage from "Pages/HomePage";
 import {Header, Footer} from "./components/HeaderFooter"
-import firebase from "Utils/firebase";
+import HomePage from "Pages/HomePage";
 import Enter from "./pages/Enter"
+import Submissions from "./pages/Submissions";
+import MTQ from "./pages/MTQ";
+import Standings from "Pages/Standings";
+import firebase from "Utils/firebase";
+
+
 const db = firebase.firestore();
 
 export default function App() {
-  const [seasons, setSeasons] = useState({});
+  const [season, setSeason] = useState({});
 
   async function fetchSeasons() {
     const seasonsRef = await db
@@ -16,30 +20,26 @@ export default function App() {
       .where("active", "==", true)
       .get();
     
-    console.log('seasonsRef', seasonsRef)
-
-    const freshSeasons = seasonsRef.docs.reduce((acc, doc) => {
-      return {
-        ...acc,
-        [doc.id]: doc.data(),
-      };
-    }, {});
-    console.log('freshSeasons', freshSeasons)
-    setSeasons(freshSeasons);
+    const activeSeason = seasonsRef.docs[0].data(); 
+    setSeason(activeSeason);
   }
 
   useEffect(() => {
-    fetchSeasons(setSeasons);
+    fetchSeasons(setSeason);
   }, []);
 
   return (
     <>
-      <Enter/>
+      <Enter />
       <Header />
-      <Router>
-        <HomePage path="/" seasons={seasons} />
-        <Season path="/seasons/:seasonId/*" seasons={seasons} />
-      </Router>
+      <div className="app-container">
+        <Router>
+          <HomePage path="/" season={season} />
+          <Submissions path="/submissions" season={season} />
+          <MTQ path="/mtq" season={season} />
+          <Standings path="/standings" season={season} />
+        </Router>
+      </div>
       <Footer />
     </>
   );
