@@ -8,7 +8,6 @@ import MTQ from "./pages/MTQ";
 import Standings from "Pages/Standings";
 import firebase from "Utils/firebase";
 
-
 const db = firebase.firestore();
 
 export default function App() {
@@ -30,7 +29,7 @@ export default function App() {
 
   return (
     <>
-      <Enter />
+      {window.innerWidth / window.innerHeight <= .65 && (<Enter />)}
       <Header />
       <div className="app-container">
         <Router>

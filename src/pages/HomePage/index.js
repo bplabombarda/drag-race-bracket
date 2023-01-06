@@ -8,7 +8,7 @@ export default function HomePage({ season }) {
   console.log('season', season)
   return (
     <>
-      <Container heading={season.name}></Container>
+      <Container collapsible heading={season.name}></Container>
       <div className="links-container">
         <Link path="/submissions">Submissions</Link>
         <Link path="/mtq">Meet The Queens</Link>
