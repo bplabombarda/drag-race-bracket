@@ -1,5 +1,4 @@
 import React from "react";
-import "./MMWD.scss"
 import Flip from 'react-reveal/Flip';
 
 class MMWD extends React.Component {
