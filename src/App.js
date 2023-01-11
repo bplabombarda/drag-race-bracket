@@ -8,6 +8,7 @@ import MTQ from "./pages/MTQ";
 import Standings from "Pages/Standings";
 import ThankYou from "Pages/ThankYou";
 import Rules from "Pages/Rules";
+import About from "Pages/About";
 import firebase from "./utilities/firebase";
 
 const db = firebase.firestore();
@@ -59,6 +60,7 @@ export default function App() {
           <Rules path="/rules" />
           <MTQ path="/mtq" season={season} />
           <Standings path="/standings" season={season} />
+          <About path="/about" />
         </Router>
       </div>
       <Footer />

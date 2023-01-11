@@ -5,7 +5,10 @@ import enter from "../../assets/enter.png"
 export default function Enter({ seasons }) {
 
 const [isEntered, animate] = useState(false);
-const enterAnimation = () => animate(true);
+  const enterAnimation = () => {
+    animate(true)
+    localStorage.setItem("enteredHomePAge", true);
+  };
 
   return (
     <>

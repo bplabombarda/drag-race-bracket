@@ -1,0 +1,33 @@
+.about-container {
+    padding: 5px;
+    .about {
+        font-size: 18px;
+        text-indent: 10px;
+        text-align: center;
+    }
+    .employee-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 35px;
+        .left {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 28%;
+        }
+        img {
+            width: 100%;
+        }
+        .name {
+            font-size: 18px;
+            text-align: center;
+            padding-top: 2px;
+            em {
+                font-size: 16px;
+            }
+        }
+        .quote {
+            padding: 0px 15px
+        }
+    }
+}
