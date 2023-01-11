@@ -52,7 +52,7 @@ export function SelectGroup({
           onChange={handleOnChange.bind("winner")}
           isSearchable={false}
           styles={{
-            placeholder: () => ({ fontSize: "18px", padding: "0px 0px 18px" }),
+            placeholder: () => ({ fontSize: "16px", padding: "0px 0px 18px" }),
           }}
           options={options}
         />
@@ -65,7 +65,7 @@ export function SelectGroup({
           onChange={handleOnChange.bind("top")}
           isSearchable={false}
           styles={{
-            placeholder: () => ({ fontSize: "18px", padding: "0px 0px 18px" }),
+            placeholder: () => ({ fontSize: "16px", padding: "0px 0px 18px" }),
           }}
           options={options}
         />
@@ -78,7 +78,7 @@ export function SelectGroup({
           onChange={handleOnChange.bind("bottom")}
           isSearchable={false}
           styles={{
-            placeholder: () => ({ fontSize: "18px", padding: "0px 0px 18px" }),
+            placeholder: () => ({ fontSize: "16px", padding: "0px 0px 18px" }),
           }}
           options={options}
         />
@@ -91,7 +91,7 @@ export function SelectGroup({
           onChange={handleOnChange.bind("eliminated")}
           isSearchable={false}
           styles={{
-            placeholder: () => ({ fontSize: "18px", padding: "0px 0px 18px" }),
+            placeholder: () => ({ fontSize: "16px", padding: "0px 0px 18px" }),
           }}
           options={options}
         />
