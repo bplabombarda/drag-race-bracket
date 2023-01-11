@@ -10,7 +10,7 @@ export default function HomePage({ season }) {
   
   return (
     <>
-      {(localStorage.getItem("enteredHomePage") === 'true' && (window.innerWidth / window.innerHeight <= 0.65)) && (
+      {(localStorage.getItem("enteredHomePage") !== 'true' && (window.innerWidth / window.innerHeight <= 0.65)) && (
         <>
           <Enter />
         </>
