@@ -53,6 +53,7 @@ export default function NewSubmission({ season, addSubmission }) {
   };
 
   const numberOfQueens = getNumberOfQueens(season.queensInFinale, season.queens)
+  console.log('numberOfQueens', numberOfQueens)
   return (
     <form onSubmit={handleSubmit}>
       <Container heading="Enter the Workroom">
@@ -129,7 +130,7 @@ export default function NewSubmission({ season, addSubmission }) {
 }
 
 function getNumberOfQueens(numberInFinal, options) {
-  const delta = options.length - numberInFinal;
+  const delta = options.length - numberInFinal - 1;
   const numOfSections = delta > 0 ? delta : 0;
   return [...Array(numOfSections).keys()].reverse();
 }
