@@ -7,7 +7,7 @@ export default function Enter({ seasons }) {
 const [isEntered, animate] = useState(false);
   const enterAnimation = () => {
     animate(true)
-    localStorage.setItem("enteredHomePAge", true);
+    localStorage.setItem("enteredHomePage", true);
   };
 
   return (
