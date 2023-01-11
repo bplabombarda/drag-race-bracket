@@ -2,7 +2,7 @@
   .text {
     input {
       width: 78%;
-      border: 2px solid $popofcolor;
+      border: 2px solid lime;
       padding: 12px;
       margin: 0 auto;
       display: block;
@@ -13,7 +13,7 @@
   .submit {
     input {
       width: 100%;
-      background-color: $popofcolor;
+      background-color: lime;
       padding: 20px;
       color: white;
       font-size: 23px;
@@ -27,7 +27,7 @@
   section {
     width: 85%;
     margin: 0 auto;
-    border: 2px solid $popofcolor;
+    border: 2px solid lime;
     margin-bottom: 20px;
     box-sizing: border-box;
     .form-container {
@@ -47,12 +47,12 @@
     .title {
       font-family: "Chivo";
       font-size: 22px;
-      background-color: $popofcolor;
+      background-color: lime;
       color: white;
       padding: 7px;
     }
     label {
-      color: $popofcolor;
+      color: lime;
       text-align: right;
       display: flex;
       flex-direction: column;
@@ -64,10 +64,10 @@
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
-        border: 1px solid $popofcolor;
+        border: 1px solid lime;
         padding: 8px 70px;
         background-color: white;
-        color: $popofcolor;
+        color: lime;
         font-weight: bold;
         font-size: 16px;
         margin-top: 3px;
@@ -76,6 +76,6 @@
   }
 
   .finale h1 {
-    border-bottom: 2px solid $popofcolor;
+    border-bottom: 2px solid lime;
   }
 }

@@ -1,0 +1,97 @@
+header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 25px 20px;
+    flex-wrap: nowrap;
+    flex-direction: row;
+
+    .home {
+        width: 36px;
+    }
+    .logo {
+        width: 140px;
+    }
+
+    .hamburger-link {
+        background-color: #ffffff78;
+        text-decoration: none;
+        color: white;
+        padding: 17px;
+        margin-bottom: 20px;
+        font-size: 22px;
+        font-weight: bold;
+        border-top-left-radius: 30px;
+        border-bottom-left-radius: 30px;
+    }
+
+/* Position and sizing of burger button */
+    .bm-burger-button {
+        position: relative;
+        width: 34px;
+        height: 34px;
+       
+    }
+
+    /* Color/shape of burger icon bars */
+    .bm-burger-bars {
+        background: #F80EA1;
+        border-radius: 10px;
+    }
+
+    /* Color/shape of burger icon bars on hover*/
+    .bm-burger-bars-hover {
+        background: #a90000;
+    }
+
+    /* Position and sizing of clickable cross button */
+    .bm-cross-button {
+        height: 24px;
+        width: 24px;
+    }
+
+    /* Color/shape of close button cross */
+    .bm-cross {
+        background: white;
+    }
+
+    /*
+Sidebar wrapper styles
+Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+*/
+    .bm-menu-wrap {
+        position: fixed;
+        height: 100%;
+        top: 0px;
+    }
+
+    /* General sidebar styles */
+    .bm-menu {
+        background-color: #FF8EDC;
+        background: linear-gradient(#FF8EDC, #F80EA1);
+        padding: 4.5em 0 0 2.5em;
+        font-size: 1.15em;
+        box-shadow: 6px 6px 23px 7px;
+    }
+
+    /* Morph shape necessary with bubble or elastic */
+    .bm-morph-shape {
+        fill: #F80EA1;
+    }
+
+    /* Wrapper for item list */
+    .bm-item-list {
+        color: #b8b7ad;
+        padding: 0;
+    }
+
+    /* Individual item */
+    .bm-item {
+        display: inline-block;
+    }
+
+    /* Styling of overlay */
+    .bm-overlay {
+        background: rgba(0, 0, 0, 0.3);
+    }
+}

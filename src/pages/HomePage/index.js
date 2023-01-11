@@ -1,37 +1,24 @@
 import React from "react";
-import { Link } from "@reach/router";
-import "./styles/index.scss";
+import Enter from "../Enter"
+import "./HomePage.scss";
 
-export default function HomePage({ seasons }) {
+import Container from "../../components/Container";
+import Link from "../../components/Link";
+import groupPromo from "../../assets/group-promo.png" 
+
+export default function HomePage({ season }) {
   return (
     <>
-      <ul className="seasons-list">
-        {Object.keys(seasons) &&
-          Object.keys(seasons)
-            .sort((a, b) => seasons[a].finished - seasons[b].finished)
-            .map((seasonId) => (
-              <li
-                key={`season_${seasonId}`}
-                style={{
-                  border: `4px solid ${seasons[seasonId].primary}`,
-                }}
-              >
-                <Link
-                  style={{
-                    color: `${
-                      seasons[seasonId].finished
-                        ? "#AFC4D8"
-                        : seasons[seasonId].primary
-                    }`,
-                    fontWeight: seasons[seasonId].finished ? "regular" : "bold",
-                  }}
-                  to={`seasons/${seasonId}`}
-                >
-                  {seasons[seasonId].name}
-                </Link>
-              </li>
-            ))}
-      </ul>
+      {window.innerWidth / window.innerHeight <= 0.65 && <Enter />}
+
+      <Container heading={season.name}>
+        <img className="group-promo" src={groupPromo}></img>
+      </Container>
+      <div className="links-container">
+        <Link path="/submissions/new">New Submission</Link>
+        <Link path="/mtq">Meet The Queens</Link>
+        <Link path="/rules">Rules</Link>
+      </div>
     </>
   );
 }
