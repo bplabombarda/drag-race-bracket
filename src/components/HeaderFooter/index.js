@@ -23,11 +23,7 @@ export const Header = () => {
       </Link>
       <img className="logo" src={logo}></img>
       <Menu right isOpen={isOpen} onOpen={handleIsOpen} onClose={handleIsOpen}>
-        <Link
-          className="hamburger-link"
-          to="/"
-          onClick={closeSideBar}
-        >
+        <Link className="hamburger-link" to="/" onClick={closeSideBar}>
           Home
         </Link>
         <Link
@@ -42,6 +38,9 @@ export const Header = () => {
         </Link>
         <Link className="hamburger-link" to="/rules" onClick={closeSideBar}>
           Rules
+        </Link>
+        <Link className="hamburger-link" to="/about" onClick={closeSideBar}>
+          About
         </Link>
       </Menu>
     </header>
