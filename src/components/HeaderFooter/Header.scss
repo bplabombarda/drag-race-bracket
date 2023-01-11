@@ -2,9 +2,14 @@ header {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    padding: 25px 20px;
+    padding: 10px 25px;
     flex-wrap: nowrap;
     flex-direction: row;
+    position: fixed;
+    width: 100%;
+    background-color: #FFC3EC;
+    box-sizing: border-box;
+    z-index: 999;
 
     .home {
         width: 36px;

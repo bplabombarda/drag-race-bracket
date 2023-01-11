@@ -122,6 +122,7 @@ export default function NewSubmission({ season, addSubmission }) {
         name="submit"
         type="submit"
         value="Submit"
+        className="pink-button form-button"
       />
     </form>
   );
