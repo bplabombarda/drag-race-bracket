@@ -130,7 +130,7 @@ export default function NewSubmission({ season, addSubmission }) {
 }
 
 function getNumberOfQueens(numberInFinal, options) {
-  const delta = options.length - numberInFinal - 1;
+  const delta = options.length - numberInFinal;
   const numOfSections = delta > 0 ? delta : 0;
   return [...Array(numOfSections).keys()].reverse();
 }
