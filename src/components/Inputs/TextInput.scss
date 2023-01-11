@@ -1,0 +1,13 @@
+.text-input {
+    padding: 5px;
+    display: flex;
+    label {
+        display:inline-block;
+        min-width: 70px;
+        font-size: 18px;
+    }
+    input {
+        flex-grow: 1;
+        height: 30px;
+    }
+}

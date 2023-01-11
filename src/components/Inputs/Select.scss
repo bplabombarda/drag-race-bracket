@@ -1,0 +1,23 @@
+.option-container {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    img {
+        padding: 3px 12px 3px 0px;
+    }
+    &.eliminated {
+        color: #afafaf;
+        img {
+            opacity: 0.3;
+        }
+    }
+}
+
+.select-container {
+    margin-bottom: 11px;
+    label {
+        display: block;
+        font-size: 18px;
+        padding-bottom: 5px;
+    }
+}

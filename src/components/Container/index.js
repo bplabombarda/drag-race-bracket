@@ -1,21 +1,38 @@
 import React, { useState } from "react";
+import normalizeName from "../../utilities/normalizeName";
 import "./Container.scss";
 
-const Container = ({ heading, collapsible = false, children }) => {
+const Container = ({ heading, collapsible = false, imageName, subheading, children }) => {
   const [isShowing, setToggled] = useState(!collapsible);
-  const toggleTrueFalse = () => setToggled(!isShowing);
-
+  const toggleTrueFalse = () => {if (collapsible) {setToggled(!isShowing)}}
+  const normal = normalizeName(imageName);
   return (
     <div className="container">
-      <div className="container-header">
-        <span>{heading}</span>
+      <div onClick={toggleTrueFalse} className="container-header">
+        <div className="left-header">
+          {imageName && (
+            <img
+              className="circle-image"
+              src={require(`../../assets/queens/circle/${normal}.png`)}
+            />
+          )}
+          {subheading ? (
+            <div className="subheading-container">
+              <span className="heading">{heading}</span>
+              <span className="subheading">{subheading}</span>
+            </div>
+          ) : (
+            <span>{heading}</span>
+          )}
+        </div>
+
         {collapsible && (
-          <button onClick={toggleTrueFalse} className="button-container">
+          <button className="button-container">
             <span className="icon">{isShowing ? "∧" : "∨"}</span>
           </button>
         )}
       </div>
-      {isShowing && <div className="container-content">{children}</div>}
+      <div className={`container-content ${isShowing?"visible":"hidden"}`}>{children}</div>
     </div>
   );
 };

@@ -6,6 +6,25 @@ header {
     flex-wrap: nowrap;
     flex-direction: row;
 
+    .home {
+        width: 36px;
+    }
+    .logo {
+        width: 140px;
+    }
+
+    .hamburger-link {
+        background-color: #ffffff78;
+        text-decoration: none;
+        color: white;
+        padding: 17px;
+        margin-bottom: 20px;
+        font-size: 22px;
+        font-weight: bold;
+        border-top-left-radius: 30px;
+        border-bottom-left-radius: 30px;
+    }
+
 /* Position and sizing of burger button */
     .bm-burger-button {
         position: relative;
@@ -48,9 +67,11 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
     /* General sidebar styles */
     .bm-menu {
-        background: #F80EA1;
-        padding: 2.5em 1.5em 0;
+        background-color: #FF8EDC;
+        background: linear-gradient(#FF8EDC, #F80EA1);
+        padding: 4.5em 0 0 2.5em;
         font-size: 1.15em;
+        box-shadow: 6px 6px 23px 7px;
     }
 
     /* Morph shape necessary with bubble or elastic */
@@ -61,7 +82,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
     /* Wrapper for item list */
     .bm-item-list {
         color: #b8b7ad;
-        padding: 0.8em;
+        padding: 0;
     }
 
     /* Individual item */

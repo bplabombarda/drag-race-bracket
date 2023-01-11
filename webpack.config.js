@@ -15,7 +15,7 @@ const SRC_DIR = `${__rootdir}/src`;
 const baseConfig = {
   output: {
     path: `${__rootdir}/public`,
-    pathinfo: !PRODUCTION
+    pathinfo: !PRODUCTION,
   },
 
   context: resolve(__dirname),
@@ -23,7 +23,7 @@ const baseConfig = {
   devtool: PRODUCTION ? "source-map" : "cheap-module-eval-source-map",
 
   devServer: {
-    stats: "minimal"
+    stats: "minimal",
   },
 
   bail: PRODUCTION,
@@ -35,15 +35,22 @@ const baseConfig = {
         exclude: /node_modules/,
         use: [
           {
-            loader: "babel-loader"
-          }
-        ]
+            loader: "babel-loader",
+          },
+        ],
       },
       {
         test: /\.(eot|ttf|woff|woff2|svg|jpg|png)$/,
-        use: "file-loader"
-      }
-    ]
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              esModule: false,
+            },
+          },
+        ],
+      },
+    ],
   },
 
   plugins: [
@@ -51,13 +58,13 @@ const baseConfig = {
       template: "src/index.html",
       inject: "body",
       filename: "index.html",
-      title: "Dillcap"
+      title: "Dillcap",
     }),
     new webpack.LoaderOptionsPlugin({
       test: /\.css|scss/,
       options: {
-        postcss: [autoprefixer()]
-      }
+        postcss: [autoprefixer()],
+      },
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
@@ -73,8 +80,8 @@ const baseConfig = {
       ),
       "process.env.FIREBASE_PROJECT_ID": JSON.stringify(
         process.env.FIREBASE_PROJECT_ID
-      )
-    })
+      ),
+    }),
   ],
 
   resolve: {
@@ -83,10 +90,10 @@ const baseConfig = {
       Config: `${__rootdir}/config`,
       Pages: `${SRC_DIR}/pages`,
       Styles: `${SRC_DIR}/styles`,
-      Utils: `${SRC_DIR}/utils`
+      Utils: `${SRC_DIR}/utils`,
     },
-    extensions: [".js", ".json", ".css", ".scss"]
-  }
+    extensions: [".js", ".json", ".css", ".scss"],
+  },
 };
 
 if (PRODUCTION) {

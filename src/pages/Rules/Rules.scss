@@ -1,0 +1,26 @@
+.rules-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px 20px;
+    
+    img {
+        width: 50%;
+        padding: 0px;
+    }
+    .text {
+        padding: 0px 10px;
+        text-indent: 20px;
+        text-align: center;
+    }
+    .rule {
+        display: flex;
+        margin-bottom: 5px;
+        
+    }
+    .rule-header {
+        font-size: 20px;
+        font-weight: bold;
+        padding-top: 15px;
+    }
+}
