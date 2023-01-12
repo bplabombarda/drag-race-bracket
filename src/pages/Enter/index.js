@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import { navigate } from "@reach/router";
 import enter from "../../assets/enter.png"
  import "./Enter.scss"
 
@@ -7,7 +8,8 @@ export default function Enter({ seasons }) {
 const [isEntered, animate] = useState(false);
   const enterAnimation = () => {
     animate(true)
-    localStorage.setItem("enteredHomePage", true);
+    navigate(`/`);
+    sessionStorage.setItem("entered", true);
   };
 
   return (

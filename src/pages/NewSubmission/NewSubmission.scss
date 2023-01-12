@@ -1,5 +1,17 @@
-.pink-button.form-button {
- width: 300px;
- margin: 0 auto;
- margin-bottom: 30px;
+.pink-button{
+    &.form-button, &.guide-button {
+        width: 300px;
+        margin: 0 auto;
+    }
+    &.form-button {
+        margin: 10px auto;
+    }
+    &.guide-button {
+        padding: 4px;
+    }
+}
+
+.guide-buttons-container {
+    padding-top: 25px;
+    display: flex;
 }
