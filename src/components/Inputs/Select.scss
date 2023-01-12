@@ -5,10 +5,25 @@
     img {
         padding: 3px 12px 3px 0px;
     }
-    &.eliminated {
-        color: #afafaf;
+    &.eliminated, &.already-chosen{
+        color: #d5d5d5;
         img {
             opacity: 0.3;
+        }
+    }
+    &.eliminated{
+        text-decoration: line-through;
+    }
+}
+
+.selected {
+.option-container {
+        &.eliminated, &.already-chosen {
+            color: black;
+            text-decoration: none;
+            img {
+                opacity: 1;
+            }
         }
     }
 }

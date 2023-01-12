@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Router } from "@reach/router";
 import {Header, Footer} from "./components/HeaderFooter"
-import HomePage from "Pages/HomePage";
+import HomePage from "./pages/HomePage";
+import Enter from "./pages/Enter";
 import Submissions from "./pages/Submissions";
 import NewSubmission from "./pages/NewSubmission";
 import MTQ from "./pages/MTQ";
@@ -19,7 +20,7 @@ async function addSubmission(season, formState) {
        .collection("seasons")
        .doc(season)
        .collection("submissions")
-       .doc(formState.name)
+       .doc(formState.email)
        .set(formState);
    } catch (error) {
      // eslint-disable-next-line no-console
@@ -43,24 +44,30 @@ export default function App() {
   useEffect(() => {
     fetchSeasons(setSeason);
   }, []);
-  console.log('season', season)
+
   return (
     <>
+      {sessionStorage.getItem("entered") !== "true" &&
+        window.innerWidth / window.innerHeight <= 0.65 && <Enter />}
       <Header />
       <div className="app-container">
-        <Router>
-          <HomePage path="/" season={season} />
-          <Submissions path="/submissions" season={season} />
-          <NewSubmission
-            path="/submissions/new"
-            season={season}
-            addSubmission={addSubmission}
-          />
-          <ThankYou path="/thanks" />
-          <Rules path="/rules" />
-          <MTQ path="/mtq" season={season} />
-          <Standings path="/standings" season={season} />
-          <About path="/about" />
+        <Router primary={false}>
+          {!!season.seasonId && (
+            <ScrollToTop path="/">
+              <HomePage path="/" season={season} />
+              <Submissions path="/submissions" season={season} />
+              <NewSubmission
+                path="/submissions/new"
+                season={season}
+                addSubmission={addSubmission}
+              />
+              <ThankYou path="/thanks" season={season} />
+              <Rules path="/rules" season={season} />
+              <MTQ path="/mtq" season={season} />
+              <Standings path="/standings" season={season} />
+              <About path="/about" season={season} />
+            </ScrollToTop>
+          )}
         </Router>
       </div>
       <Footer />
@@ -68,4 +75,7 @@ export default function App() {
   );
 }
 
-
+export const ScrollToTop = ({ children, location }) => {
+  React.useEffect(() => window.scrollTo(0, 0), [location.pathname]);
+  return children;
+};

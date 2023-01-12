@@ -26,6 +26,9 @@ export const Header = () => {
         <Link className="hamburger-link" to="/" onClick={closeSideBar}>
           Home
         </Link>
+        <Link className="hamburger-link" to="/rules" onClick={closeSideBar}>
+          Rules
+        </Link>
         <Link
           className="hamburger-link"
           to="/submissions/new"
@@ -35,9 +38,6 @@ export const Header = () => {
         </Link>
         <Link className="hamburger-link" to="/mtq" onClick={closeSideBar}>
           Meet The Queens
-        </Link>
-        <Link className="hamburger-link" to="/rules" onClick={closeSideBar}>
-          Rules
         </Link>
         <Link className="hamburger-link" to="/about" onClick={closeSideBar}>
           About

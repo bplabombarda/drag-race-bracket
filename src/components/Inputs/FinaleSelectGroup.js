@@ -4,13 +4,10 @@ import Select from "react-select";
 import "./TextInput.scss";
 import "./Select.scss";
 
-
-
 export default function FinaleSelectGroup({
   options,
   allOptions,
   setSelections,
-  sectionIndex,
   formState,
 }) {
   const handleOnChange = (event, type) => {
@@ -21,8 +18,7 @@ export default function FinaleSelectGroup({
   };
 
   const selectOption = (type, queenName) => {
-
-    const sectionKey = sectionIndex === -1 ? "finale" : `top${sectionIndex}`;
+    const sectionKey = "finale"
 
     const newSelections = {
       ...formState.selections,
@@ -35,25 +31,32 @@ export default function FinaleSelectGroup({
     setSelections(newSelections);
   };
 
+  const cachedSelections = formState.selections || {};
+  const cache = cachedSelections.finale || {};
+
   return (
     <>
       <div className="select-container finale">
         <label>Winner</label>
         <Select
-        required
+          required
           name="winner"
           onChange={handleOnChange.bind("winner")}
           isSearchable={false}
           styles={{
-            placeholder: () => ({ fontSize: "18px", padding: "0px 0px 18px" }),
+            placeholder: () => ({ fontSize: "16px", padding: "0px 0px 18px" }),
           }}
           options={options}
+          classNames={{ singleValue: () => "selected" }}
+          value={options.filter(
+            (option) => option.value === cache.winner
+          )}
         />
       </div>
       <div className="select-container">
         <label>Runner Up</label>
         <Select
-        required
+          required
           name="runnerUp1"
           onChange={handleOnChange.bind("runnerUp1")}
           isSearchable={false}
@@ -61,12 +64,16 @@ export default function FinaleSelectGroup({
             placeholder: () => ({ fontSize: "18px", padding: "0px 0px 18px" }),
           }}
           options={options}
+          classNames={{ singleValue: () => "selected" }}
+          value={options.filter(
+            (option) => option.value === cache.runnerUp1
+          )}
         />
       </div>
       <div className="select-container">
         <label>Runner Up</label>
         <Select
-        required
+          required
           name="runnerUp2"
           onChange={handleOnChange.bind("runnerUp2")}
           isSearchable={false}
@@ -74,19 +81,27 @@ export default function FinaleSelectGroup({
             placeholder: () => ({ fontSize: "18px", padding: "0px 0px 18px" }),
           }}
           options={options}
+          classNames={{ singleValue: () => "selected" }}
+          value={options.filter(
+            (option) => option.value === cache.runnerUp2
+          )}
         />
       </div>
       <div className="select-container">
         <label>Miss Congeniality</label>
         <Select
-        required
-          name="missCongeniality"
-          onChange={handleOnChange.bind("missCongeniality")}
+          required
+          name="congeniality"
+          onChange={handleOnChange.bind("congeniality")}
           isSearchable={false}
           styles={{
             placeholder: () => ({ fontSize: "18px", padding: "0px 0px 18px" }),
           }}
           options={allOptions}
+          classNames={{ singleValue: () => "selected" }}
+          value={allOptions.filter(
+            (option) => option.value === cache.congeniality
+          )}
         />
       </div>
     </>
