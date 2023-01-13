@@ -1,9 +1,9 @@
-import React, {useState} from "react";
+import React from "react";
 import Container from "../../components/Container"
 import dillon from "../../assets/dillon.png"
 import joe from "../../assets/joe.png";
 import paul from "../../assets/paul.png";
-
+import brett from "../../assets/brett.png";
 
  import "./About.scss"
 
@@ -49,17 +49,17 @@ export default function About({ seasons }) {
           </em>
         </div>
 
-        {/* <div className="employee-container">
+        <div className="employee-container">
           <div className="left">
-            <img src={dillon} />
+            <img src={brett} />
             <div className="name">
-              Brett <br /> <em>Infastructure Engineer</em>
+              Brett <br /> <em>Director of Engineering and Janitorial</em>
             </div>
           </div>
           <em className="quote">
-            "As long as this site doesnt cost me money I'll continue to host it."
+            "Dillcap was the only employer to offer to pay me in cheesies gift cards and look the other way regarding my past OSHA violations."
           </em>
-        </div> */}
+        </div>
 
         <div className="employee-container">
           <div className="left">
