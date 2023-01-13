@@ -81,6 +81,9 @@ const baseConfig = {
       "process.env.FIREBASE_PROJECT_ID": JSON.stringify(
         process.env.FIREBASE_PROJECT_ID
       ),
+      "process.env.FIREBASE_MEASUREMENT_ID": JSON.stringify(
+        process.env.FIREBASE_MEASUREMENT_ID
+      ),
     }),
   ],
 

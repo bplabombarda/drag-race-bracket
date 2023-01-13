@@ -1,0 +1,14 @@
+.thankyou {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    img {
+        width: 50%;
+        padding: 0px 0px 20px;
+    }
+    .text {
+        padding: 0px 10px;
+        text-indent: 20px;
+        text-align: center;
+    }
+}

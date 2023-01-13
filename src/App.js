@@ -4,6 +4,7 @@ import {Header, Footer} from "./components/HeaderFooter"
 import HomePage from "./pages/HomePage";
 import Enter from "./pages/Enter";
 import Submissions from "./pages/Submissions";
+import Submission from "./pages/Submission";
 import NewSubmission from "./pages/NewSubmission";
 import MTQ from "./pages/MTQ";
 import Standings from "Pages/Standings";
@@ -11,6 +12,9 @@ import ThankYou from "Pages/ThankYou";
 import Rules from "Pages/Rules";
 import About from "Pages/About";
 import firebase from "./utilities/firebase";
+import NotAvailable from "./pages/NotAvailable";
+import UnderConstruction from "./pages/UnderConstruction";
+
 
 const db = firebase.firestore();
 
@@ -49,23 +53,40 @@ export default function App() {
     <>
       {sessionStorage.getItem("entered") !== "true" &&
         window.innerWidth / window.innerHeight <= 0.65 && <Enter />}
-      <Header />
+      <Header season={season} />
       <div className="app-container">
         <Router primary={false}>
           {!!season.seasonId && (
             <ScrollToTop path="/">
-              <HomePage path="/" season={season} />
-              <Submissions path="/submissions" season={season} />
-              <NewSubmission
-                path="/submissions/new"
-                season={season}
-                addSubmission={addSubmission}
-              />
-              <ThankYou path="/thanks" season={season} />
-              <Rules path="/rules" season={season} />
-              <MTQ path="/mtq" season={season} />
-              <Standings path="/standings" season={season} />
-              <About path="/about" season={season} />
+              {season.underConstruction ? (
+                <UnderConstruction default />
+              ) : (
+                <>
+                  <HomePage path="/" season={season} />
+                  <ThankYou path="/thanks" season={season} />
+                  <Rules path="/rules" season={season} />
+                  <MTQ path="/mtq" season={season} />
+                  {!season.submissionsOpen ? (
+                    <>
+                      <Standings path="/standings" season={season} db={db} />
+                      <Submission
+                        path="/submission/:name"
+                        season={season}
+                        db={db}
+                      />
+                      <Submissions path="/submissions" season={season} />
+                    </>
+                  ) : (
+                    <NewSubmission
+                      path="/submissions/new"
+                      season={season}
+                      addSubmission={addSubmission}
+                    />
+                  )}
+                  <About path="/about" season={season} />
+                  <NotAvailable default />
+                </>
+              )}
             </ScrollToTop>
           )}
         </Router>

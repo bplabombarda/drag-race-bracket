@@ -9,6 +9,8 @@ export default function FinaleSelectGroup({
   allOptions,
   setSelections,
   formState,
+  validFields,
+  showErrors = false
 }) {
   const handleOnChange = (event, type) => {
     const selectedOption = event.value;
@@ -36,7 +38,7 @@ export default function FinaleSelectGroup({
 
   return (
     <>
-      <div className="select-container finale">
+      <div className={`select-container finale ${!showErrors || validFields.winner ? "" : "error"}`}>
         <label>Winner</label>
         <Select
           required
@@ -53,7 +55,7 @@ export default function FinaleSelectGroup({
           )}
         />
       </div>
-      <div className="select-container">
+      <div className={`select-container ${!showErrors || validFields.runnerUp1 ? "" : "error"}`}>
         <label>Runner Up</label>
         <Select
           required
@@ -70,7 +72,7 @@ export default function FinaleSelectGroup({
           )}
         />
       </div>
-      <div className="select-container">
+      <div className={`select-container ${!showErrors || validFields.runnerUp2 ? "" : "error"}`}>
         <label>Runner Up</label>
         <Select
           required
@@ -87,7 +89,7 @@ export default function FinaleSelectGroup({
           )}
         />
       </div>
-      <div className="select-container">
+      <div className={`select-container ${!showErrors || validFields.congeniality ? "" : "error"}`}>
         <label>Miss Congeniality</label>
         <Select
           required

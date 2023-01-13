@@ -1,4 +1,4 @@
-header {
+.header {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -28,9 +28,15 @@ header {
         font-weight: bold;
         border-top-left-radius: 30px;
         border-bottom-left-radius: 30px;
+        display: block;
     }
 
 /* Position and sizing of burger button */
+    &.hidden {
+        .bm-burger-button, .home {
+            visibility: hidden;
+            }
+    }
     .bm-burger-button {
         position: relative;
         width: 34px;

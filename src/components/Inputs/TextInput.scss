@@ -1,6 +1,7 @@
 .text-input {
     padding: 5px;
     display: flex;
+    align-items: center;
     label {
         display:inline-block;
         min-width: 70px;
@@ -9,5 +10,15 @@
     input {
         flex-grow: 1;
         height: 30px;
+        
+    }
+ 
+    &.error {
+        input {
+            border: 1px solid red;
+        }
+        label {
+            color: #cf3939;
+        }
     }
 }

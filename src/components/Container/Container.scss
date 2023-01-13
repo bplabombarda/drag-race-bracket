@@ -8,7 +8,10 @@
     background: #C0C0C0;
     color: black;
     box-shadow: 3px 3px 9px -2px #000000;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    &.error {
+        border: 2px solid red;
+    }
 
     .circle-image {
         width: 75px;   
