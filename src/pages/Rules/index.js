@@ -21,6 +21,9 @@ export default function Rules({ seasons }) {
               Paypal me $10,000
             </li>
             <li className="rule">
+              <div>&#10024;</div> Go through each section and choose who you think will be in the winner, in the top, in the bottom, and sent home.
+            </li>
+            <li className="rule">
               <div>&#10024;</div> Submit your bracket before 7pm CST 1/20
             </li>
 
