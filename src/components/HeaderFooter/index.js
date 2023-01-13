@@ -17,7 +17,11 @@ export const Header = ({season}) => {
     setOpen(false);
   };
   return (
-    <header>
+    <header
+      className={`header ${
+        season.underConstruction ? "hidden" : ""
+      }`}
+    >
       <Link to="/">
         <img className="home" src={home}></img>
       </Link>
@@ -41,7 +45,11 @@ export const Header = ({season}) => {
           </>
         ) : (
           <>
-            <Link className="hamburger-link" to="/standings" onClick={closeSideBar}>
+            <Link
+              className="hamburger-link"
+              to="/standings"
+              onClick={closeSideBar}
+            >
               Standings
             </Link>
             <Link className="hamburger-link" to="/rules" onClick={closeSideBar}>

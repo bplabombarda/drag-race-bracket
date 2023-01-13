@@ -12,7 +12,9 @@ import ThankYou from "Pages/ThankYou";
 import Rules from "Pages/Rules";
 import About from "Pages/About";
 import firebase from "./utilities/firebase";
-import NotAvailable from "./pages/NotAvailable"
+import NotAvailable from "./pages/NotAvailable";
+import UnderConstruction from "./pages/UnderConstruction";
+
 
 const db = firebase.firestore();
 
@@ -56,29 +58,35 @@ export default function App() {
         <Router primary={false}>
           {!!season.seasonId && (
             <ScrollToTop path="/">
-              <HomePage path="/" season={season} />
-              <ThankYou path="/thanks" season={season} />
-              <Rules path="/rules" season={season} />
-              <MTQ path="/mtq" season={season} />
-              {!season.submissionsOpen ? (
-                <>
-                  <Standings path="/standings" season={season} db={db} />
-                  <Submission
-                    path="/submission/:name"
-                    season={season}
-                    db={db}
-                  />
-                  <Submissions path="/submissions" season={season} />
-                </>
+              {season.underConstruction ? (
+                <UnderConstruction default />
               ) : (
-                <NewSubmission
-                  path="/submissions/new"
-                  season={season}
-                  addSubmission={addSubmission}
-                />
+                <>
+                  <HomePage path="/" season={season} />
+                  <ThankYou path="/thanks" season={season} />
+                  <Rules path="/rules" season={season} />
+                  <MTQ path="/mtq" season={season} />
+                  {!season.submissionsOpen ? (
+                    <>
+                      <Standings path="/standings" season={season} db={db} />
+                      <Submission
+                        path="/submission/:name"
+                        season={season}
+                        db={db}
+                      />
+                      <Submissions path="/submissions" season={season} />
+                    </>
+                  ) : (
+                    <NewSubmission
+                      path="/submissions/new"
+                      season={season}
+                      addSubmission={addSubmission}
+                    />
+                  )}
+                  <About path="/about" season={season} />
+                  <NotAvailable default />
+                </>
               )}
-              <About path="/about" season={season} />
-              <NotAvailable default />
             </ScrollToTop>
           )}
         </Router>

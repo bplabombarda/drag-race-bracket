@@ -7,8 +7,7 @@ import Link from "../../components/Link";
 import groupPromo from "../../assets/group-promo.png" 
 
 export default function HomePage({ season }) {
-  // console.log('season', season)
-
+  if (season.underConstruction) navigate("construction");
   if (!season.submissionsOpen) navigate("standings");
       return (
         <>
