@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import normalizeName from "../../utilities/normalizeName";
 import "./Container.scss";
 
-const Container = ({ heading, collapsible = false, imageName, subheading, children }) => {
+const Container = ({ heading, collapsible = false, imageName, subheading, children, className }) => {
   const [isShowing, setToggled] = useState(!collapsible);
   const toggleTrueFalse = () => {if (collapsible) {setToggled(!isShowing)}}
   const normal = normalizeName(imageName);
   return (
-    <div className="container">
+    <div className={`container ${className}`}>
       <div onClick={toggleTrueFalse} className="container-header">
         <div className="left-header">
           {imageName && (

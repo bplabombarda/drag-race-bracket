@@ -5,6 +5,7 @@ import { navigate } from "@reach/router";
 import { SelectGroup } from "../../components/Inputs"
 import FinaleSelectGroup from "../../components/Inputs/FinaleSelectGroup";
 import Guide from "./Guide";
+import Submit from "./Submit"
 import PersonalInfo from "./PersonalInfo";
 import "./NewSubmission.scss";
 
@@ -16,22 +17,76 @@ export default function NewSubmission({ season, addSubmission }) {
   
   const cachedData = JSON.parse(sessionStorage.getItem("formData"))
   const [formState, setFormState] = useState( cachedData || defaultObj);
-  
+  const [validFields, setErrorState] = useState({});
+
+  const validate = (event) => {
+    const { name, email, venmo, selections } = formState
+    const { queens, queensInFinale } = season
+
+    const keys = [...queens]
+      .slice(queensInFinale, queens.length)
+      .map((k, num) => k !== "finale" ? `top${queens.length - num}` : k)
+    let showErrors = false
+    const validSelections = keys.reduce((acc, key) => {
+      const validSection =
+        !!selections[key] &&
+        !!selections[key].winner &&
+        !!selections[key].top &&
+        !!selections[key].bottom &&
+        !!selections[key].eliminated; 
+      showErrors = !validSection ? true : showErrors
+      return {
+        ...acc,
+        [key]: {
+          validSection,
+          winner: !!selections[key] && !!selections[key].winner,
+          top: !!selections[key] && !!selections[key].top,
+          bottom: !!selections[key] && !!selections[key].bottom,
+          eliminated: !!selections[key] && !!selections[key].eliminated,
+        },
+      };
+    }, {})
+
+    setErrorState({
+      ...validFields,
+      name: !!name,
+      email: !!email,
+      venmo: !!venmo,
+      showErrors: showErrors || !name || !venmo || !email,
+      selections: {
+        ...validSelections,
+        finale: {
+          validSection:
+            !!selections.finale &&
+            !!selections.finale.winner &&
+            !!selections.finale.runnerUp1 &&
+            !!selections.finale.runnerUp2 &&
+            !!selections.finale.congeniality,
+          winner: !!selections.finale && !!selections.finale.winner,
+          runnerUp1: !!selections.finale && !!selections.finale.runnerUp1,
+          runnerUp2: !!selections.finale && !!selections.finale.runnerUp2,
+          congeniality: !!selections.finale && !!selections.finale.congeniality,
+        },
+      },
+    });
+  } 
+
   useEffect(() => {
     sessionStorage.setItem("formData", JSON.stringify(formState));
-  });
+   if (validFields.showErrors) {
+     validate();
+   }  }, [formState]);
 
 
   const setSelections = (selections) => {
       setFormState({
         ...formState,
         selections,
-      });
+      })
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Submitevent', event)
     addSubmission(season.seasonId, formState).then(() => {
       console.log("submission: ", formState);
       sessionStorage.removeItem("formData");
@@ -45,10 +100,16 @@ export default function NewSubmission({ season, addSubmission }) {
       <Guide
         formState={formState}
         setFormState={setFormState}
+        setErrorState={setErrorState}
         season={season}
       />
       <form id="new-submission" onSubmit={handleSubmit}>
-        <PersonalInfo formState={formState} setFormState={setFormState} />
+        <PersonalInfo
+          validFields={validFields}
+          formState={formState}
+          setFormState={setFormState}
+          validate={validate}
+        />
         {!formState.random && (
           <>
             {[...season.queens]
@@ -57,6 +118,13 @@ export default function NewSubmission({ season, addSubmission }) {
                 <Container
                   key={`Top ${season.queens.length - num}`}
                   heading={`Top ${season.queens.length - num}`}
+                  className={`${
+                    validFields.showErrors &&
+                    !validFields.selections[`top${season.queens.length - num}`]
+                      .validSection
+                      ? "error"
+                      : ""
+                  }`}
                 >
                   <SelectGroup
                     sectionIndex={season.queens.length - num}
@@ -72,11 +140,27 @@ export default function NewSubmission({ season, addSubmission }) {
                       season.queensInFinale
                     )}
                     formState={formState}
+                    validFields={
+                      validFields.showErrors
+                        ? validFields.selections[
+                            `top${season.queens.length - num}`
+                          ]
+                        : {}
+                    }
+                    showErrors={validFields.showErrors}
                   />
                 </Container>
               ))}
 
-            <Container heading="Finale">
+            <Container
+              heading="Finale"
+              className={`${
+                validFields.showErrors &&
+                !validFields.selections.finale.validSection
+                  ? "error"
+                  : ""
+              }`}
+            >
               <FinaleSelectGroup
                 setSelections={setSelections}
                 eliminated={getEliminatedQueens(formState.selections, "finale")}
@@ -95,16 +179,18 @@ export default function NewSubmission({ season, addSubmission }) {
                   formState.selections
                 )}
                 formState={formState}
+                validFields={
+                  validFields.showErrors ? validFields.selections.finale : {}
+                }
+                showErrors={validFields.showErrors}
               />
             </Container>
-            <input
-              id="new-submission"
-              onChange={() => null}
-              name="submit"
-              type="submit"
-              value="Submit"
-              className="pink-button form-button"
-            />
+            {validFields.showErrors && (
+              <div className="error-message">
+                Make sure to fill out all the required fields kitty girl!
+              </div>
+            )}
+            <Submit validate={validate} />
           </>
         )}
       </form>

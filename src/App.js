@@ -12,6 +12,7 @@ import ThankYou from "Pages/ThankYou";
 import Rules from "Pages/Rules";
 import About from "Pages/About";
 import firebase from "./utilities/firebase";
+import NotAvailable from "./pages/NotAvailable"
 
 const db = firebase.firestore();
 
@@ -50,28 +51,34 @@ export default function App() {
     <>
       {sessionStorage.getItem("entered") !== "true" &&
         window.innerWidth / window.innerHeight <= 0.65 && <Enter />}
-      <Header season={ season} />
+      <Header season={season} />
       <div className="app-container">
         <Router primary={false}>
           {!!season.seasonId && (
             <ScrollToTop path="/">
               <HomePage path="/" season={season} />
-              <Submissions path="/submissions" season={season} />
-              <NewSubmission
-                path="/submissions/new"
-                season={season}
-                addSubmission={addSubmission}
-              />
               <ThankYou path="/thanks" season={season} />
               <Rules path="/rules" season={season} />
               <MTQ path="/mtq" season={season} />
-              {!season.submissionsOpen && (
-              <>
-                <Standings path="/standings" season={season} db={db} />
-                <Submission path="/submission/:name" season={season} db={db} />
-              </>
+              {!season.submissionsOpen ? (
+                <>
+                  <Standings path="/standings" season={season} db={db} />
+                  <Submission
+                    path="/submission/:name"
+                    season={season}
+                    db={db}
+                  />
+                  <Submissions path="/submissions" season={season} />
+                </>
+              ) : (
+                <NewSubmission
+                  path="/submissions/new"
+                  season={season}
+                  addSubmission={addSubmission}
+                />
               )}
               <About path="/about" season={season} />
+              <NotAvailable default />
             </ScrollToTop>
           )}
         </Router>

@@ -9,13 +9,8 @@ export const getRandomSelections = (season) => {
     return randomFour;
   };
 
-  console.log(
-    "season.queens",
-    [...season.queens].slice(0, season.queensInFinale)
-  );
   const res = [...season.queens].slice((season.queensInFinale-1), season.queens.length).reduce((acc, q, num) => {
     const chosen = getFourRandomQueens();
-    console.log('num', num)
     if (num === (season.queens.length - season.queensInFinale)) {
       return {
         ...acc,
@@ -38,6 +33,5 @@ export const getRandomSelections = (season) => {
       };
     }
   }, {});
-  console.log('res', res)
   return res;
 };

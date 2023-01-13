@@ -3,7 +3,7 @@ import Container from "../../components/Container"
 import { TextInput } from "../../components/Inputs";
 import Submit from "./Submit";
 
-const PersonalInfo = ({ formState, setFormState,  }) => {
+const PersonalInfo = ({ formState, setFormState, validate, validFields }) => {
     
   const setName = (event) => {
     const { value: name } = event.target;
@@ -32,24 +32,35 @@ const PersonalInfo = ({ formState, setFormState,  }) => {
     return (
       <Container
         heading={`${formState.random ? "Randomized: " : ""} Enter the Werkroom`}
+        className={`${
+          validFields.showErrors &&
+          (!validFields.name ||
+          !validFields.email ||
+          !validFields.venmo) 
+            ? "error"
+            : ""
+        }`}
       >
         <TextInput
           label="Name"
           handleOnChange={setName}
           value={formState.name}
+          error={validFields.showErrors && !validFields.name}
         />
         <TextInput
           label="Email"
           handleOnChange={setEmail}
           value={formState.email}
+          error={validFields.showErrors && !validFields.email}
           type="email"
         />
         <TextInput
           label="Venmo"
           handleOnChange={setVenmo}
           value={formState.venmo}
+          error={validFields.showErrors && !validFields.venmo}
         />
-        {formState.random && <Submit />}
+        {formState.random && <Submit validate={validate} />}
       </Container>
     );
 }
