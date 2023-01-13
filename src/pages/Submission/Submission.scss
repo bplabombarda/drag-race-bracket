@@ -1,0 +1,14 @@
+.selection-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    .label {
+        color: #F80EA1;
+        font-size: 22px;
+    }
+    .selection-image {
+        max-width: 85px;
+        padding: 5px 10px;
+        box-sizing: border-box;
+    }
+}

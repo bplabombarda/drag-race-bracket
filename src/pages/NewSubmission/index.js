@@ -31,6 +31,7 @@ export default function NewSubmission({ season, addSubmission }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log('Submitevent', event)
     addSubmission(season.seasonId, formState).then(() => {
       console.log("submission: ", formState);
       sessionStorage.removeItem("formData");

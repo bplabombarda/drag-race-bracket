@@ -1,17 +1,17 @@
-export default function getScore(name, submissions, results) {
+export default function getScore(submission, results) {
   let score = 0;
-  const weeks = Object.keys(submissions[name]);
+  const weeks = Object.keys({...submission.selections});
 
   weeks.forEach((week) => {
     if (results && results[week]) {
-      score += addScore(submissions[name][week], results[week], name);
+      score += addScore(submission.selections[week], results[week]);
     }
   });
 
-  return { name, score };
+  return { ...submission, score };
 }
 
-function addScore(week, result, name) {
+function addScore(week, result) {
   let weekScore = 0;
   if (!result.finale) {
     let matches = [];
