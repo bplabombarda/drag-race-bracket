@@ -1,6 +1,6 @@
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
-import 'firebase/analytics';
+// import 'firebase/analytics';
 
 // These environment variables are replaced by
 // Webpack's DefinePlugin as time of build.
@@ -13,6 +13,6 @@ const app = firebase.initializeApp({
   measurementId: process.env.FIREBASE_MEASUREMENT_ID,
 });
 
-firebase.analytics(app);
+// firebase.analytics(app);
 
 export default app;
