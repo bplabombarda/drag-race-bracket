@@ -6,10 +6,10 @@ import gasp from "../../assets/gasp.png"
 
 export default function NotAvailable() {
   return (
-    <Container heading="GASP!">
+    <Container heading="Oh no!">
       <div className="thankyou">
         <img src={gasp} />
-        <h3 className="text">Looks like you got lost!</h3>
+        <h3 className="text">GASP! Looks like you got lost!</h3>
       </div>
       <br />
       <Link path="/">Theres no place like Home</Link>

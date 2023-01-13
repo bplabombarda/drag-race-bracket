@@ -10,12 +10,16 @@ export default function ThankYou({ seasons }) {
       <Container heading="Thank You!">
         <div className="thankyou">
           <img src={thankyou} />
-          <h3 className="text">
-            The team at Dillcap™ thanks you for your submission! Come back at
-            the beginning of the next episode to view your submission!
+          <div className="text">
+            <strong>
+            Dont forget to venmo @DillonMcGuire $20 to reserve your spot!
+            </strong>
             <br /> <br />
-            May the best Dillcapper, WIN
-          </h3>
+            Come back at the beginning of the next episode to view your selections
+            and score!
+            <br /> <br />
+            May the best Dillcapper, WIN!
+          </div>
         </div>
       </Container>
     </>
