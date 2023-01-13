@@ -5,7 +5,10 @@ const Submit = ({validate}) => {
     <input
         id="new-submission"
         onChange={() => null}
-        onClick={ validate}
+        onClick={() => {
+          validate()
+          window.scrollTo(0, 0);
+        }}
         name="submit"
         type="submit"
         value="Submit"
