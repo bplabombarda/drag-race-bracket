@@ -97,6 +97,11 @@ export default function NewSubmission({ season, addSubmission }) {
   
   return (
     <>
+      {validFields.showErrors && (
+        <div className="error-message">
+          Make sure to fill out all the required fields kitty girl!
+        </div>
+      )}
       <Guide
         formState={formState}
         setFormState={setFormState}
@@ -185,11 +190,6 @@ export default function NewSubmission({ season, addSubmission }) {
                 showErrors={validFields.showErrors}
               />
             </Container>
-            {validFields.showErrors && (
-              <div className="error-message">
-                Make sure to fill out all the required fields kitty girl!
-              </div>
-            )}
             <Submit validate={validate} />
           </>
         )}
