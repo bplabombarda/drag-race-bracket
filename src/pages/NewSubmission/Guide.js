@@ -27,7 +27,7 @@ const Guide = ({ formState, setFormState, season, setErrorState}) => {
   
   return (
     <Container heading="Guide">
-      Go through each section below and select your Queens! All feilds are
+      Go through each section below and select your Queens! All fields are
       required, the form works best if you start at the top and go down but you
       can fill it out in any order you like. 
       <br />
