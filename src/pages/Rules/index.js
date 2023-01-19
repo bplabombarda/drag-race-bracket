@@ -23,10 +23,10 @@ export default function Rules({ season }) {
                   Paypal me $10,000
                 </li>
                 <li className="rule">
-                  <div>&#10024;</div> Go through each section and choose who you think will be in the winner, in the top, in the bottom, and sent home.
+                  <div>&#10024;</div> Go through each section and choose who you think will be the winner, in the top, in the bottom, and sent home.
                 </li>
                 <li className="rule">
-                  <div>&#10024;</div> Submit your bracket before 7pm CST 1/20
+                  <div>&#10024;</div> Submit your bracket before {season.submissionCuttOffDate}
                 </li>
               </>
             )}
@@ -38,7 +38,7 @@ export default function Rules({ season }) {
             </li>
             <li className="rule">
               <div>&#10024;</div> +5 points for correct guess of who wins and
-              goes HomePage
+              goes home
             </li>
             <li className="rule">
               <div>&#10024;</div> +15 points points for the winner
