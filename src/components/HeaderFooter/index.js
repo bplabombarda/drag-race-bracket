@@ -17,15 +17,14 @@ export const Header = ({season}) => {
     setOpen(false);
   };
   return (
-    <header
-      className={`header ${
-        season.underConstruction ? "hidden" : ""
-      }`}
-    >
+    <header className={`header ${season.underConstruction ? "hidden" : ""}`}>
       <Link to="/">
-        <img className="home" src={home}></img>
+        <img className="home" src={home} />
       </Link>
-      <img className="logo" src={logo}></img>
+      <Link to="/">
+        <img className="logo" src={logo} />
+      </Link>
+
       <Menu right isOpen={isOpen} onOpen={handleIsOpen} onClose={handleIsOpen}>
         <Link className="hamburger-link" to="/" onClick={closeSideBar}>
           Home

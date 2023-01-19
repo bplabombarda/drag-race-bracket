@@ -3,7 +3,6 @@ import { Router } from "@reach/router";
 import {Header, Footer} from "./components/HeaderFooter"
 import HomePage from "./pages/HomePage";
 import Enter from "./pages/Enter";
-import Submissions from "./pages/Submissions";
 import Submission from "./pages/Submission";
 import NewSubmission from "./pages/NewSubmission";
 import MTQ from "./pages/MTQ";
@@ -40,9 +39,11 @@ export default function App() {
       .collection("seasons")
       .where("active", "==", true)
       .get();
-    
-    const activeSeason = seasonsRef.docs[0].data(); 
+
+    const activeSeason = seasonsRef.docs[0].data();
     setSeason(activeSeason);
+    // const dev = { ...activeSeason, submissionsOpen: false };
+    // setSeason(dev);
   }
 
   useEffect(() => {
@@ -57,6 +58,7 @@ export default function App() {
       <div className="app-container">
         <Router primary={false}>
           {!!season.seasonId && (
+            <>
             <ScrollToTop path="/">
               {season.underConstruction ? (
                 <UnderConstruction default />
@@ -66,28 +68,23 @@ export default function App() {
                   <ThankYou path="/thanks" season={season} />
                   <Rules path="/rules" season={season} />
                   <MTQ path="/mtq" season={season} />
-                  {!season.submissionsOpen ? (
-                    <>
-                      <Standings path="/standings" season={season} db={db} />
-                      <Submission
-                        path="/submission/:name"
-                        season={season}
-                        db={db}
-                      />
-                      <Submissions path="/submissions" season={season} />
-                    </>
-                  ) : (
-                    <NewSubmission
-                      path="/submissions/new"
-                      season={season}
-                      addSubmission={addSubmission}
-                    />
-                  )}
+                  <Standings path="/standings" season={season} db={db} />
+                  <Submission
+                    path="/submission/:name"
+                    season={season}
+                    db={db}
+                  />
+                  <NewSubmission
+                    path="/submissions/new"
+                    season={season}
+                    addSubmission={addSubmission}
+                  />
                   <About path="/about" season={season} />
                   <NotAvailable default />
                 </>
               )}
             </ScrollToTop>
+            </>
           )}
         </Router>
       </div>

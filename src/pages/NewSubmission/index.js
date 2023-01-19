@@ -12,7 +12,7 @@ import "./NewSubmission.scss";
 export const defaultObj = { name: "", venmo: "", email: "", selections: {} };
 
 export default function NewSubmission({ season, addSubmission }) {
-
+  if (!season.submissionsOpen) navigate("/standings");
   if (localStorage.getItem("submitted") === season.seasonId) navigate("/thanks")
   
   const cachedData = JSON.parse(sessionStorage.getItem("formData"))
