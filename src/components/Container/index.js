@@ -7,8 +7,8 @@ const Container = ({ heading, collapsible = false, imageName, subheading, childr
   const toggleTrueFalse = () => {if (collapsible) {setToggled(!isShowing)}}
   const normal = normalizeName(imageName);
   return (
-    <div className={`container ${className}`}>
-      <div onClick={toggleTrueFalse} className="container-header">
+    <div onClick={toggleTrueFalse} className={`container ${className || ""}`}>
+      <div className="container-header">
         <div className="left-header">
           {imageName && (
             <img
@@ -32,7 +32,9 @@ const Container = ({ heading, collapsible = false, imageName, subheading, childr
           </button>
         )}
       </div>
-      <div className={`container-content ${isShowing?"visible":"hidden"}`}>{children}</div>
+      <div className={`container-content ${isShowing ? "visible" : "hidden"}`}>
+        {children}
+      </div>
     </div>
   );
 };

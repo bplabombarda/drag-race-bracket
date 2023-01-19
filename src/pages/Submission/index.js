@@ -1,21 +1,21 @@
 import React from "react";
+import { navigate } from "@reach/router";
 import Container from "../../components/Container"
  import "./Submission.scss"
 
 export default function Submission({season, location: { state } }) {
-  console.log("state", state.selections);
+  if (season.submissionsOpen) navigate("/");
+  
   const arr = Object.keys({ ...state.selections }).filter(a => a !== "finale")
-  console.log('arr', arr)
   return (
     <>
-      <h1>{state.name}</h1>
+      <h1 className="name-heading">{state.name} - { state.score}</h1>
       {arr.map((a, num) => {
-
         const section = season.queens.length - num;
-        console.log('section', section)
         return (
-          <Container key={num} collapsible heading={`Top ${section}`}>
+          <Container className="submission" key={num} collapsible heading={`Top ${section}`}>
             <SubmissionContent
+              queens={season.queens}
               winner={state.selections[`top${section}`].winner}
               top={state.selections[`top${section}`].top}
               bottom={state.selections[`top${section}`].bottom}
@@ -24,8 +24,10 @@ export default function Submission({season, location: { state } }) {
           </Container>
         );
       })}
-      <Container collapsible heading="Finale">
+      <Container className="submission" collapsible heading="Finale">
         <SubmissionContent
+          finale
+          queens={season.queens}
           winner={state.selections.finale.winner}
           top={state.selections.finale.runnerUp1}
           bottom={state.selections.finale.runnerUp2}
@@ -36,24 +38,36 @@ export default function Submission({season, location: { state } }) {
   );
 }
 
-const SubmissionContent = ({winner, top, bottom, eliminated, finale=false}) => (
+const SubmissionContent = ({winner, top, bottom, eliminated, finale=false, queens}) => (
   <>
-    <Selection winner label="Winner" icon={(`../../assets/queens/circle/${winner}.png`)} name={winner} />
-    <Selection label={!finale ?"Top":"Runner Up"} icon={(`../../assets/queens/circle/${top}.png`)} name={top} />
-    <Selection label={!finale ?"Bottom":"Runner Up"} icon={(`../../assets/queens/circle/${bottom}.png`)} name={bottom} />
-    <Selection label={!finale ?"Eliminated":"Miss Congeniality"} icon={(`../../assets/queens/circle/${eliminated}.png`)} name={eliminated} />
+    <Selection queens={queens} winner label="Winner" icon={(`../../assets/queens/circle/${winner}.png`)} name={winner} />
+    <Selection queens={queens} label={!finale ?"Top":"Runner Up"} icon={(`../../assets/queens/circle/${top}.png`)} name={top} />
+    <Selection queens={queens} label={!finale ?"Bottom":"Runner Up"} icon={(`../../assets/queens/circle/${bottom}.png`)} name={bottom} />
+    <Selection queens={queens} label={!finale ?"Eliminated":"Congeniality"} icon={(`../../assets/queens/circle/${eliminated}.png`)} name={eliminated} />
   </>
 )
 name
 
-const Selection = ({ label, icon, name, winner = false, finale = false }) => (
+const Selection = ({
+  label,
+  icon,
+  name,
+  winner = false,
+  finale = false,
+  queens,
+}) => (
   <div
     className={`selection-container ${winner ? "winner" : ""} ${
       finale ? "finale" : ""
     }`}
   >
-    <div className="label">{label}</div>
+    <div className="label">{label}:</div>
     <img className="selection-image" src={icon} />
-    <div className="name">{name}</div>
+    <div className="name">{getFullName(queens, name)}</div>
   </div>
 );
+
+const getFullName = (queens, string) => {
+  const queen = queens.filter(q => q.name.toLowerCase().includes(string))
+  return queen[0].name
+}
