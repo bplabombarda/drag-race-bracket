@@ -41,9 +41,9 @@ export default function App() {
       .get();
 
     const activeSeason = seasonsRef.docs[0].data();
-    // setSeason(activeSeason);
-    const dev = { ...activeSeason, submissionsOpen: false };
-    setSeason(dev);
+    setSeason(activeSeason);
+    // const dev = { ...activeSeason, submissionsOpen: false };
+    // setSeason(dev);
   }
 
   useEffect(() => {
