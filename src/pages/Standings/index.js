@@ -11,6 +11,7 @@ export default function standings({ season, db }) {
   if (season.submissionsOpen) navigate("/");
   
   const [submissions, setSeason] = useState([]);
+  const [isScore, setScore] = useState(true);
 
   async function fetchSubmissions(seasonId) {
     const submissionsRef = await db
@@ -38,7 +39,6 @@ export default function standings({ season, db }) {
   let isLastPlace = false
   let isTie = false;
 
-
   return (
   <>
     {(season.message && season.message.length > 0) && (
@@ -55,20 +55,24 @@ export default function standings({ season, db }) {
         if (i > 0 && submissions[i - 1].score !== sub.score) {
           placement = i + 1;
           isTie = false;
-        } else if (placement === 1 && submissions[i + 1].score === sub.score) {
+        } else if (placement === 1 && submissions.length === i + 1 && isScore) {
+          setScore(false)
+        } else if (placement === 1 && submissions[i + 1] && submissions[i + 1].score === sub.score) {
           isTie = true;
         }
 
         if (sub.score === submissions[submissions.length - 1].score)
           isLastPlace = true;
-
+        console.log('isScore', isScore)
         return (
           <div key={i} className="placement-link-container">
-            <Placement
+            {isScore && (
+              <Placement
               placement={!isLastPlace ? placement : submissions.length}
               isLastPlace={isLastPlace}
               isTie={isTie}
-            />
+              />
+            )}
             <Link path={`/submission/${sub.name}`} state={sub}>
               {sub.name} - <strong>{sub.score}</strong>
             </Link>
