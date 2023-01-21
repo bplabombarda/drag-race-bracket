@@ -63,7 +63,7 @@ export default function standings({ season, db }) {
 
         if (sub.score === submissions[submissions.length - 1].score)
           isLastPlace = true;
-        console.log('isScore', isScore)
+
         return (
           <div key={i} className="placement-link-container">
             {isScore && (

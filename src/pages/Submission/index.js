@@ -40,10 +40,10 @@ export default function Submission({season, location: { state } }) {
 
 const SubmissionContent = ({winner, top, bottom, eliminated, finale=false, queens}) => (
   <>
-    <Selection queens={queens} winner label="Winner" icon={(`../../assets/queens/circle/${winner}.png`)} name={winner} />
-    <Selection queens={queens} label={!finale ?"Top":"Runner Up"} icon={(`../../assets/queens/circle/${top}.png`)} name={top} />
-    <Selection queens={queens} label={!finale ?"Bottom":"Runner Up"} icon={(`../../assets/queens/circle/${bottom}.png`)} name={bottom} />
-    <Selection queens={queens} label={!finale ?"Eliminated":"Congeniality"} icon={(`../../assets/queens/circle/${eliminated}.png`)} name={eliminated} />
+    <Selection queens={queens} winner label="Winner" icon={require(`../../assets/queens/circle/${winner}.png`)} name={winner} />
+    <Selection queens={queens} label={!finale ?"Top":"Runner Up"} icon={require(`../../assets/queens/circle/${top}.png`)} name={top} />
+    <Selection queens={queens} label={!finale ?"Bottom":"Runner Up"} icon={require(`../../assets/queens/circle/${bottom}.png`)} name={bottom} />
+    <Selection queens={queens} label={!finale ?"Eliminated":"Congeniality"} icon={require(`../../assets/queens/circle/${eliminated}.png`)} name={eliminated} />
   </>
 )
 name
