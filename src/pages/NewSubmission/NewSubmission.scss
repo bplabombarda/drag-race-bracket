@@ -1,27 +1,28 @@
-.pink-button{
-    &.form-button, &.guide-button {
-        width: 300px;
-        margin: 0 auto;
-    }
-    &.form-button {
-        margin: 10px auto;
-    }
-    &.guide-button {
-        padding: 4px;
-    }
+.pink-button {
+  &.form-button,
+  &.guide-button {
+    width: 300px;
+    margin: 0 auto;
+  }
+  &.form-button {
+    margin: 10px auto;
+  }
+  &.guide-button {
+    padding: 4px;
+  }
 }
 
 .guide-buttons-container {
-    padding-top: 25px;
-    display: flex;
+  padding-top: 25px;
+  display: flex;
 }
 
 .error-message {
-    color: white;
-    padding: 8px 22px;
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-    background-color: #f80e5c;
-    margin-bottom: 10px;
+  color: white;
+  padding: 8px 22px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #f80e5c;
+  margin-bottom: 10px;
 }

@@ -1,4 +1,3 @@
-import React, {useState, useEffect} from "react";
 import Select from "react-select";
 
 import "./TextInput.scss";
@@ -10,7 +9,7 @@ export default function FinaleSelectGroup({
   setSelections,
   formState,
   validFields,
-  showErrors = false
+  showErrors = false,
 }) {
   const handleOnChange = (event, type) => {
     const selectedOption = event.value;
@@ -20,7 +19,7 @@ export default function FinaleSelectGroup({
   };
 
   const selectOption = (type, queenName) => {
-    const sectionKey = "finale"
+    const sectionKey = "finale";
 
     const newSelections = {
       ...formState.selections,
@@ -38,7 +37,11 @@ export default function FinaleSelectGroup({
 
   return (
     <>
-      <div className={`select-container finale ${!showErrors || validFields.winner ? "" : "error"}`}>
+      <div
+        className={`select-container finale ${
+          !showErrors || validFields.winner ? "" : "error"
+        }`}
+      >
         <label>Winner</label>
         <Select
           required
@@ -50,12 +53,14 @@ export default function FinaleSelectGroup({
           }}
           options={options}
           classNames={{ singleValue: () => "selected" }}
-          value={options.filter(
-            (option) => option.value === cache.winner
-          )}
+          value={options.filter((option) => option.value === cache.winner)}
         />
       </div>
-      <div className={`select-container ${!showErrors || validFields.runnerUp1 ? "" : "error"}`}>
+      <div
+        className={`select-container ${
+          !showErrors || validFields.runnerUp1 ? "" : "error"
+        }`}
+      >
         <label>Runner Up</label>
         <Select
           required
@@ -67,12 +72,14 @@ export default function FinaleSelectGroup({
           }}
           options={options}
           classNames={{ singleValue: () => "selected" }}
-          value={options.filter(
-            (option) => option.value === cache.runnerUp1
-          )}
+          value={options.filter((option) => option.value === cache.runnerUp1)}
         />
       </div>
-      <div className={`select-container ${!showErrors || validFields.runnerUp2 ? "" : "error"}`}>
+      <div
+        className={`select-container ${
+          !showErrors || validFields.runnerUp2 ? "" : "error"
+        }`}
+      >
         <label>Runner Up</label>
         <Select
           required
@@ -84,12 +91,14 @@ export default function FinaleSelectGroup({
           }}
           options={options}
           classNames={{ singleValue: () => "selected" }}
-          value={options.filter(
-            (option) => option.value === cache.runnerUp2
-          )}
+          value={options.filter((option) => option.value === cache.runnerUp2)}
         />
       </div>
-      <div className={`select-container ${!showErrors || validFields.congeniality ? "" : "error"}`}>
+      <div
+        className={`select-container ${
+          !showErrors || validFields.congeniality ? "" : "error"
+        }`}
+      >
         <label>Miss Congeniality</label>
         <Select
           required

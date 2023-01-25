@@ -1,10 +1,10 @@
 @import "normalize-scss";
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #FFC3EC;
+  background-color: #ffc3ec;
 }
 
 h1,
@@ -37,6 +37,7 @@ a {
 
 .app-container {
   padding: 85px 20px 0;
-      max-width: 800px;
-        margin: 0 auto;
+  max-width: 800px;
+  margin: 0 auto;
+  min-height: 75vh;
 }

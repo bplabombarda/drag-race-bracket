@@ -1,110 +1,110 @@
 .header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding: 10px 25px;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    position: fixed;
-    width: 100%;
-    background-color: #FFC3EC;
-    box-sizing: border-box;
-    z-index: 999;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 10px 25px;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  position: fixed;
+  width: 100%;
+  background-color: #ffc3ec;
+  box-sizing: border-box;
+  z-index: 999;
 
+  .home {
+    width: 36px;
+  }
+  .logo {
+    width: 140px;
+  }
+
+  .hamburger-link {
+    background-color: #ffffff78;
+    text-decoration: none;
+    color: white;
+    padding: 17px;
+    margin-bottom: 20px;
+    font-size: 22px;
+    font-weight: bold;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    display: block;
+  }
+
+  /* Position and sizing of burger button */
+  &.hidden {
+    .bm-burger-button,
     .home {
-        width: 36px;
+      visibility: hidden;
     }
-    .logo {
-        width: 140px;
-    }
+  }
+  .bm-burger-button {
+    position: relative;
+    width: 34px;
+    height: 34px;
+  }
 
-    .hamburger-link {
-        background-color: #ffffff78;
-        text-decoration: none;
-        color: white;
-        padding: 17px;
-        margin-bottom: 20px;
-        font-size: 22px;
-        font-weight: bold;
-        border-top-left-radius: 30px;
-        border-bottom-left-radius: 30px;
-        display: block;
-    }
+  /* Color/shape of burger icon bars */
+  .bm-burger-bars {
+    background: #f80ea1;
+    border-radius: 10px;
+  }
 
-/* Position and sizing of burger button */
-    &.hidden {
-        .bm-burger-button, .home {
-            visibility: hidden;
-            }
-    }
-    .bm-burger-button {
-        position: relative;
-        width: 34px;
-        height: 34px;
-       
-    }
+  /* Color/shape of burger icon bars on hover*/
+  .bm-burger-bars-hover {
+    background: #a90000;
+  }
 
-    /* Color/shape of burger icon bars */
-    .bm-burger-bars {
-        background: #F80EA1;
-        border-radius: 10px;
-    }
+  /* Position and sizing of clickable cross button */
+  .bm-cross-button {
+    height: 24px;
+    width: 24px;
+  }
 
-    /* Color/shape of burger icon bars on hover*/
-    .bm-burger-bars-hover {
-        background: #a90000;
-    }
+  /* Color/shape of close button cross */
+  .bm-cross {
+    background: white;
+  }
 
-    /* Position and sizing of clickable cross button */
-    .bm-cross-button {
-        height: 24px;
-        width: 24px;
-    }
-
-    /* Color/shape of close button cross */
-    .bm-cross {
-        background: white;
-    }
-
-    /*
+  /*
 Sidebar wrapper styles
 Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
 */
-    .bm-menu-wrap {
-        position: fixed;
-        height: 100%;
-        top: 0px;
-    }
+  .bm-menu-wrap {
+    position: fixed;
+    height: 100%;
+    top: 0px;
+  }
 
-    /* General sidebar styles */
-    .bm-menu {
-        background-color: #FF8EDC;
-        background: linear-gradient(#FF8EDC, #F80EA1);
-        padding: 4.5em 0 0 2.5em;
-        font-size: 1.15em;
-        box-shadow: 6px 6px 23px 7px;
-    }
+  /* General sidebar styles */
+  .bm-menu {
+    background-color: #ff8edc;
+    background: linear-gradient(#ff8edc, #f80ea1);
+    padding: 4.5em 0 0 2.5em;
+    font-size: 1.15em;
+    box-shadow: 6px 6px 23px 7px;
+  }
 
-    /* Morph shape necessary with bubble or elastic */
-    .bm-morph-shape {
-        fill: #F80EA1;
-    }
+  /* Morph shape necessary with bubble or elastic */
+  .bm-morph-shape {
+    fill: #f80ea1;
+  }
 
-    /* Wrapper for item list */
-    .bm-item-list {
-        color: #b8b7ad;
-        padding: 0;
-    }
+  /* Wrapper for item list */
+  .bm-item-list {
+    color: #b8b7ad;
+    padding: 0;
+  }
 
-    /* Individual item */
-    .bm-item {
-        display: inline-block;
-    }
+  /* Individual item */
+  .bm-item {
+    display: inline-block;
+  }
 
-    /* Styling of overlay */
-    .bm-overlay {
-        background: rgba(255, 255, 255, 0.3);
-            top: 0px;
-            left: 0px;
-    }
+  /* Styling of overlay */
+  .bm-overlay {
+    background: rgba(255, 255, 255, 0.3);
+    top: 0px;
+    left: 0px;
+  }
 }

@@ -1,14 +1,12 @@
-import React from "react";
-import Container from "../../components/Container"
-import dillon from "../../assets/dillon.png"
+import Container from "../../components/Container";
+import dillon from "../../assets/dillon.png";
 import joe from "../../assets/joe.png";
 import paul from "../../assets/paul.png";
 import brett from "../../assets/brett.png";
 
- import "./About.scss"
+import "./About.scss";
 
 export default function About({ seasons }) {
-
   return (
     <Container heading="About">
       <div className="about-container">
@@ -21,7 +19,7 @@ export default function About({ seasons }) {
           <br />
           <br />
         </h1>
-        
+
         <div className="employee-container">
           <div className="left">
             <img src={dillon} />
@@ -45,7 +43,8 @@ export default function About({ seasons }) {
           <em className="quote">
             "Dillcap gives me the opportunity to make no income while I pursue
             my true passions - werking, serving and slaying. I'm required to
-            stay up until 1am, and watch clips from the Miss Continential 2002 as I work."
+            stay up until 1am, and watch clips from the Miss Continential 2002
+            as I work."
           </em>
         </div>
 
@@ -57,7 +56,8 @@ export default function About({ seasons }) {
             </div>
           </div>
           <em className="quote">
-            "Dillcap was the only employer to offer to pay me in cheesies gift cards and look the other way regarding my past OSHA violations."
+            "Dillcap was the only employer to offer to pay me in cheesies gift
+            cards and look the other way regarding my past OSHA violations."
           </em>
         </div>
 

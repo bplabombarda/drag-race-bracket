@@ -1,35 +1,33 @@
-import React from "react"
-import Container from "../../components/Container"
-import { defaultObj } from "./index"
+import Container from "../../components/Container";
+import { defaultObj } from "./index";
 import { getRandomSelections } from "../../utilities/getRandomSelections";
 
-const Guide = ({ formState, setFormState, season, setErrorState}) => {
+const Guide = ({ formState, setFormState, season, setErrorState }) => {
+  const clearState = () => {
+    setFormState({
+      ...defaultObj,
+      selections: {},
+    });
+    setErrorState({
+      showErrors: false,
+    });
+  };
 
-    const clearState = () => {
-        setFormState({
-            ...defaultObj,
-            selections: {},
-        });
-      setErrorState({
-        showErrors: false
-      })
-    };
+  async function handleRandom() {
+    clearState();
+    const randomChoices = await getRandomSelections(season);
+    setFormState({
+      ...defaultObj,
+      selections: { ...randomChoices },
+      random: true,
+    });
+  }
 
-      async function handleRandom() {
-        clearState();
-        const randomChoices = await getRandomSelections(season);
-        setFormState({
-          ...defaultObj,
-          selections: { ...randomChoices },
-          random: true,
-        });
-      }
-  
   return (
     <Container heading="Guide">
       Go through each section below and select your Queens! All fields are
       required, the form works best if you start at the top and go down but you
-      can fill it out in any order you like. 
+      can fill it out in any order you like.
       <br />
       <br />
       If you dont want to choose you can fill out your info and click
@@ -52,4 +50,4 @@ const Guide = ({ formState, setFormState, season, setErrorState}) => {
   );
 };
 
-export default Guide
+export default Guide;

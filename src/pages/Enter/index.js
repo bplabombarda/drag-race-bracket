@@ -1,14 +1,13 @@
-import React, { useState } from "react";
-import { navigate } from "@reach/router";
-import enter from "../../assets/enter.png"
- import "./Enter.scss"
+import { useState } from "react";
+import { redirect } from "react-router-dom";
+import enter from "../../assets/enter.png";
+import "./Enter.scss";
 
 export default function Enter({ seasons }) {
-
-const [isEntered, animate] = useState(false);
+  const [isEntered, animate] = useState(false);
   const enterAnimation = () => {
-    animate(true)
-    navigate(`/`);
+    animate(true);
+    redirect(`/`);
     sessionStorage.setItem("entered", true);
   };
 

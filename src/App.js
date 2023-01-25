@@ -1,38 +1,39 @@
-import React, { useEffect, useState } from "react";
-import { Router } from "@reach/router";
-import {Header, Footer} from "./components/HeaderFooter"
+import { useEffect, useState } from "react";
+import { Header, Footer } from "./components/HeaderFooter";
+import { Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Enter from "./pages/Enter";
 import Submission from "./pages/Submission";
 import NewSubmission from "./pages/NewSubmission";
 import MTQ from "./pages/MTQ";
-import Standings from "Pages/Standings";
-import ThankYou from "Pages/ThankYou";
-import Rules from "Pages/Rules";
-import About from "Pages/About";
+import Standings from "./pages/Standings";
+import ThankYou from "./pages/ThankYou";
+import Rules from "./pages/Rules";
+import About from "./pages/About";
 import firebase from "./utilities/firebase";
 import NotAvailable from "./pages/NotAvailable";
 import UnderConstruction from "./pages/UnderConstruction";
-
+import Loading from "./components/Loading";
 
 const db = firebase.firestore();
 
 async function addSubmission(season, formState) {
-   try {
-     await db
-       .collection("seasons")
-       .doc(season)
-       .collection("submissions")
-       .doc(formState.email)
-       .set(formState);
-   } catch (error) {
-     // eslint-disable-next-line no-console
-     console.error(`Could not add submission.: ${error}`);
-   }
- }
+  try {
+    await db
+      .collection("seasons")
+      .doc(season)
+      .collection("submissions")
+      .doc(formState.email)
+      .set(formState);
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error(`Could not add submission.: ${error}`);
+  }
+}
 
 export default function App() {
-  const [season, setSeason] = useState({queens:[]});
+  const [season, setSeason] = useState({ queens: [] });
+  const [isLoading, setLoading] = useState(true);
 
   async function fetchSeasons() {
     const seasonsRef = await db
@@ -42,10 +43,11 @@ export default function App() {
 
     const activeSeason = seasonsRef.docs[0].data();
     setSeason(activeSeason);
+    setLoading(false);
+
     // const dev = { ...activeSeason, submissionsOpen: false };
     // setSeason(dev);
   }
-
   useEffect(() => {
     fetchSeasons(setSeason);
   }, []);
@@ -56,37 +58,45 @@ export default function App() {
         window.innerWidth / window.innerHeight <= 0.65 && <Enter />}
       <Header season={season} />
       <div className="app-container">
-        <Router primary={false}>
-          {!!season.seasonId && (
+        <Routes>
+          {!isLoading ? (
             <>
-            <ScrollToTop path="/">
-              {season.underConstruction ? (
-                <UnderConstruction default />
-              ) : (
-                <>
-                  <HomePage path="/" season={season} />
-                  <ThankYou path="/thanks" season={season} />
-                  <Rules path="/rules" season={season} />
-                  <MTQ path="/mtq" season={season} />
-                  <Standings path="/standings" season={season} db={db} />
-                  <Submission
-                    path="/submission/:name"
-                    season={season}
-                    db={db}
-                  />
+              <Route
+                path="/"
+                element={
+                  season.submisssionsOpen ? (
+                    <HomePage season={season} />
+                  ) : (
+                    <Standings season={season} db={db} />
+                  )
+                }
+              />
+              <Route
+                path="/submission/:name"
+                element={<Submission season={season} db={db} />}
+              />
+              <Route
+                path="/submissions/new"
+                element={
                   <NewSubmission
-                    path="/submissions/new"
                     season={season}
                     addSubmission={addSubmission}
                   />
-                  <About path="/about" season={season} />
-                  <NotAvailable default />
-                </>
-              )}
-            </ScrollToTop>
+                }
+              />
+              <Route path="/construction" element={<UnderConstruction />} />
+              <Route path="/thanks" element={<ThankYou season={season} />} />
+              <Route path="/rules" element={<Rules season={season} />} />
+              <Route path="/mtq" element={<MTQ season={season} />} />
+              <Route path="/about" element={<About season={season} />} />
+              <Route path="*" element={<NotAvailable />} />
             </>
+          ) : isLoading ? (
+            <Route path="*" element={<Loading />} />
+          ) : (
+            <Route path="*" element={<NotAvailable />} />
           )}
-        </Router>
+        </Routes>
       </div>
       <Footer />
     </>
