@@ -10,10 +10,11 @@ export default function HomePage({ season }) {
         <img className="group-promo" src={groupPromo}></img>
         <br />
         <div className="welcome">
-          Welcome DillCappers! Please review the rules and then click the "New
-          Submission" button to enter a Dillcap for this season! After you
-          submit and are taken to the thank you page, you are all set! Come back
-          at the beginning of next weeks episode to view your submission!
+          Welcome DillCappers! Please review the rules and then click the
+          &apos;New Submission&apos; button to enter a Dillcap for this season!
+          After you submit and are taken to the thank you page, you are all set!
+          Come back at the beginning of next weeks episode to view your
+          submission!
         </div>
       </Container>
       <div className="links-container">

@@ -2,22 +2,25 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0px 20px;
+  padding: 0 20px;
 
   img {
     width: 130px;
     height: 130px;
-    padding: 0px;
+    padding: 0;
   }
+
   .text {
-    padding: 0px 10px;
+    padding: 0 10px;
     text-indent: 20px;
     text-align: center;
   }
+
   .rule {
     display: flex;
     margin-bottom: 5px;
   }
+
   .rule-header {
     font-size: 20px;
     font-weight: bold;

@@ -3,7 +3,7 @@ import { redirect } from "react-router-dom";
 import enter from "../../assets/enter.png";
 import "./Enter.scss";
 
-export default function Enter({ seasons }) {
+export default function Enter() {
   const [isEntered, animate] = useState(false);
   const enterAnimation = () => {
     animate(true);

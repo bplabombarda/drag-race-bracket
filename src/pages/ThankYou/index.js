@@ -2,7 +2,7 @@ import Container from "../../components/Container";
 import thankyou from "../../assets/thank-you.png";
 import "./ThankYou.scss";
 
-export default function ThankYou({ seasons }) {
+export default function ThankYou() {
   return (
     <>
       <Container heading="Thank You!">

@@ -31,7 +31,7 @@ const Guide = ({ formState, setFormState, season, setErrorState }) => {
       <br />
       <br />
       If you dont want to choose you can fill out your info and click
-      "Randomize" and Dillcap will do it for you
+      &rsquo;Randomize&rsquo; and Dillcap will do it for you
       <div className="guide-buttons-container">
         <button onClick={clearState} className="pink-button guide-button">
           Clear Form

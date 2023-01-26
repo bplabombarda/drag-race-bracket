@@ -4,6 +4,7 @@
   height: 60px;
   border-radius: 30px;
   margin-right: 5px;
+
   .placement,
   .placement-icon {
     color: white;
@@ -13,9 +14,11 @@
     justify-content: center;
     font-weight: bold;
   }
+
   .placement {
-    padding: 10px 0px 10px 10px;
+    padding: 10px 0 10px 10px;
   }
+
   .placement-icon {
     padding: 6px;
     box-sizing: border-box;
@@ -30,6 +33,7 @@
   font-size: 16px;
   font-weight: bold;
 }
+
 .last-updated {
   text-align: center;
   padding-bottom: 20px;
@@ -46,7 +50,7 @@
   .pink-button {
     width: 80%;
     word-wrap: break-word;
-    min-width: 0px;
+    min-width: 0;
     flex-grow: 1;
     padding: 15px 3px;
     font-size: 18px;

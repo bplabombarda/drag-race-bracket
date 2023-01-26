@@ -8,6 +8,7 @@
   z-index: 1001;
   display: block;
 }
+
 .left {
   left: 0;
   background-position: left;
@@ -21,6 +22,7 @@
 .slide-off-left {
   animation: slide-left 3s normal forwards running;
 }
+
 .slide-off-right {
   animation: slide-right 3s normal forwards running;
 }
@@ -29,10 +31,12 @@
   0% {
     left: 0%;
   }
+
   99% {
     left: -150%;
     display: block;
   }
+
   100% {
     left: -150%;
     visibility: hidden;
@@ -43,9 +47,11 @@
   0% {
     right: -0%;
   }
+
   99% {
     right: -150%;
   }
+
   100% {
     right: -150%;
     visibility: hidden;

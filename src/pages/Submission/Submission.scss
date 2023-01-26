@@ -2,6 +2,7 @@
   .container-content {
     background-color: white;
   }
+
   .selection-container {
     display: flex;
     justify-content: flex-end;
@@ -18,6 +19,7 @@
       padding: 5px 10px;
       box-sizing: border-box;
     }
+
     .name {
       font-size: 16px;
       width: 40%;
@@ -26,14 +28,17 @@
     &.winner {
       flex-direction: column;
       margin-bottom: 20px;
+
       .name {
         font-size: 18px;
         width: 100%;
         text-align: center;
       }
+
       .label {
         font-size: 22px;
       }
+
       .selection-image {
         max-width: 90px;
       }

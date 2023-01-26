@@ -2,16 +2,20 @@
   font-size: 20px;
   display: flex;
   align-items: center;
+
   img {
-    padding: 3px 12px 3px 0px;
+    padding: 3px 12px 3px 0;
   }
+
   &.eliminated,
   &.already-chosen {
     color: #d5d5d5;
+
     img {
       opacity: 0.3;
     }
   }
+
   &.eliminated {
     text-decoration: line-through;
   }
@@ -23,6 +27,7 @@
     &.already-chosen {
       color: black;
       text-decoration: none;
+
       img {
         opacity: 1;
       }
@@ -32,17 +37,20 @@
 
 .select-container {
   margin-bottom: 7px;
-  &.error {
-    label {
-      color: red;
-    }
-    > div {
-      border: 2px solid red;
-    }
-  }
+
   label {
     display: block;
     font-size: 18px;
     padding-bottom: 5px;
+  }
+
+  &.error {
+    label {
+      color: red;
+    }
+
+    > div {
+      border: 2px solid red;
+    }
   }
 }

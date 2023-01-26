@@ -20,7 +20,7 @@ export default function NewSubmission({ season, addSubmission }) {
   const [formState, setFormState] = useState(cachedData || defaultObj);
   const [validFields, setErrorState] = useState({});
 
-  const validate = (event) => {
+  const validate = () => {
     const { name, email, venmo, selections } = formState;
     const { queens, queensInFinale } = season;
 
@@ -287,7 +287,7 @@ function getEliminatedQueens(selections, sectionIndex) {
   const weeks = Object.keys(selections);
 
   if (weeks.length > 0) {
-    return weeks.map((week, index) => {
+    return weeks.map((week) => {
       return selections[week].eliminated;
     }, []);
   }

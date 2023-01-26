@@ -35,7 +35,7 @@ export default function Rules({ season }) {
             <div className="rule-header">Points:</div>
             <li className="rule">
               <div>&#10024;</div> +5 points per right top and bottom
-              placement(s){" "}
+              placement(s)
             </li>
             <li className="rule">
               <div>&#10024;</div> +5 points for correct guess of who wins and
