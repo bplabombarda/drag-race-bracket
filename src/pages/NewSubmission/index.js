@@ -1,40 +1,41 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Container from "../../components/Container";
 import normalizeName from "../../utilities/normalizeName";
-import { navigate } from "@reach/router";
-import { SelectGroup } from "../../components/Inputs"
+import { redirect } from "react-router-dom";
+import { SelectGroup } from "../../components/Inputs";
 import FinaleSelectGroup from "../../components/Inputs/FinaleSelectGroup";
 import Guide from "./Guide";
-import Submit from "./Submit"
+import Submit from "./Submit";
 import PersonalInfo from "./PersonalInfo";
 import "./NewSubmission.scss";
 
 export const defaultObj = { name: "", venmo: "", email: "", selections: {} };
 
 export default function NewSubmission({ season, addSubmission }) {
-  if (!season.submissionsOpen) navigate("/standings");
-  if (localStorage.getItem("submitted") === season.seasonId) navigate("/thanks")
-  
-  const cachedData = JSON.parse(sessionStorage.getItem("formData"))
-  const [formState, setFormState] = useState( cachedData || defaultObj);
+  if (!season.submissionsOpen) redirect("/standings");
+  if (localStorage.getItem("submitted") === season.seasonId)
+    redirect("/thanks");
+
+  const cachedData = JSON.parse(sessionStorage.getItem("formData"));
+  const [formState, setFormState] = useState(cachedData || defaultObj);
   const [validFields, setErrorState] = useState({});
 
-  const validate = (event) => {
-    const { name, email, venmo, selections } = formState
-    const { queens, queensInFinale } = season
+  const validate = () => {
+    const { name, email, venmo, selections } = formState;
+    const { queens, queensInFinale } = season;
 
     const keys = [...queens]
       .slice(queensInFinale, queens.length)
-      .map((k, num) => k !== "finale" ? `top${queens.length - num}` : k)
-    let showErrors = false
+      .map((k, num) => (k !== "finale" ? `top${queens.length - num}` : k));
+    let showErrors = false;
     const validSelections = keys.reduce((acc, key) => {
       const validSection =
         !!selections[key] &&
         !!selections[key].winner &&
         !!selections[key].top &&
         !!selections[key].bottom &&
-        !!selections[key].eliminated; 
-      showErrors = !validSection ? true : showErrors
+        !!selections[key].eliminated;
+      showErrors = !validSection ? true : showErrors;
       return {
         ...acc,
         [key]: {
@@ -45,7 +46,7 @@ export default function NewSubmission({ season, addSubmission }) {
           eliminated: !!selections[key] && !!selections[key].eliminated,
         },
       };
-    }, {})
+    }, {});
 
     setErrorState({
       ...validFields,
@@ -69,20 +70,20 @@ export default function NewSubmission({ season, addSubmission }) {
         },
       },
     });
-  } 
+  };
 
   useEffect(() => {
     sessionStorage.setItem("formData", JSON.stringify(formState));
-   if (validFields.showErrors) {
-     validate();
-   }  }, [formState]);
-
+    if (validFields.showErrors) {
+      validate();
+    }
+  }, [formState]);
 
   const setSelections = (selections) => {
-      setFormState({
-        ...formState,
-        selections,
-      })
+    setFormState({
+      ...formState,
+      selections,
+    });
   };
 
   const handleSubmit = async (event) => {
@@ -90,11 +91,11 @@ export default function NewSubmission({ season, addSubmission }) {
     addSubmission(season.seasonId, formState).then(() => {
       console.log("submission: ", formState);
       sessionStorage.removeItem("formData");
-      localStorage.setItem("submitted", season.seasonId)
+      localStorage.setItem("submitted", season.seasonId);
     });
-    navigate(`/thanks`);
+    redirect(`/thanks`);
   };
-  
+
   return (
     <>
       {validFields.showErrors && (
@@ -198,26 +199,22 @@ export default function NewSubmission({ season, addSubmission }) {
   );
 }
 
+function getAllOptions(queens = [], extraQueens = []) {
+  return [...queens, ...extraQueens].map((queen) => {
+    const name = normalizeName(queen.name);
 
-function getAllOptions(queens = [], extraQueens = []) { 
-  return [...queens, ...extraQueens]
-    .map((queen) => {
-      const name = normalizeName(queen.name);
-
-      const label = (
-        <div
-          className={`option-container`}
-        >
-          <img
-            src={require(`../../assets/queens/circle/${name}.png`)}
-            height="50px"
-            width="50px"
-          />
-          {queen.name}
-        </div>
-      );
-      return { value: name, label, required: true };
-    })
+    const label = (
+      <div className={`option-container`}>
+        <img
+          src={require(`../../assets/queens/circle/${name}.png`)}
+          height="50px"
+          width="50px"
+        />
+        {queen.name}
+      </div>
+    );
+    return { value: name, label, required: true };
+  });
 }
 
 function createOptionsArray(
@@ -290,7 +287,7 @@ function getEliminatedQueens(selections, sectionIndex) {
   const weeks = Object.keys(selections);
 
   if (weeks.length > 0) {
-    return weeks.map((week, index) => {
+    return weeks.map((week) => {
       return selections[week].eliminated;
     }, []);
   }

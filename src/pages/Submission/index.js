@@ -1,19 +1,33 @@
-import React from "react";
-import { navigate } from "@reach/router";
-import Container from "../../components/Container"
- import "./Submission.scss"
+import { useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import Container from "../../components/Container";
+import "./Submission.scss";
 
-export default function Submission({season, location: { state } }) {
-  if (season.submissionsOpen) navigate("/");
-  
-  const arr = Object.keys({ ...state.selections }).filter(a => a !== "finale")
+export default function Submission({ season }) {
+  const redirect = useNavigate();
+  const { state } = useLocation();
+
+  useEffect(() => {
+    if (season.submissionsOpen) redirect("/");
+  }, []);
+
+  const arr = Object.keys({ ...state.selections }).filter(
+    (a) => a !== "finale"
+  );
   return (
     <>
-      <h1 className="name-heading">{state.name} - { state.score}</h1>
+      <h1 className="name-heading">
+        {state.name} - {state.score}
+      </h1>
       {arr.map((a, num) => {
         const section = season.queens.length - num;
         return (
-          <Container className="submission" key={num} collapsible heading={`Top ${section}`}>
+          <Container
+            className="submission"
+            key={num}
+            collapsible
+            heading={`Top ${section}`}
+          >
             <SubmissionContent
               queens={season.queens}
               winner={state.selections[`top${section}`].winner}
@@ -38,15 +52,43 @@ export default function Submission({season, location: { state } }) {
   );
 }
 
-const SubmissionContent = ({winner, top, bottom, eliminated, finale=false, queens}) => (
+const SubmissionContent = ({
+  winner,
+  top,
+  bottom,
+  eliminated,
+  finale = false,
+  queens,
+}) => (
   <>
-    <Selection queens={queens} winner label="Winner" icon={require(`../../assets/queens/circle/${winner}.png`)} name={winner} />
-    <Selection queens={queens} label={!finale ?"Top":"Runner Up"} icon={require(`../../assets/queens/circle/${top}.png`)} name={top} />
-    <Selection queens={queens} label={!finale ?"Bottom":"Runner Up"} icon={require(`../../assets/queens/circle/${bottom}.png`)} name={bottom} />
-    <Selection queens={queens} label={!finale ?"Eliminated":"Congeniality"} icon={require(`../../assets/queens/circle/${eliminated}.png`)} name={eliminated} />
+    <Selection
+      queens={queens}
+      winner
+      label="Winner"
+      icon={require(`../../assets/queens/circle/${winner}.png`)}
+      name={winner}
+    />
+    <Selection
+      queens={queens}
+      label={!finale ? "Top" : "Runner Up"}
+      icon={require(`../../assets/queens/circle/${top}.png`)}
+      name={top}
+    />
+    <Selection
+      queens={queens}
+      label={!finale ? "Bottom" : "Runner Up"}
+      icon={require(`../../assets/queens/circle/${bottom}.png`)}
+      name={bottom}
+    />
+    <Selection
+      queens={queens}
+      label={!finale ? "Eliminated" : "Congeniality"}
+      icon={require(`../../assets/queens/circle/${eliminated}.png`)}
+      name={eliminated}
+    />
   </>
-)
-name
+);
+name;
 
 const Selection = ({
   label,
@@ -68,6 +110,6 @@ const Selection = ({
 );
 
 const getFullName = (queens, string) => {
-  const queen = queens.filter(q => q.name.toLowerCase().includes(string))
-  return queen[0].name
-}
+  const queen = queens.filter((q) => q.name.toLowerCase().includes(string));
+  return queen[0].name;
+};

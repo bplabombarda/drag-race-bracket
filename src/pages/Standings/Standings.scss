@@ -1,53 +1,58 @@
 .placement-container {
+  display: flex;
+  background-color: #f80ea1;
+  height: 60px;
+  border-radius: 30px;
+  margin-right: 5px;
+
+  .placement,
+  .placement-icon {
+    color: white;
+    font-size: 36px;
     display: flex;
-    background-color: #F80EA1;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+
+  .placement {
+    padding: 10px 0 10px 10px;
+  }
+
+  .placement-icon {
+    padding: 6px;
+    box-sizing: border-box;
     height: 60px;
-    border-radius: 30px;
-    margin-right: 5px;
-    .placement, .placement-icon {
-        color: white;
-        font-size: 36px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-    }
-    .placement {
-        padding: 10px 0px 10px 10px;
-    }
-    .placement-icon {
-        padding: 6px;
-        box-sizing: border-box;
-        height: 60px;
-        width: 60px;
-    }
+    width: 60px;
+  }
 }
 
 .prize {
-    color: #F80EA1;
-    text-align: center;
-    font-size: 16px;
-    font-weight: bold;
+  color: #f80ea1;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
 }
+
 .last-updated {
-    text-align: center;
-    padding-bottom: 20px;
-    font-size: 12px;
+  text-align: center;
+  padding-bottom: 20px;
+  font-size: 12px;
 }
 
 .placement-link-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
 
-    .pink-button {
-        width: 80%;
-        word-wrap: break-word;
-        min-width: 0px;
-        flex-grow: 1;
-        padding: 15px 3px;
-        font-size: 18px;
-    }
+  .pink-button {
+    width: 80%;
+    word-wrap: break-word;
+    min-width: 0;
+    flex-grow: 1;
+    padding: 15px 3px;
+    font-size: 18px;
+  }
 }

@@ -1,10 +1,8 @@
-import React from "react";
-import Container from "../../components/Container"
-import rules from "../../assets/rules.png"
- import "./Rules.scss"
+import Container from "../../components/Container";
+import rules from "../../assets/rules.png";
+import "./Rules.scss";
 
 export default function Rules({ season }) {
-
   return (
     <>
       <Container heading="Rules">
@@ -23,10 +21,13 @@ export default function Rules({ season }) {
                   Paypal me $10,000
                 </li>
                 <li className="rule">
-                  <div>&#10024;</div> Go through each section and choose who you think will be the winner, in the top, in the bottom, and sent home.
+                  <div>&#10024;</div> Go through each section and choose who you
+                  think will be the winner, in the top, in the bottom, and sent
+                  home.
                 </li>
                 <li className="rule">
-                  <div>&#10024;</div> Submit your bracket before {season.submissionCuttOffDate}
+                  <div>&#10024;</div> Submit your bracket before{" "}
+                  {season.submissionCuttOffDate}
                 </li>
               </>
             )}
@@ -34,7 +35,7 @@ export default function Rules({ season }) {
             <div className="rule-header">Points:</div>
             <li className="rule">
               <div>&#10024;</div> +5 points per right top and bottom
-              placement(s){" "}
+              placement(s)
             </li>
             <li className="rule">
               <div>&#10024;</div> +5 points for correct guess of who wins and

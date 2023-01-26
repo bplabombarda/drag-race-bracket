@@ -1,18 +1,28 @@
-import React from "react";
 import Select from "react-select";
 
 import "./TextInput.scss";
 import "./Select.scss";
 
-export function TextInput({ label, handleOnChange, type="text", value, error}) {
+export function TextInput({
+  label,
+  handleOnChange,
+  type = "text",
+  value,
+  error,
+}) {
   return (
-    <div className={`text-input ${error ? "error" : ""}`} >
+    <div className={`text-input ${error ? "error" : ""}`}>
       <label>{label}: </label>
-      <input required onChange={handleOnChange} type={type} value={value} maxLength={35}></input>
+      <input
+        required
+        onChange={handleOnChange}
+        type={type}
+        value={value}
+        maxLength={35}
+      ></input>
     </div>
   );
 }
-
 
 export function SelectGroup({
   options,
@@ -20,7 +30,7 @@ export function SelectGroup({
   sectionIndex,
   formState,
   validFields,
-  showErrors = false
+  showErrors = false,
 }) {
   const handleOnChange = (event, type) => {
     const selectedOption = event.value;
@@ -48,7 +58,11 @@ export function SelectGroup({
 
   return (
     <>
-      <div className={`select-container ${!showErrors || validFields.winner ? "" : "error"}`}>
+      <div
+        className={`select-container ${
+          !showErrors || validFields.winner ? "" : "error"
+        }`}
+      >
         <label>Winner: </label>
         <Select
           required
@@ -63,7 +77,11 @@ export function SelectGroup({
           value={options.filter((option) => option.value === cache.winner)}
         />
       </div>
-      <div className={`select-container ${!showErrors || validFields.top ? "" : "error"}`}>
+      <div
+        className={`select-container ${
+          !showErrors || validFields.top ? "" : "error"
+        }`}
+      >
         <label>Top: </label>
         <Select
           required
@@ -78,7 +96,11 @@ export function SelectGroup({
           value={options.filter((option) => option.value === cache.top)}
         />
       </div>
-      <div className={`select-container ${!showErrors || validFields.bottom ? "" : "error"}`}>
+      <div
+        className={`select-container ${
+          !showErrors || validFields.bottom ? "" : "error"
+        }`}
+      >
         <label>Bottom: </label>
         <Select
           required
@@ -93,7 +115,11 @@ export function SelectGroup({
           value={options.filter((option) => option.value === cache.bottom)}
         />
       </div>
-      <div className={`select-container ${!showErrors || validFields.eliminated ? "" : "error"}`}>
+      <div
+        className={`select-container ${
+          !showErrors || validFields.eliminated ? "" : "error"
+        }`}
+      >
         <label>Eliminated: </label>
         <Select
           required

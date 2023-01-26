@@ -1,57 +1,59 @@
 .image {
-    width: 50%;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    background-size: 200%;
-    background-repeat: no-repeat;
-    z-index: 1001;
-    display: block;
+  width: 50%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  background-size: 200%;
+  background-repeat: no-repeat;
+  z-index: 1001;
+  display: block;
 }
+
 .left {
-    left: 0;
-    background-position: left;
+  left: 0;
+  background-position: left;
 }
 
 .right {
-    right: 0;
-    background-position: right;
+  right: 0;
+  background-position: right;
 }
 
 .slide-off-left {
-    animation: slide-left 3s normal forwards running;
+  animation: slide-left 3s normal forwards running;
 }
+
 .slide-off-right {
-    animation: slide-right 3s normal forwards running;
+  animation: slide-right 3s normal forwards running;
 }
 
 @keyframes slide-left {
+  0% {
+    left: 0%;
+  }
 
-    0% {
-        left: 0%;
-    }
-    99% {
-        left: -150%;
-        display: block;
-    }
-    100% {
-        left: -150%;
-        visibility: hidden;
-    }
+  99% {
+    left: -150%;
+    display: block;
+  }
 
+  100% {
+    left: -150%;
+    visibility: hidden;
+  }
 }
 
 @keyframes slide-right {
+  0% {
+    right: -0%;
+  }
 
-    0% {
-        right: -0%;
-    }
-    99% {
-        right: -150%;
-    }
-    100% {
-        right: -150%;
-        visibility: hidden;
-    }
+  99% {
+    right: -150%;
+  }
 
+  100% {
+    right: -150%;
+    visibility: hidden;
+  }
 }

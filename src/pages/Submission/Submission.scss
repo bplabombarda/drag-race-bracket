@@ -1,54 +1,58 @@
 .submission.container {
+  .container-content {
+    background-color: white;
+  }
 
-    .container-content {
-        background-color: white;
+  .selection-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    .label {
+      color: #f80ea1;
+      font-size: 17px;
+      font-weight: bold;
     }
-    .selection-container {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
 
-        .label {
-            color: #F80EA1;
-            font-size: 17px;
-            font-weight: bold;
-        }
-
-        .selection-image {
-            max-width: 75px;
-            padding: 5px 10px;
-            box-sizing: border-box;
-        }
-        .name {
-            font-size: 16px;
-            width: 40%;
-        }
-
-        &.winner{
-            flex-direction: column;
-            margin-bottom: 20px;
-            .name {
-                font-size: 18px;
-                width: 100%;
-                text-align: center;
-            }
-            .label {
-                font-size: 22px;
-            }
-            .selection-image {
-                max-width: 90px;
-            }
-        }
+    .selection-image {
+      max-width: 75px;
+      padding: 5px 10px;
+      box-sizing: border-box;
     }
+
+    .name {
+      font-size: 16px;
+      width: 40%;
+    }
+
+    &.winner {
+      flex-direction: column;
+      margin-bottom: 20px;
+
+      .name {
+        font-size: 18px;
+        width: 100%;
+        text-align: center;
+      }
+
+      .label {
+        font-size: 22px;
+      }
+
+      .selection-image {
+        max-width: 90px;
+      }
+    }
+  }
 }
 
 .name-heading {
-    background-color: #F80EA1;
-    color: white;
-    border-radius: 30px;
-    font-size: 26px;
-    text-align: center;
-    display: block;
-    padding: 10px;
-    margin-bottom: 10px;
+  background-color: #f80ea1;
+  color: white;
+  border-radius: 30px;
+  font-size: 26px;
+  text-align: center;
+  display: block;
+  padding: 10px;
+  margin-bottom: 10px;
 }

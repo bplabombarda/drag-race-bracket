@@ -1,94 +1,98 @@
 .container {
-    width: 100%;
-    padding: 4px;
+  width: 100%;
+  padding: 4px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #e1e1e1 #888 #888 #e1e1e1;
+  box-sizing: border-box;
+  background: #c0c0c0;
+  color: black;
+  box-shadow: 3px 3px 9px -2px #000;
+  margin-bottom: 10px;
+
+  &.error {
+    border: 5px solid red;
+  }
+
+  .circle-image {
+    width: 75px;
+    padding: 2px 10px;
+  }
+
+  .container-header {
+    min-height: 33px;
+    line-height: 33px;
+    font-weight: bold;
+    background: #f80ea1;
+    background: linear-gradient(#ff8edc, #f80ea1);
+    padding: 6px;
+    color: #fefefe;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+
+    .left-header {
+      display: flex;
+      align-items: center;
+
+      span {
+        font-size: 21px;
+      }
+    }
+
+    .subheading-container {
+      display: flex;
+      flex-direction: column;
+
+      // flex-wrap: nowrap;
+
+      .heading {
+        font-size: 24px;
+        margin-bottom: -7px;
+      }
+
+      .subheading {
+        font-size: 16px;
+        font-weight: 100;
+      }
+    }
+  }
+
+  .container-content {
+    padding: 20px 10px;
+    min-height: 40px;
+    box-sizing: border-box;
+
+    &.hidden {
+      display: none;
+    }
+  }
+
+  .button-container {
+    align-self: flex-start;
+    outline: none;
+    -webkit-tap-highlight-color: black;
+    box-sizing: border-box;
+    background: #c6c6c6;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    height: 27px;
+    width: 31px;
+    cursor: pointer;
     border-style: solid;
     border-width: 2px;
-    border-color: #E1E1E1 #888888 #888888 #E1E1E1;
-    box-sizing: border-box;
-    background: #C0C0C0;
-    color: black;
-    box-shadow: 3px 3px 9px -2px #000000;
-    margin-bottom: 10px;
-    &.error {
-        border: 5px solid red;
-    }
+    border-color: #e1e1e1 #888 #888 #e1e1e1;
 
-    .circle-image {
-        width: 75px;   
-        padding: 2px 10px; 
+    .icon {
+      color: #898989;
+      font-size: 21px;
+      font-weight: bold;
+      margin-top: -3px;
     }
-
-    .container-header {
-        min-height: 33px;
-        line-height: 33px;
-        padding: 0 3px;
-        font-weight: bold;
-        background: #F80EA1;
-        background: linear-gradient(#FF8EDC, #F80EA1);
-        padding: 6px;
-        color: rgb(254, 254, 254);
-        display: flex;
-        -webkit-box-align: center;
-        align-items: center;
-        -webkit-box-pack: justify;
-        justify-content: space-between;
-        .left-header {
-            display: flex;
-            align-items: center;
-            span {
-                font-size: 21px;
-            }       
-         }
-        .subheading-container {
-            display: flex;
-            flex-direction: column;
-            flex-wrap: nowrap;   
-          
-         
-            .heading {
-                font-size: 24px;
-                margin-bottom: -7px;
-            }  
-            .subheading {
-                font-size: 16px;
-                font-weight: 100;
-            }
-        }
-    }
-    .container-content {
-        padding: 20px 10px;
-        min-height: 40px;    
-        box-sizing: border-box;
-        &.visible {
-        }
-        &.hidden{
-            display: none;
-        }
-    }
-
-    .button-container {
-        align-self: flex-start;
-        outline: none;
-        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-        box-sizing: border-box;
-        background: rgb(198, 198, 198);
-        display: inline-flex;
-        -webkit-box-align: center;
-        align-items: center;
-        -webkit-box-pack: center;
-        justify-content: center;  
-        height: 27px;
-        width: 31px;
-        cursor: pointer;
-        border-style: solid;
-        border-width: 2px;
-        border-color: #E1E1E1 #888888 #888888 #E1E1E1;
-        
-        .icon {
-            color: #898989;
-            font-size: 21px;
-            font-weight: bold;
-            margin-top: -3px;
-        }
-    }
+  }
 }

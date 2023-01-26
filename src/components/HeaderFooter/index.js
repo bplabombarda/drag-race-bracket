@@ -1,12 +1,12 @@
-import React, {useState} from "react";
+import { useState } from "react";
 import { slide as Menu } from "react-burger-menu";
-import { Link } from "@reach/router";
+import { Link } from "react-router-dom";
 import "./Header.scss";
 import "./Footer.scss";
-import home from "../../assets/home.png"
+import home from "../../assets/home.png";
 import logo from "../../assets/header-logo.png";
 
-export const Header = ({season}) => {
+export const Header = ({ season }) => {
   const [isOpen, setOpen] = useState(false);
 
   const handleIsOpen = () => {
@@ -44,11 +44,7 @@ export const Header = ({season}) => {
           </>
         ) : (
           <>
-            <Link
-              className="hamburger-link"
-              to="/standings"
-              onClick={closeSideBar}
-            >
+            <Link className="hamburger-link" to="/" onClick={closeSideBar}>
               Standings
             </Link>
             <Link className="hamburger-link" to="/rules" onClick={closeSideBar}>
@@ -66,7 +62,6 @@ export const Header = ({season}) => {
     </header>
   );
 };
-
 
 export const Footer = () => (
   <footer>

@@ -1,5 +1,5 @@
-function normalizeName(str="")  {
-  return str.replace(/ .*/,'').toLowerCase();
+function normalizeName(str = "") {
+  return str.replace(/ .*/, "").toLowerCase();
 }
 
 export default normalizeName;

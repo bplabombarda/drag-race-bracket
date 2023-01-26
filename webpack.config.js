@@ -1,43 +1,29 @@
-/* eslint-disable */
 global.__rootdir = require("path").resolve(__dirname);
-
 require("dotenv").config();
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const autoprefixer = require("autoprefixer");
-const merge = require("webpack-merge");
+const { merge } = require("webpack-merge");
 const webpack = require("webpack");
 const { resolve } = require("path");
-
+const devConfig = require("./webpack/dev.config");
+const prodConfig = require("./webpack/prod.config");
 const PRODUCTION = process.env.NODE_ENV === "production";
-const SRC_DIR = `${__rootdir}/src`;
 
 const baseConfig = {
-  output: {
-    path: `${__rootdir}/public`,
-    pathinfo: !PRODUCTION,
-  },
-
   context: resolve(__dirname),
-
-  devtool: PRODUCTION ? "source-map" : "cheap-module-eval-source-map",
-
-  devServer: {
-    stats: "minimal",
-  },
-
   bail: PRODUCTION,
-
+  devtool: PRODUCTION ? "source-map" : "eval-source-map",
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
+        use: "babel-loader",
         exclude: /node_modules/,
-        use: [
-          {
-            loader: "babel-loader",
-          },
-        ],
+      },
+      {
+        test: /\.(css|scss)$/,
+        use: ["style-loader", "css-loader", "sass-loader"],
       },
       {
         test: /\.(eot|ttf|woff|woff2|svg|jpg|png)$/,
@@ -52,7 +38,6 @@ const baseConfig = {
       },
     ],
   },
-
   plugins: [
     new HtmlWebpackPlugin({
       template: "src/index.html",
@@ -66,7 +51,6 @@ const baseConfig = {
         postcss: [autoprefixer()],
       },
     }),
-    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       "process.env.FIREBASE_API_KEY": JSON.stringify(
@@ -86,97 +70,28 @@ const baseConfig = {
       ),
     }),
   ],
-
   resolve: {
-    alias: {
-      Source: SRC_DIR,
-      Config: `${__rootdir}/config`,
-      Pages: `${SRC_DIR}/pages`,
-      Styles: `${SRC_DIR}/styles`,
-      Utils: `${SRC_DIR}/utils`,
-    },
     extensions: [".js", ".json", ".css", ".scss"],
+  },
+  optimization: {
+    runtimeChunk: "single",
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendors",
+          chunks: "all",
+        },
+      },
+    },
   },
 };
 
+// serve
 if (PRODUCTION) {
   console.info("Building for prod...");
-
-  module.exports = merge(baseConfig, {
-    mode: "production",
-
-    entry: {
-      main: `${__rootdir}/src/index.js`,
-      vendor: ["react", "react-dom"]
-    },
-
-    output: {
-      filename: "js/[hash].js",
-      publicPath: "/"
-    },
-
-    optimization: {
-      splitChunks: {
-        chunks: "all"
-      }
-    },
-
-    module: {
-      rules: [
-        {
-          test: /\.(css|scss)$/,
-          use: [
-            "style-loader",
-            "css-loader",
-            "sass-loader",
-            {
-              loader: "sass-resources-loader",
-              options: {
-                resources: [resolve(__dirname, "./src/styles/globals.scss")]
-              }
-            }
-          ]
-        }
-      ]
-    }
-  });
+  module.exports = merge(baseConfig, prodConfig);
 } else {
   console.info("Serving locally...");
-
-  module.exports = merge(baseConfig, {
-    mode: "development",
-
-    devServer: {
-      historyApiFallback: true
-    },
-
-    entry: [
-      "webpack-dev-server/client?http://localhost:8080",
-      `${__rootdir}/src/index.js`
-    ],
-
-    output: {
-      filename: "js/bundle.js",
-      publicPath: "/"
-    },
-
-    module: {
-      rules: [
-        {
-          test: /\.(css|scss)$/,
-          use: [
-            "style-loader",
-            "css-loader",
-            "sass-loader",
-            {
-              loader: "sass-resources-loader",
-              options: {
-                resources: [resolve(__dirname, "./src/styles/globals.scss")]
-              }
-            }
-          ]
-        }
-      ]
-    }
-  });
+  module.exports = merge(baseConfig, devConfig);
 }

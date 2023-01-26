@@ -1,6 +1,6 @@
 export default function getScore(submission, results) {
   let score = 0;
-  const weeks = Object.keys({...submission.selections});
+  const weeks = Object.keys({ ...submission.selections });
 
   weeks.forEach((week) => {
     if (results && results[week]) {
