@@ -9,8 +9,7 @@
     "deploy": "npm run clean; npm run build; npm run deploy:firebase;",
     "deploy:firebase": "firebase deploy",
     "lint": "eslint ./src; stylelint ./src/**/*.scss",
-    "start": "webpack serve --mode development",
-    "test": "NODE_ENV=development ./node_modules/.bin/jest --config=jest.config.js"
+    "start": "webpack serve --mode development"
   },
   "repository": {
     "type": "git",
